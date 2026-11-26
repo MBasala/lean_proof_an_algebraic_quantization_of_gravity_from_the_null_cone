@@ -13,6 +13,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Hypotheses.lean`: the hypothesis register, with formal statements of H1, H13 and H14.
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.
 - `paper/equation_index.tsv`: printed equation number, LaTeX label and `main.tex` line for every equation in the paper.
+- `notes/note-to-author-draft.md`: a draft of questions for the paper's author. Not sent.
 
 The paper's PDF and TeX source are not in the repository (its arXiv licence does not allow redistribution). To rebuild the index, put the PDF in the repository root, unpack the arXiv source into `paper/arxiv-src/`, and run `scripts/extract_pdf_text.py` and `scripts/tex_label_index.py`.
 

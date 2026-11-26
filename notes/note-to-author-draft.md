@@ -1,0 +1,51 @@
+# Draft note to the author (handoff Step 6)
+
+Status: draft, not sent. Michael decides whether to send it, and in what form.
+Drafted: 2026-11-26.
+
+## The note
+
+Subject: Questions from a Lean formalization of arXiv:2611.34924
+
+Dear Venkatesa Chandrasekaran,
+
+I am formalizing the mathematical skeleton of your paper in Lean 4 with Mathlib, with every unproved input as a named hypothesis. So far only elementary statements are machine-checked: (4.29) to (4.34), (5.17), (C.21), the bound (5.32) in abstract form, and the arithmetic of (5.61), (5.68) and (5.69). None of the headline claims is. The development was written with the help of an AI model and is checked by the Lean kernel.
+
+Making the definitions precise raised six questions I could not settle from the text. I would be grateful for your view on any of them.
+
+1. The clock on H_ω. The clock is constructed on K_A by the form (4.27) and (C.11) to (C.13); (5.2) then applies its spectral projection on H_ω. How is the clock defined on vectors of H_ω outside K_A, and why does it commute with the area operator there? As I read it, the construction determines P_D(A) K_A but not the rest of H_D.
+
+2. Finite dimension. Before (5.38), Z[X] is the expectation of X in the uncut preparation times that preparation's squared norm. Is this norm, the amplitude with no insertion, taken to be finite and reproduced by closing the cut? If so, (5.30c) alone gives dim H_D ≤ Z[1] e^{s_*} / m_{b,D}, which I have checked formally, and the boost argument is not needed. Or is the boost argument there because the statement with no insertion is not available?
+
+3. Domain of the clock. By the sentence after (C.14), ‖Ψ_L − Ω_A‖ → 0 exactly when Ω_A lies in M, and the paragraph after (C.17) derives density of the form domain from the same estimate. Is there an argument that (4.27) is densely defined, or that Ω_A lies in M, that does not pass through (5.8) to (5.16) and the heuristic step of footnote 18?
+
+4. The value of q. Footnote 23 gives q = 2x²/(1 + x²) with x = (1 − ε) r_h / ℓ, and (5.68) gives q = 257/302. Both hold only if x² = 257/347, while the text keeps ℓ(D)/r_h free. Is that ratio fixed by consistency, or is one of the two evaluations approximate?
+
+5. Comparison with Sen. As I read (5.66) to (5.69), q is obtained from the coefficient in (5.67c), and (5.69) returns that coefficient whatever its value. The number 106/45 is Sen's mixed-ensemble coefficient, his (1.4), which in four dimensions is C_local alone; his microcanonical and singlet coefficients are lower by 1 and 3 in units of ln a. Is there an evaluation of q that does not use (5.67c), and is the mixed ensemble the comparison meant in the abstract?
+
+6. Records. The acknowledgements say several calculations and proofs were developed with an AI model. Are records of those derivations, or any formal artifacts, available?
+
+I would be glad to share the Lean files.
+
+With thanks,
+Michael Basala
+
+## Where each question comes from
+
+| Question | Source in this repository |
+|---|---|
+| 1 | Finding F6; register entries H16, H17; `QuantGrav/Diamond/Setup.lean` |
+| 2 | Finding F2; register entries H3a, H3b; `QuantGrav/Diamond/FiniteDim.lean` |
+| 3 | Findings F1, F7; register entries H1, H13; `QuantGrav/Diamond/ClockHypotheses.lean` |
+| 4 | Finding F3; `ratio_sq_of_q` in `QuantGrav/Elementary/LogCoefficient.lean` |
+| 5 | Finding F9; `log_coefficient_roundtrip`; `QuantGrav/Entropy/SenComparison.lean` |
+| 6 | The paper's acknowledgements (`main.tex` line 2400); `handoff.md` Section 2 |
+
+Questions 1 to 5 of `handoff.md` Section 13, Step 6 are questions 4, 5, 3, 2 and 6 here. Question 1 here is new, from finding F6. The ensemble part of question 5 is new, from finding F9.
+
+## To settle before sending
+
+- The offer to share the Lean files. The repository is private.
+- The sentence saying the development was written with the help of an AI model.
+- The salutation. The author's title is not known to this repository.
+- Question 2 rests on a reading of the two sentences around (5.38) that no second reader has checked (see the open items in `FIDELITY.md`).
