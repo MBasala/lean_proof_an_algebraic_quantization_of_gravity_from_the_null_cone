@@ -6,6 +6,7 @@ Authors: Michael Basala
 module
 
 public import QuantGrav.Diamond.ClockHypotheses
+public import QuantGrav.Diamond.ClosedCuts
 public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
@@ -283,3 +284,27 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.clock_mean_eq_of_const' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.clock_mean_eq_of_const
+
+/-- info: 'QuantGrav.exists_orthonormal_sum_sq_norm_gt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.exists_orthonormal_sum_sq_norm_gt
+
+/-- info: 'QuantGrav.open_gluing_id_and_unbounded_partial_traces' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.open_gluing_id_and_unbounded_partial_traces
+
+/-- info: 'QuantGrav.cut_amplitude_le_neg_rank' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cut_amplitude_le_neg_rank
+
+/-- info: 'QuantGrav.tendsto_cut_amplitude_atBot' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_cut_amplitude_atBot
+
+/-- info: 'QuantGrav.not_tendsto_cut_amplitude_nhds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.not_tendsto_cut_amplitude_nhds
+
+/-- info: 'QuantGrav.finiteDimensional_of_cut_amplitude_bddBelow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finiteDimensional_of_cut_amplitude_bddBelow

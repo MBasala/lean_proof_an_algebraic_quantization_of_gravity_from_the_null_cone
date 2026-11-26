@@ -17,7 +17,7 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Clean-checkout build, 2026-11-26, commit `a4084dc` (MIT licence, header linter on): same method. `lake build --wfail` completed (5849 jobs) and `scripts/check_forbidden.sh` was clean.
 - Clean-checkout build, 2026-11-26, commit `1275141` (WP1-f): same method. `lake build --wfail` completed (6265 jobs) and `scripts/check_forbidden.sh` was clean.
 - Findings F1, F2 and F4 were re-checked against the TeX on 2026-11-26; each now says what changed.
-- `QuantGrav/Diamond/FiniteDim.lean` was written after that review and has had no second reader.
+- `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/CutSums.lean`, `QuantGrav/OperatorAlgebra/BoostBound.lean` and `QuantGrav/Elementary/ClockWeightIntegral.lean` were reviewed by a separate review session on 2026-11-26: statements re-derived by hand, with Sec 5.2 of the TeX read at `main.tex` lines 1728 to 1830. Recorded in `notes/external-audits-2026-11-26.md`, section 5 item 7.
 - The proofs in `ClausenAsymptotics.lean` and `BoostBound.lean` were written by subagents from fixed statements. The statements were written first and, for the Clausen bound, checked numerically. The proofs are accepted on the strength of the kernel and the axiom audit, not on a reading of the proofs.
 - For Step 3 (2026-11-26) Sec 4.2, Sec 4.3, the start of Sec 5.1, (5.21) and App C.2 from its start were read directly from the TeX.
 - Independent review of the definitions in `QuantGrav/Diamond/Setup.lean` (2026-11-26): a fresh reader with no access to this log, `handoff.md` or `Hypotheses.lean` checked every field against the TeX. It read `main.tex` lines 548 to 610, 955 to 1250, 1440 to 1865, 1920 to 2029 and 2940 to 3180 in full and searched the rest. Result: no field wrong. One gap, that positivity of the area operator was not recorded; it is now the lower bound inside H14. Two citations were corrected (`ε`, positivity of the clock), a fourth warning was added for the area operator on `H_omega`, `minReading` was renamed `clockLowerBound`, and the degenerate scalar model was replaced by `ofProjections`. The reviewer could not refute the claim in F6 that the clock is not constructed outside `K_A`. The formal statements of H1, H13 and H14 were written only after this review.
@@ -26,6 +26,8 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Sen's paper, arXiv:1205.0971v2 (JHEP 04 (2013) 156), was read on 2026-11-26 from arxiv.org in a browser: the abstract page, and in the HTML rendering Section 1 in full, Section 3 in full, the paragraph ending at (2.41), and the three numbered points that open Section 4. Equations were taken from the LaTeX carried by the rendering. Not read: the rest of Section 2, Section 5 and the appendices. Every sentence of the paper under study that cites Sen was re-read in the TeX (abstract, lines 111, 1932, 2095, 2097).
 - The paper's acknowledgements (`main.tex` line 2400) were read on 2026-11-26. They say that several of the calculations and proofs were developed in collaboration with an AI model over many months, without saying which. This confirms the entry in `handoff.md` Section 2, which came from the earlier extraction.
 - For WP1-f, (3.25) to (3.28) and footnote 8 were read in the TeX (lines 556 to 596) on 2026-11-26.
+- External audits of the paper that appeared on 2026-11-26 are collected in `notes/external-audits-2026-11-26.md`, written by a separate review session. That session cloned one repository and read its reports, not its Lean sources line by line, and read two other sources through a summarising fetcher. Nothing external was built or kernel-checked. The code session has not read those sources itself. Statements taken from them are marked as such below, and every Lean proof in this repository is our own.
+- App E.1 condition 5 with (E.4) and (E.5), and App E.3 with (E.15) to (E.17), were read in the TeX (lines 3636 to 3650 and 3734 to 3757) on 2026-11-26.
 
 ## Theorem entries
 
@@ -166,7 +168,7 @@ Checked numerically before proving: over 20,000 random discrete cases the averag
 | Paper | (4.29), (4.30) |
 | Paper's claim, in substance | `<phi| U_2 U_1 |psi> = sum_alpha <phi| U_2 |e_alpha><e_alpha| U_1 |psi>` in an orthonormal basis on the cut, and `sum_alpha |<phi| U_2 |e_alpha><e_alpha| U_1 |psi>| <= sqrt(<phi|phi><psi|psi>)` because time evolution preserves norms |
 | Formal statement | For bounded `U_1 : H_1 -> H`, `U_2 : H -> H_2` between complex Hilbert spaces and a Hilbert basis `b` of `H`: the terms `<phi, U_2 b_i><b_i, U_1 psi>` sum to `<phi, U_2 U_1 psi>`; their norms are summable; the sum of norms is at most `‖U_2† phi‖ ‖U_1 psi‖`; and at most `‖phi‖ ‖psi‖` when `‖U_1‖, ‖U_2‖ <= 1` |
-| Differs from paper? | More general: any bounded operators, any Hilbert basis of any cardinality. As `handoff.md` expected, absolute convergence of the sum over intermediate states holds for every bounded evolution and is not a feature of this theory. Unitarity (H2) enters only through `‖U‖ <= 1` in the last statement. The physical claim behind (4.29), that the amplitude of the glued spacetime is `<phi| U_2 U_1 |psi>` (causal factorization and H3), is not addressed |
+| Differs from paper? | More general: any bounded operators, any Hilbert basis of any cardinality. As `handoff.md` expected, absolute convergence of the sum over intermediate states holds for every bounded evolution and is not a feature of this theory. Unitarity (H2) enters only through `‖U‖ <= 1` in the last statement. The physical claim behind (4.29), that the amplitude of the glued spacetime is `<phi| U_2 U_1 |psi>` (causal factorization and H3), is not addressed. The statements are about a single cut. Joint absolute convergence over two or more cuts fails in general (F10), so none is stated |
 
 ### WP2-d: `norm_inner_truncation_error_le`, `tendsto_inner_evolveCut`, `tendsto_inner_evolveCut_starProjection` (same file)
 
@@ -308,6 +310,19 @@ Sen's formulas are transcribed as definitions and paired with his equation numbe
 | `trace_log_prefactor_eq` | Paper (5.67c) | `53/(45 (4 pi)^2) * 8 pi * 8 pi = 212/45` | Checks the paper's own evaluation of the prefactor, with the Gauss-Bonnet value `8 pi` of the curvature integral put in |
 
 
+### Closed cuts and H3c (`QuantGrav/Diamond/ClosedCuts.lean`)
+
+`T_P` is the partial trace `sum_i ‖C e_i‖^2` over a cut `P` of orthonormal vectors `e_i`, and `Delta_P` is the response `<Delta_eta O>_P` on the cut, here an abstract real number. The closed amplitude of (5.38) is `Z_P[X] = T_P (Delta_P - delta/2)`.
+
+| Lean | Paper | Formal statement | Differs from paper? |
+|---|---|---|---|
+| `exists_orthonormal_sum_sq_norm_gt` | Not stated; the contrapositive of F2 | If `H` is infinite-dimensional and `c ‖v‖^2 <= ‖C v‖^2` with `c > 0`, the partial traces over finite orthonormal families exceed every bound | Addition |
+| `open_gluing_id_and_unbounded_partial_traces` | (4.29), (4.30) against H3a | On an infinite-dimensional Hilbert space, in every Hilbert basis the identity satisfies the resolution of the identity (4.29) and the absolute bound (4.30), and its partial traces are unbounded | Addition. The open-gluing statements cannot imply H3a |
+| `cut_amplitude_le_neg_rank` | (5.38) with the counting step of (D.24) | For a cut of `n` orthonormal vectors, `delta >= 0` and a response `Delta <= delta/4`: `T_P (Delta - delta/2) <= -(c delta/4) n` | The paper has `|<Delta_eta O>_P| <= delta/2` on its cuts and concludes `Z_P[X] <= 0`. The bound `delta/4` is a stricter choice in the same construction: the paper makes the bound of (5.32) smaller than `delta/2` by choosing `Delta s` and `r`, and the same choice makes it smaller than any positive number |
+| `tendsto_cut_amplitude_atBot`, `not_tendsto_cut_amplitude_nhds` | Not stated | Along any family of such cuts whose ranks tend to infinity, `T_P (Delta_P - delta/2)` tends to minus infinity, so it has no finite limit | Addition |
+| `finiteDimensional_of_cut_amplitude_bddBelow` | Not stated | If infinite dimension would give cuts of arbitrarily large rank, with response at most `delta/4`, on which `T_P (Delta_P - delta/2) >= -B`, then `H` is finite-dimensional | Addition. Hypothesis H3c in abstract form. That infinite dimension gives large cuts of small response is the paper's (D.24), (D.25) with (5.32); here it is part of the hypothesis, not proved |
+
+
 ## Findings from the direct reading
 
 Each is this log's reading of the PDF text. None has been checked with the author.
@@ -322,7 +337,8 @@ Each is this log's reading of the PDF text. None has been checked with the autho
 - What the paper's own argument uses: H3b and H4, with (5.30c) and (5.32). It does not state H3a. It does use the quantity H3a is about: the sentence before (5.38) obtains `Z[X]` by multiplying the expectation value of `X` in the uncut preparation by that preparation's squared norm, and the sentence after it requires the partial sums to approach `Z[X]`. Both treat the squared norm, which is the uncut amplitude with no insertion, as a positive real number. Read that way, the paper assumes it finite without saying so. If the cut sum with no insertion is also required to reproduce it, as (4.29) is used for `X`, that is H3a and the conclusion follows at once.
 - The paper nowhere says for which insertions closing the cut reproduces the uncut amplitude. Whether it holds for the identity is the open point, and it is question 4 for the author in `handoff.md` Section 13.
 - So the finiteness claim is as strong as the argument of Sec 3.6 that a finite uncut amplitude exists and equals the cut sum, plus the inputs of (5.30c): the area bound (5.21d) (H14), the boost weight (5.23) (H6, H15) and unitarity (H2). Sec 3.6 has not been read for this log.
-- For WP4: the target can be stated as `dim H_D < infinity` from H3a and (5.30c). H3b with H4 is then a second, independent route, to be formalized only if H3a is rejected.
+- For WP4: the target can be stated as `dim H_D < infinity` from H3a and (5.30c). H3b with H4 is then a second, independent route, to be formalized only if H3a is rejected. A third route, weaker than H3b, is H3c (F10).
+- Three audits made independently on 2026-11-26 reach this reading of Sec 5.2: this repository, and two external ones collected in `notes/external-audits-2026-11-26.md`. The external ones were not verified here. The separate review session that read `main.tex` lines 1728 to 1830 agrees with the reading.
 
 **F3. Footnote 23 and (5.68) together fix a ratio the paper treats as free.** The text fixes `l(D)/r_h > 1 - eps` as a free ratio. Footnote 23 gives `q = 2x^2/(1+x^2)` with `x = (1 - eps) r_h / l`, which depends on that ratio. (5.68) gives `q = 257/302` with no dependence on it. Both hold only if `x^2 = 257/347`, about `x = 0.8606` (`ratio_sq_of_q`). The paper does not comment on this. Registered under H8.
 
@@ -369,6 +385,16 @@ Each is this log's reading of the PDF text. None has been checked with the autho
 - The coefficient in the paper's entropy formula (5.65), `q/(2(1-q)) = 257/90`, is `C_local + 1` in units of `ln a` (`entropy_coeff_eq_sen_local_add_one`). It belongs to the state `rho_D` at fixed maximum clock reading and is none of Sen's three.
 
 
+**F10. Open gluing does not control closed cuts, and boundedness below would be enough (H3c).** Proved in `QuantGrav/Diamond/ClosedCuts.lean`. That boundedness below suffices was observed in an external audit (`notes/external-audits-2026-11-26.md`, section 1.2 B); the statements and proofs here are ours.
+
+- (4.29) and (4.30) hold for every bounded operator, the identity included, on any Hilbert space. The identity on an infinite-dimensional space has unbounded partial traces. So nothing in Sec 4.4 can give H3a (`open_gluing_id_and_unbounded_partial_traces`).
+- On a cut with response at most `delta/4`, the closed amplitude of (5.38) is at most `-(c delta/4) rank P` (`cut_amplitude_le_neg_rank`). If `H_D` were infinite-dimensional, the paper's own cuts would therefore drive `Z_P[X]` to minus infinity (`tendsto_cut_amplitude_atBot`): the closed sums would have no finite limit at all.
+- Hence a lower bound on `Z_P[X]` along those cuts already gives finite dimension (`finiteDimensional_of_cut_amplitude_bddBelow`). Register entry H3c. It is weaker than H3b, which asks for convergence to `Z[X]`, and it does not use H4, the positivity of `Z[X]`.
+- The three routes, given (5.30c): H3a is equivalent to finite dimension (F2); H3b with H4 implies it, which is the paper's route; H3c implies it. Each is a statement about closing the cut, and none is derived in the paper from its constructions.
+- For two or more cuts, the sum of absolute values over all intermediate labels jointly can diverge even for unitary evolutions and normalizable states. Example: a unitary that is block diagonal with normalized Hadamard blocks of size `2^k`, and two states whose components are uniform in block `k` with squared norm `2^{-k/2}/k` there; the absolute sum over block `k` is `1/k`. The observation is from the external audit; this example is ours and is not formalized. So WP2-c is a statement about one cut, and the valid statement for several cuts is the sequential truncation of WP2-d.
+- App E does not support Sec 5.2 independently. E.3 verifies the finiteness condition of E.1 for the causal diamond by citing (5.39c), in (E.17). In the other direction, that condition with the identity filter and the ordinary trace of (E.15a) would give finite dimension at once. Read in the TeX; the point was raised in the external audit.
+
+
 ## Hypothesis register
 
 Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
@@ -380,6 +406,7 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H3 | Cut-state sums converge to the uncut amplitude with insertions fixed. Split into H3a and H3b on 2026-11-26 | (4.29), Sec 3.6, used at (5.38) | Diffeomorphism-invariance argument, not re-read |
 | H3a | With no insertion: the partial traces `Tr(P C_b† C_b)` over finite orthonormal families in `H_D` are bounded. Given (5.30c) this is equivalent to `dim H_D < infinity` (F2) | Implicit in the sentences around (5.38); not stated | Not stated by the paper |
 | H3b | With the insertion `X` of (5.37a): the partial sums `Z_P[X]` over cycle-closed projections converge to `Z[X]` | (5.38), Figure 30, (4.29) | Diffeomorphism-invariance argument of Sec 3.6 |
+| H3c | The closed amplitudes `Z_P[X]` are bounded below along the paper's cuts of small response. Weaker than H3b; with it finite dimension follows without H4 (F10) | Not stated in the paper | Not stated. Abstract form: hypothesis `hcuts` of `finiteDimensional_of_cut_amplitude_bddBelow`. Added 2026-11-26 |
 | H4 | `<Delta_eta O> > delta_eta / 2` in the uncut preparation | (5.36b), (5.37b), (D.26) to (D.36) | One-loop estimate on a smooth background |
 | H5 | Truncation projections converge strongly to the identity | Sentence after (4.31) | Asserted. Explicit hypothesis `hlim` of `tendsto_inner_evolveCut`; proved for orthogonal projections onto increasing sequences of subspaces with dense union in `tendsto_inner_evolveCut_starProjection` (2026-11-26) |
 | H6 | Boost generator is `A/(8 pi G)` | (5.22); (3.43) not re-read | Classical corner symplectic structure |
@@ -388,13 +415,14 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H9 | Choice of pure extension `omega` | (4.16) not re-read, fn 20 | Deferred by author |
 | H10 | `log d(s) <~ 1 + (s Q_*)^(3/4)` | (D.45a) to (D.46c) | Unspecified constants |
 | H11 | Disk factor `e^s` in each weight | Paragraph above (D.48), ref [51] | Citation |
-| H12 | Type I with integer weights; Euclidean to Lorentzian converse | App E.2, ref [36], not re-read | Citation |
+| H12 | Type I with integer weights; Euclidean to Lorentzian converse | App E.2, ref [36], not re-read | Citation. App E cannot support Sec 5.2 independently: E.3 verifies the finiteness condition for the causal diamond by citing (5.39c) (F10) |
 | H13 | The clock (4.27) is densely defined on `K_A`. Formal: `DiamondSetup.H13`. Narrowed on 2026-11-26: existence of the clock and commutation with the area moved to H16 | fn 14, the paragraph after (C.17) | Derived on condition that the H1 estimate holds for displaced Gaussian states (F1). Added 2026-11-26 |
 | H14 | `u >= (1 - eps)(A/4pi)^(1/2)` as operators, hence `0 <= P_D A P_D <= 4 pi l(D)^2/(1 - eps)^2 P_D`. Formal: `DiamondSetup.H14`, as spectral support | (5.21a) to (5.21d), fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing, at fixed area. On `H_omega` it rests on H16. Added 2026-11-26 |
 | H14a | On `K_A` the clock has no readings below `(1 - eps)(A/4pi)^(1/2)`: the fixed-area half of H14. Formal: `DiamondSetup.H14a`; implied by H14 | (5.21a) to (5.21c) at fixed area, fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing. Does not need H16. Added 2026-11-26. The classical inequality behind it is proved (`clock_mean_ge`); the operator statement is not |
 | H15 | `C_D† C_D = P_D e^{-A/(4 G hbar)} P_D`: the future half of the diamond is prepared by continuing the corner boost to `i pi`, and gluing to its time reflection leaves only this weight | (5.23a), (5.23b), App C | Asserted from analytic continuation and unitarity. Added 2026-11-26 |
 | H16 | The clock has spectral projections on all of `H_omega`, they map `K_A` to itself, and they commute with those of the area operator. In Lean: fields `clock`, `clock_proj_of_neg`, `clock_proj_mem`, `commute` of `DiamondSetup` | (5.2); the sentences after (5.2), before (5.20) and before (5.21) | Asserted. The clock is constructed on `K_A` only, (4.26), (4.27), (C.11), (C.13) (F6). Added 2026-11-26 |
 | H17 | The area operator is a self-adjoint operator on `H_omega`, with `K_A` in its eigenspace for the value `A`. In Lean: fields `area`, `area_exhausts`, `area_tendsto_atBot`, `area_proj_of_lt`, `area_proj_area₀` of `DiamondSetup` | (4.12) to (4.15); `A = A 1` before (4.24) | Presupposed: introduced as the boost generator on prepared states before `H_omega` is built (F6). Added 2026-11-26 |
+| H18 (candidate) | The quantization of the reduced phase space is taken to be the quantum theory. The outcome may depend on the reduction and on the operator ordering, here Weyl ordering (4.20), and it is not compared with Dirac quantization | Sec 3, Sec 4.1, (4.20); Sec 3 not re-read | Not addressed in the parts read. Raised in an external review (`notes/external-audits-2026-11-26.md`, section 3). Added 2026-11-26 |
 
 References the register depends on, from the paper's bibliography:
 - [34] Sen, arXiv:1205.0971.
@@ -407,4 +435,4 @@ References the register depends on, from the paper's bibliography:
 
 - The licence is MIT (2026-11-26). `linter.style.header` is on again with its licence line set to MIT, so every linter in Mathlib's standard set is now active. The file headers name the git author as copyright holder and author; which proofs were written by subagents is recorded under "How the paper was read", and the commit history records the co-authorship.
 - The comparison of (5.69) with Sen's ensembles is made in F9. Reference [71] of the paper (Bastianelli, Bonezzi, Melis), the stated source of the coefficient in (5.67c), has not been read.
-- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/` and for the definitions in `QuantGrav/Diamond/Setup.lean`. It is outstanding for `ClockWeightIntegral.lean`, `ClockLowerBound.lean`, `QuantGrav/Entropy/SenComparison.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.
+- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/`, for the definitions in `QuantGrav/Diamond/Setup.lean`, and for `FiniteDim.lean`, `CutSums.lean`, `BoostBound.lean` and `ClockWeightIntegral.lean`. It is outstanding for `ClockLowerBound.lean`, `QuantGrav/Entropy/SenComparison.lean`, `QuantGrav/Diamond/ClosedCuts.lean` and the other files added on 2026-11-26 after those reviews.

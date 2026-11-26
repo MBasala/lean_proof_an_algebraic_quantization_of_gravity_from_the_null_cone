@@ -15,7 +15,7 @@ Making the definitions precise raised six questions I could not settle from the 
 
 1. The clock on H_ω. The clock is constructed on K_A by the form (4.27) and (C.11) to (C.13); (5.2) then applies its spectral projection on H_ω. How is the clock defined on vectors of H_ω outside K_A, and why does it commute with the area operator there? As I read it, the construction determines P_D(A) K_A but not the rest of H_D.
 
-2. Finite dimension. Before (5.38), Z[X] is the expectation of X in the uncut preparation times that preparation's squared norm. Is this norm, the amplitude with no insertion, taken to be finite and reproduced by closing the cut? If so, (5.30c) alone gives dim H_D ≤ Z[1] e^{s_*} / m_{b,D}, which I have checked formally, and the boost argument is not needed. Or is the boost argument there because the statement with no insertion is not available?
+2. Finite dimension. Before (5.38), Z[X] is the expectation of X in the uncut preparation times that preparation's squared norm. Is this norm, the amplitude with no insertion, taken to be finite and reproduced by closing the cut? If so, (5.30c) alone gives dim H_D ≤ Z[1] e^{s_*} / m_{b,D}, which I have checked formally, and the boost argument is not needed. Or is the boost argument there because the statement with no insertion is not available? More generally, for which family of cuts, and for which insertions, must the closed partial sums reproduce the uncut amplitude? In a toy model with two families of area eigenstates and a flip observable, closed sums along different exhaustions of the same basis have different limits.
 
 3. Domain of the clock. By the sentence after (C.14), ‖Ψ_L − Ω_A‖ → 0 exactly when Ω_A lies in M, and the paragraph after (C.17) derives density of the form domain from the same estimate. Is there an argument that (4.27) is densely defined, or that Ω_A lies in M, that does not pass through (5.8) to (5.16) and the heuristic step of footnote 18?
 
@@ -35,7 +35,7 @@ Michael Basala
 | Question | Source in this repository |
 |---|---|
 | 1 | Finding F6; register entries H16, H17; `QuantGrav/Diamond/Setup.lean` |
-| 2 | Finding F2; register entries H3a, H3b; `QuantGrav/Diamond/FiniteDim.lean` |
+| 2 | Findings F2, F10; register entries H3a, H3b, H3c; `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/Diamond/ClosedCuts.lean`; the toy model is `notes/external-audits-2026-11-26.md`, section 1.2 A |
 | 3 | Findings F1, F7; register entries H1, H13; `QuantGrav/Diamond/ClockHypotheses.lean` |
 | 4 | Finding F3; `ratio_sq_of_q` in `QuantGrav/Elementary/LogCoefficient.lean` |
 | 5 | Finding F9; `log_coefficient_roundtrip`; `QuantGrav/Entropy/SenComparison.lean` |

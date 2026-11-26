@@ -37,7 +37,7 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
 * **H3.** The sum over cut states converges to the uncut amplitude, with insertions held fixed,
   along the net of finite cycle-closed projections.
   Paper: (4.29), Sec 3.6, used at (5.38).
-  Status: prose only; split into H3a, H3b on 2026-11-26.
+  Status: prose only; split into H3a, H3b on 2026-11-26; H3c added the same day.
 * **H3a.** With no insertion: the partial traces `Tr(P C_b† C_b)` over finite orthonormal families
   in `H_D` are bounded.
   Paper: implicit around (5.38); not stated in the paper.
@@ -47,6 +47,11 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   projections converge to `Z[X]`.
   Paper: (5.38), Figure 30, (4.29).
   Status: prose only.
+* **H3c.** The closed amplitudes `Z_P[X]` are bounded below along the paper's cuts of small
+  response. Weaker than H3b, and enough for finite dimension without H4.
+  Paper: not stated.
+  Status: the abstract form is the hypothesis `hcuts` of
+  `finiteDimensional_of_cut_amplitude_bddBelow` in `Diamond/ClosedCuts.lean`; new on 2026-11-26.
 * **H4.** The boost-sensitive observable has `⟨Δ_η O⟩ > δ_η / 2` in the uncut preparation `C_b`.
   Paper: (5.36b), (5.37b), (D.26) to (D.36).
   Status: prose only.
@@ -74,7 +79,8 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Status: prose only.
 * **H12.** Type I with integer weights; Euclidean to Lorentzian converse.
   Paper: App E.2, ref [36], not re-read.
-  Status: prose only.
+  Status: prose only. App E.3 verifies its finiteness condition for the causal diamond by citing
+  (5.39c), so App E does not support Sec 5.2 independently.
 * **H13.** The clock (4.27) is densely defined on `K_A`.
   Paper: fn 14, the paragraph after (C.17).
   Status: formal: `DiamondSetup.H13`. The rest of the earlier entry (the clock exists as a
@@ -102,6 +108,11 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Paper: (4.12) to (4.15); `Â = A 1` before (4.24).
   Status: fields `area`, `area_exhausts`, `area_tendsto_atBot`, `area_proj_of_lt`,
   `area_proj_area₀` of `DiamondSetup`; new on 2026-11-26.
+* **H18 (candidate).** The quantization of the reduced phase space is taken to be the quantum
+  theory. The outcome may depend on the reduction and on the operator ordering, here Weyl
+  ordering (4.20), and it is not compared with Dirac quantization.
+  Paper: Sec 3, Sec 4.1, (4.20); Sec 3 not re-read.
+  Status: prose only; raised in an external review; new on 2026-11-26.
 
 Entries are never deleted. A discharged entry keeps its row and links to the proof.
 -/
