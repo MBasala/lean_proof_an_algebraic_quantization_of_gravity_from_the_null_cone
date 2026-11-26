@@ -1,0 +1,9 @@
+/.lake
+/.venv
+/.idea
+
+# The paper is under the arXiv non-exclusive licence, which does not allow redistribution.
+# Keep the PDF and TeX source local; fetch them from arxiv.org/abs/2611.34924v1.
+/*.pdf
+/paper/arxiv-src/
+/paper/*.bin
