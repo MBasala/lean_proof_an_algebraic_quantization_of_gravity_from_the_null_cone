@@ -11,6 +11,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Diamond/Setup.lean`: the objects of Sec 5.1 and 5.2 (clock, area, `K_A`, `Omega_A`) as a structure, reviewed against the paper.
 - `QuantGrav/Diamond/ClockHypotheses.lean`: first consequences of H1, H13 and H14, and models showing what they do not imply.
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.
+- `QuantGrav/Entropy/ClockMoments.lean`: the moment identities of Sec 5.3, and why footnote 23 and (5.68) do not conflict (finding F3).
 - `QuantGrav/Entropy/SenComparison.lean`: the paper's logarithmic coefficient compared with the three ensembles of Sen's paper.
 - `QuantGrav/Hypotheses.lean`: the hypothesis register, with formal statements of H1, H13 and H14.
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.

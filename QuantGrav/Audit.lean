@@ -16,6 +16,7 @@ public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
+public import QuantGrav.Entropy.ClockMoments
 public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.OperatorAlgebra.BoostBound
 public import QuantGrav.OperatorAlgebra.CutSums
@@ -366,3 +367,59 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.abs_flipCutResponse_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.abs_flipCutResponse_le_iff
+
+/-- info: 'QuantGrav.integral_momentSum_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_momentSum_zero
+
+/-- info: 'QuantGrav.firstMomentOf_momentSum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.firstMomentOf_momentSum
+
+/-- info: 'QuantGrav.secondMomentOf_momentSum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.secondMomentOf_momentSum
+
+/-- info: 'QuantGrav.reading_eq_sq_div_add_integral' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.reading_eq_sq_div_add_integral
+
+/-- info: 'QuantGrav.momentSum_one_eq_div_add_integral' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.momentSum_one_eq_div_add_integral
+
+/-- info: 'QuantGrav.hasDerivAt_log_integral_momentSum_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.hasDerivAt_log_integral_momentSum_div
+
+/-- info: 'QuantGrav.sum_sq_reading_bounds' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sum_sq_reading_bounds
+
+/-- info: 'QuantGrav.firstMomentOf_rpow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.firstMomentOf_rpow
+
+/-- info: 'QuantGrav.secondMomentOf_rpow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.secondMomentOf_rpow
+
+/-- info: 'QuantGrav.eq_sq_mul_two_sub_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.eq_sq_mul_two_sub_iff
+
+/-- info: 'QuantGrav.sq_eq_div_two_sub_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sq_eq_div_two_sub_iff
+
+/-- info: 'QuantGrav.powerLaw_moment_ratios' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.powerLaw_moment_ratios
+
+/-- info: 'QuantGrav.sq_le_and_le_of_sq_eq_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sq_le_and_le_of_sq_eq_div
+
+/-- info: 'QuantGrav.moment_ratios_of_q' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.moment_ratios_of_q

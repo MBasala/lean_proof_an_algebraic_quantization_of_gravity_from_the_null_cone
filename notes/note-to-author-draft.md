@@ -9,7 +9,7 @@ Subject: Questions from a Lean formalization of arXiv:2611.34924
 
 Dear Venkatesa Chandrasekaran,
 
-I am formalizing the mathematical skeleton of your paper in Lean 4 with Mathlib, with every unproved input as a named hypothesis. So far only elementary statements are machine-checked: (4.29) to (4.34), (5.17), (C.21), the bound (5.32) in abstract form, and the arithmetic of (5.61), (5.68) and (5.69). None of the headline claims is. The development was written with the help of an AI model and is checked by the Lean kernel.
+I am formalizing the mathematical skeleton of your paper in Lean 4 with Mathlib, with every unproved input as a named hypothesis. So far only elementary statements are machine-checked: (4.29) to (4.34), (5.17), (5.56), (5.57a), (C.21), the bound (5.32) in abstract form, and the arithmetic of (5.61), (5.68) and (5.69). None of the headline claims is. The development was written with the help of an AI model and is checked by the Lean kernel.
 
 Making the definitions precise raised six questions I could not settle from the text. I would be grateful for your view on any of them.
 
@@ -19,7 +19,7 @@ Making the definitions precise raised six questions I could not settle from the 
 
 3. Domain of the clock. By the sentence after (C.14), ‖Ψ_L − Ω_A‖ → 0 exactly when Ω_A lies in M, and the paragraph after (C.17) derives density of the form domain from the same estimate. Is there an argument that (4.27) is densely defined, or that Ω_A lies in M, that does not pass through (5.8) to (5.16) and the heuristic step of footnote 18?
 
-4. The value of q. Footnote 23 gives q = 2x²/(1 + x²) with x = (1 − ε) r_h / ℓ, and (5.68) gives q = 257/302. Both hold only if x² = 257/347, while the text keeps ℓ(D)/r_h free. Is that ratio fixed by consistency, or is one of the two evaluations approximate?
+4. The ratio ℓ(D)/r_h. As I read (5.53), r_h is defined from the state ρ_D, which depends on ℓ(D) alone, so ℓ(D)/r_h is determined and not chosen. Footnote 23 then relates it to q, and with (5.68) gives x² = 257/347, that is ℓ(D)/r_h → (1 − ε)(347/257)^(1/2) ≈ 1.16 (1 − ε). Is that the intended reading of "at fixed ℓ(D)/r_h", or is the ratio meant to be a free choice?
 
 5. Comparison with Sen. As I read (5.66) to (5.69), q is obtained from the coefficient in (5.67c), and (5.69) returns that coefficient whatever its value. The number 106/45 is Sen's mixed-ensemble coefficient, his (1.4), which in four dimensions is C_local alone; his microcanonical and singlet coefficients are lower by 1 and 3 in units of ln a. Is there an evaluation of q that does not use (5.67c), and is the mixed ensemble the comparison meant in the abstract?
 
@@ -37,7 +37,7 @@ Michael Basala
 | 1 | Finding F6; register entries H16, H17; `QuantGrav/Diamond/Setup.lean` |
 | 2 | Findings F2, F10; register entries H3a, H3b, H3c; `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/Diamond/ClosedCuts.lean`; the toy model is `QuantGrav/Diamond/OrderOfExhaustion.lean`, simplified from the one in `notes/external-audits-2026-11-26.md`, section 1.2 A |
 | 3 | Findings F1, F7; register entries H1, H13; `QuantGrav/Diamond/ClockHypotheses.lean` |
-| 4 | Finding F3; `ratio_sq_of_q` in `QuantGrav/Elementary/LogCoefficient.lean` |
+| 4 | Finding F3, corrected on 2026-11-26; `QuantGrav/Entropy/ClockMoments.lean`; `ratio_sq_of_q` in `QuantGrav/Elementary/LogCoefficient.lean` |
 | 5 | Finding F9; `log_coefficient_roundtrip`; `QuantGrav/Entropy/SenComparison.lean` |
 | 6 | The paper's acknowledgements (`main.tex` line 2400); `handoff.md` Section 2 |
 

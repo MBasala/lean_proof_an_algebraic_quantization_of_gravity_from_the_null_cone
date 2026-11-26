@@ -68,7 +68,9 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Status: prose only.
 * **H8.** The limit `q` in (5.54b) exists; its value.
   Paper: (5.54b), (5.61), (5.68), fn 23.
-  Status: arithmetic in `Elementary/LogCoefficient.lean`; existence of the limit is prose only.
+  Status: arithmetic in `Elementary/LogCoefficient.lean`; the moment identities (5.56), (5.57a),
+  (5.60) and the relation of footnote 23 in `Entropy/ClockMoments.lean`; existence of the limit is
+  prose only.
 * **H9.** Choice of pure extension `ω`; unitary equivalence of other choices.
   Paper: (4.16), fn 20.
   Status: prose only.

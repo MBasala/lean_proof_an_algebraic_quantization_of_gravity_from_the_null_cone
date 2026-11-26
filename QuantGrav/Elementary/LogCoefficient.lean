@@ -77,7 +77,8 @@ theorem log_coefficient_roundtrip (q c : ℝ) (hq : q ≠ 1)
   ring
 
 /-- **WP1-e**, paper (5.61), footnote 23. With `x = (1 - ε) r_h / ℓ` and `x² ≠ 1`, the relation
-`q = 2 x² / (1 + x²)` gives logarithmic coefficient `x² / (1 - x²)`. -/
+`q = 2 x² / (1 + x²)` gives logarithmic coefficient `x² / (1 - x²)`. Where the relation comes
+from is in `Entropy/ClockMoments.lean`. -/
 theorem log_coefficient_of_ratio (q x : ℝ) (hx : x ^ 2 ≠ 1)
     (hq : q = 2 * x ^ 2 / (1 + x ^ 2)) :
     q / (2 * (1 - q)) = x ^ 2 / (1 - x ^ 2) := by
@@ -92,7 +93,13 @@ theorem log_coefficient_of_ratio (q x : ℝ) (hx : x ^ 2 ≠ 1)
 
 /-- Consequence of footnote 23 together with (5.68), not stated in the paper: the relation
 `q = 2 x² / (1 + x²)` and the value `q = 257 / 302` hold together exactly when
-`x² = 257 / 347`. The paper treats `ℓ(D) / r_h`, hence `x`, as a fixed free ratio; see H8. -/
+`x² = 257 / 347`.
+
+Footnote 23 is a relation between `q` and `x = (1 - ε) r_h / ℓ`, not a second evaluation of
+`q`: `r_h` is defined from the state by (5.53), so `x` is determined once `ℓ` is. This theorem
+therefore gives the value of `ℓ(D) / r_h` that (5.68) implies, `(1 - ε) (347 / 257)^(1/2)`. It
+is not a constraint on a free ratio, as an earlier version of this docstring said. See
+`Entropy/ClockMoments.lean` and finding F3 in `FIDELITY.md`. -/
 theorem ratio_sq_of_q (x : ℝ) :
     2 * x ^ 2 / (1 + x ^ 2) = 257 / 302 ↔ x ^ 2 = 257 / 347 := by
   have h1 : (1 : ℝ) + x ^ 2 ≠ 0 := by positivity

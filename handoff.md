@@ -126,7 +126,7 @@ Low risk. Good first targets and a calibration of tooling.
 - **WP1-c (5.17).** For `L > 0`, `u >= 0`: `u * (L/(L+u))^2 <= L/4`.
 - **WP1-d (5.68, 5.69).** For `q != 1`: `q/(2(1-q)) - 1/2 = 106/45  <->  q = 257/302`.
 - **WP1-e (5.61, footnote 23).** For `x^2 != 1`: `q = 2x^2/(1+x^2)` implies `q/(2(1-q)) = x^2/(1-x^2)`.
-  Derived consequence to record: `q = 257/302` forces `x^2 = 257/347`, `x ~ 0.8606`, where `x = (1-eps) r_h / l`. Per extraction the paper does not justify this ratio. See H8.
+  Derived consequence to record: `q = 257/302` forces `x^2 = 257/347`, `x ~ 0.8606`, where `x = (1-eps) r_h / l`. Per extraction the paper does not justify this ratio. See H8. Corrected on 2026-11-26 by B3 of Section 14: the ratio is an output of the theory, not a free parameter. See finding F3 in `FIDELITY.md`.
 - **WP1-f (footnote 8, 3.27).** `(1-eps) sqrt(A/4pi) <= mean clock reading`, by Cauchy-Schwarz on the corner sphere. Needs the exact definition from 3.27 before it can be stated. Done on 2026-11-26 in `QuantGrav/Elementary/ClockLowerBound.lean`, with the average of (3.28) read from the TeX.
 
 Statement sketches. **Superseded; marked on 2026-11-26.** They were written before anything was compiled and are kept as a record of the brief. The `sorry` placeholders below are not part of the development. The proved statements are:
@@ -413,7 +413,7 @@ Draft a short note. Michael decides whether to send it.
 
 ### Order for the next session
 
-Step 0 items 1 to 4, then Step 1, then Step 2. Stop and report after Step 1: its outcome decides whether WP4 keeps its current shape.
+Superseded on 2026-11-26 by Section 14.4.
 
 ### Decisions needed from Michael
 
@@ -421,3 +421,130 @@ Step 0 items 1 to 4, then Step 1, then Step 2. Stop and report after Step 1: its
 - Licence. Decided on 2026-11-26: MIT.
 - Whether to send the note in Step 6.
 - Whether porting AI-produced MathlibAnnex files is acceptable under the review rules of Section 8.
+
+## 14. Direction from review (2026-11-26, 14:30): prove what can be proved, and try to break it
+
+Written by the review session at Michael's request. It replaces "Order for the next session" in Section 13. Michael's goal: a working Lean development that goes as far as can be expected toward proving the paper, and that also tries to disprove it by breaking the model.
+
+Everything in 14.2 marked "reviewer's reading" comes from the TeX lines cited and has had no second reader. Treat it as a lead to confirm, not a finding.
+
+### 14.1 Rules for this phase
+
+- Two tracks. Track B (break) goes first: a successful break changes what Track A should assemble.
+- Every break attempt ends in exactly one of four outcomes, recorded in `FIDELITY.md`:
+  1. **Inconsistent**: a Lean theorem that a named set of the paper's displayed statements implies `False`.
+  2. **Invalid inference**: a Lean countermodel satisfying the stated premises of a step and violating its conclusion. `OrderOfExhaustion.lean` is the pattern.
+  3. **Consistent**: a Lean proof that the suspected tension is not one.
+  4. **Undecided**, with the exact missing input.
+- Before any outcome 1 or 2 is described as a disproof of the paper: the equations involved are re-read in the TeX by a reader who did not write the Lean, the formal statement is checked against them, and the result is added to `notes/note-to-author-draft.md`. A countermodel to an inference is not a counterexample to the theory. Say which one it is.
+- Outcome 3 is as valuable as outcome 1. Do not stretch a result.
+
+### 14.2 Track B: break attempts, in order
+
+**B1. Is the clock finite on the Gaussian state once every mode is included? (H1, H13, (5.19))**
+
+This is the best lead. Reviewer's reading:
+
+- The argument for (5.19) holds "at fixed angular and radial resolution". The phrase is at `main.tex` lines 1500, 3067 and 3116, and a search for "resolution" finds no place where the resolution is removed.
+- The step (C.16), lines 3116 to 3123, needs a compact set `K` in the regular domain carrying `1 - delta` of the Wigner measure, on which the focusing `Xi_y(1)` is bounded.
+- The focusing is a positive quadratic form in derivatives of the conformal metric: (4.22) at line 1188 and (C.15) at line 3108, `Xi_y(1) = (1/4) ∫ v [(∂_v z^1)^2 + e^{2 z^1} (∂_v z^2)^2] dv`. No vacuum subtraction: positivity is what (5.21) uses.
+- The incoming state is a product Gaussian over infinitely many modes with variances `(Δq_k)^2 = 1/(2 s k)` (4.32).
+- For a Gaussian measure, a positive quadratic form `Q = sum a_k q_k^2` is finite almost surely iff `sum a_k sigma_k^2` converges, and is infinite almost surely otherwise. With `sigma_k^2 = 1/(2 s k)` the series diverges unless the focusing weights `a_k` decay, and a derivative-squared form makes them grow.
+- If it diverges: the probability that the clock is below any `L` tends to `0` as the resolution is removed, so `P_M Omega_A = 0`, (5.19) fails in that limit, and `H_D` as built in (5.20) is trivial. If the paper intends a permanent mode cutoff, that is an unstated hypothesis and it limits every claim about short wavelengths.
+- An external audit reports the same phenomenon for the source in (4.33): the uncentred positive quadratic form is infinite on every nonzero state (`notes/external-audits-2026-11-26.md`, 1.2 G item 2).
+
+Work:
+
+1. Read and extract exactly: the mode expansion and Gaussian widths, (4.7) to (4.10) and (4.32); how `z^1(v)` depends on the canonical pairs; the capped form (C.11) and its limit (C.13); where "resolution" is defined, and whether any statement is uniform in it.
+2. Prove the mathematics, independent of the paper:
+   - G1: for `x_k >= 0`, `prod_{k<N} (1 + x_k) >= 1 + sum_{k<N} x_k`. For a positive semidefinite matrix `A`, `det(1 + A) >= 1 + tr A`.
+   - G2: for a centred Gaussian of variance `sigma^2` and `t, a >= 0`, `E exp(-t a q^2) = (1 + 2 t a sigma^2)^(-1/2)`.
+   - G3: for independent centred Gaussians and `Q_N = sum_{k<N} a_k q_k^2` with `a_k >= 0`, and any `c > 0`: `P(Q_N <= c) <= e * (1 + (2/c) sum_{k<N} a_k sigma_k^2)^(-1/2)`. So if the series diverges, `P(Q_N <= c) -> 0` for every `c`.
+   - Only the first polarisation is needed: `Xi >= (1/4) ∫ v (∂_v z^1)^2 dv`, which is purely quadratic.
+3. Insert the paper's `a_k` and `sigma_k^2`. `tendsto_harmonic_atTop` already gives divergence whenever `a_k` is bounded below.
+4. Outcome 1 if the series diverges and the paper claims (5.19) with all modes. Outcome 3 if it converges; then record the convergent series as the content of H1 at zeroth order. If the paper keeps the cutoff, register it as a new hypothesis (H19: fixed resolution) and state which results depend on it.
+
+**B2. Where are the `e^s` states? (entropy, H10, H11, (5.63), (D.45) to (D.49))**
+
+Reviewer's reading:
+
+- Footnote 24, (5.63), claims `dim(1_{[0, a s_*]}(ŝ) H_D) = exp[a s_* + o(s_*)]`: about `e^s` orthogonal states per unit of `s`.
+- (D.46c), line 3529, bounds the number of graviton states at fixed `s` by `log d(s) ≲ 1 + (s Q_*)^(3/4)`.
+- The `e^s` in the one-loop weights is a disk factor attached to each graviton state, lines 3541 to 3545, citing Carlip and Teitelboim. It is not a count.
+- With the ordinary trace on `H_D`, `S(rho_D) <= log(m * max_j d_j)`, where `m` is the number of distinct area eigenvalues and `d_j` their multiplicities. So entropy near `<s>` forces `m >= exp(<s> - C s_*^(3/4))`: exponentially many distinct area eigenvalues below `s_*`, spacing of order `e^{-A/4Għ}`. The paper gives no eigenvalues (finding F4).
+
+Work:
+
+1. Prove the accounting lemma. For a finite-dimensional space with a self-adjoint operator having `m` distinct eigenvalues `s_j` of multiplicity `d_j`, and `rho = e^{-s}/Z`: `S(rho) = <s> + log Z` and `S(rho) <= log(sum_j d_j) <= log m + log max_j d_j`. Finite sums only; this also gives (5.39c) and (5.50) as identities.
+2. Read (5.39) to (5.41), footnote 24, (D.37) to (D.49) and App E.2 to settle one question: is the trace in (5.56) the ordinary trace on `H_D`, or a trace with weights (register entry H12, "integer weights")?
+3. Outcome 1 if the paper states both an ordinary trace with multiplicity at most `d(s)` per area value and a spectrum too sparse to supply `e^s`. Otherwise outcome 3, with the forced spectral density recorded as a consequence the paper does not state. Either way this answers the criticism that the entropy is not a count of microstates.
+
+**B3. Finding F3 is probably not a tension. Prove it and correct the record.**
+
+Reviewer's reading:
+
+- (5.53), near line 1961, defines `r_h` from the state: `4 pi r_h^2 = <Â>`. The state `rho_D` has one parameter, `l`. So `l / r_h` is an output, not a free ratio.
+- If `Z(l)` behaves as `l^p`, then (5.57) gives `p = q/(1-q)`, the first moment is `<u>/l = p/(p+1) = q`, and the second is `<u^2>/l^2 = p/(p+2) = q/(2-q)`.
+- With (5.53), `x^2 = (1-eps)^2 r_h^2 / l^2 = <u^2>/l^2`. So `x^2 = q/(2-q)`, which is footnote 23's `q = 2x^2/(1+x^2)` read backwards. It is an identity between `x` and `q`, not a second evaluation of `q`.
+- Then `q = 257/302` gives `x^2 = 257/347` as a consequence. The bounds (5.54b), (5.54c) hold: `x^2 <= q <= x`.
+- Consequences to record: `l(D)/r_h = (1-eps) sqrt(347/257)`, about `1.162 (1-eps)`. The area in `rho_D` is spread as a power law on `[0, s_*]` with exponent `q/(2(1-q)) - 1 = 167/90`, mean `<s>/s_* = 257/347` and relative standard deviation about `0.27`. The density of states per unit area is `e^s s^(167/90)`, and per unit mass `e^s s^(106/45)`, which is (5.69). Reviewer's arithmetic; check it.
+
+Work:
+
+1. Prove the moment lemma: for `Z(l) = K l^p` on `[0, l]`, `p > 0`, the weighted first and second moments of the reading are `p/(p+1)` and `p/(p+2)` times `l` and `l^2`. Then prove the exact finite-spectrum identities (5.56) and (5.57a) for a finite list of readings and weights.
+2. Derive `x^2 = q/(2-q)` and the equivalence with footnote 23.
+3. If confirmed: outcome 3. Rewrite F3, the H8 row, the docstring of `ratio_sq_of_q`, and question 4 of the author note, which currently presents this as a tension. The remaining question for the author is whether "at fixed `l(D)/r_h`" is meant as a free choice.
+
+**B4. Smaller checks, after B1 to B3**
+
+- Read Sec 3.6. Nobody on this project has. Decide whether it argues that the uncut amplitude with no insertion is finite (H3a), or that closed sums are bounded below (H3c), or neither.
+- (5.30c) inputs: state H15 formally and check that `0 <= e^{-s} f_b(s) <= 1` and the lower bound follow from H14 with `f_b` continuous and positive on `[0, s_*]`.
+- Appendix E: formalise "axiom 5 on a bounded spectrum with the ordinary trace implies finite dimension", and record the circularity with (5.39c).
+
+### 14.3 Track A: the conditional theorems
+
+The target is one file that states the paper's Sec 5 claims as theorems with every assumption named.
+
+1. `Diamond/Main.lean`. Given a `DiamondSetup`, a maximum reading `l`, a bounded `C` on the diamond space with the bounds of (5.30c), and H3a: `diamondSpace l` is finite-dimensional with `finrank <= Z e^{s_*} / m_{b,D}`. A second version from H3c. Both are direct applications of `FiniteDim.lean` and `ClosedCuts.lean`.
+2. Finite area spectrum, (5.40): on a finite-dimensional `diamondSpace l` the area projections take finitely many values.
+3. Entropy identities (5.39c), (5.50) and the accounting lemma of B2.
+4. Clock and trace: (5.56), (5.57a) exactly for finite spectra; then (5.58) and (5.65) as asymptotic statements conditional on the limit `q` existing.
+5. The Gaussian identity in (5.66), already listed in Section 13.
+6. WP2-a (pure state gives an irreducible representation) and WP3, unchanged from Section 13.
+7. The Wick step before (4.33) for a single oscillator: the centred `q^2` on the Gaussian vector, rotated by the mode phase, gives `2 (Δq)^4 e^{-2iθ}`.
+
+Do not attempt: constructing the amplitude maps (H2), the reduced phase space of Sec 3, or the semiclassical equations. Those are research problems and are out of scope in Section 4.
+
+### 14.4 Order
+
+1. B3. It is short and corrects an item that is about to go to the author.
+2. B1 step 1 (reading), then G1 to G3, then the decision.
+3. B4 first item (Sec 3.6).
+4. B2.
+5. Track A items 1 to 4.
+6. Remaining items.
+
+Stop and report to Michael after B1 is decided, whichever way it goes.
+
+### 14.5 Report format
+
+For each item: outcome 1, 2, 3 or 4; the theorem names; the TeX lines read; what changed in the register; and one sentence on what it means for the paper.
+
+### 14.6 Reports
+
+Written by the code session, in the format of 14.5.
+
+**B3 (2026-11-26). Outcome 3: consistent.**
+
+- Theorems, all in `QuantGrav/Entropy/ClockMoments.lean`:
+  - (5.56): `integral_momentSum_zero`, `firstMomentOf_momentSum`. Its second-moment analogue: `secondMomentOf_momentSum`.
+  - (5.57a): `hasDerivAt_log_integral_momentSum_div`.
+  - (5.60) and the sum in footnote 23: `reading_eq_sq_div_add_integral`, `momentSum_one_eq_div_add_integral`.
+  - (5.55), and the first half of (5.60) with an explicit error: `sum_sq_reading_bounds`.
+  - The moment lemma for `Z(l) = K l^p`: `firstMomentOf_rpow`, `secondMomentOf_rpow`.
+  - `x^2 = q/(2-q)` and its equivalence with footnote 23: `powerLaw_moment_ratios`, `eq_sq_mul_two_sub_iff`, `sq_eq_div_two_sub_iff`.
+  - (5.54b), (5.54c): `sq_le_and_le_of_sq_eq_div`. The numbers for `q = 257/302`: `moment_ratios_of_q`.
+- TeX read by the code session: `main.tex` lines 1912 to 2097, all of Sec 5.3 with footnotes 23 and 24. The reviewer's reading in 14.2 B3 is confirmed on every point, including the arithmetic: `l(D)/r_h = 1.162 (1 - eps)`, exponent `167/90`, mean `257/347`, relative standard deviation `0.269`, and `e^s s^(106/45)` per unit mass.
+- Register and record: finding F3 is rewritten; the H8 row no longer says "tension"; the docstring of `ratio_sq_of_q` and its `FIDELITY.md` entry are corrected; question 4 of `notes/note-to-author-draft.md` now asks only whether "at fixed `l(D)/r_h`" is meant as a free choice.
+- What it means for the paper: footnote 23 and (5.68) do not conflict; together they determine `l(D)/r_h`, which the paper does not state and its wording suggests is chosen.
+- Limits: the moment lemma is for an exact power law. The asymptotic version, which would follow from Karamata's theorem, is not formalized. That `Z` grows as a power at all is (5.58) and rests on H8.

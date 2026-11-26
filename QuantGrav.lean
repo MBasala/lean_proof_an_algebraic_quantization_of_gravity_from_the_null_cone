@@ -14,6 +14,7 @@ public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
+public import QuantGrav.Entropy.ClockMoments
 public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.Hypotheses
 public import QuantGrav.OperatorAlgebra.BoostBound
