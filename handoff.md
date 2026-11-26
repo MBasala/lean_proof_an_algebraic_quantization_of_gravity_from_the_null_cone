@@ -2,7 +2,7 @@
 
 Date: 2026-11-26
 Owner: Michael
-Status: first session done on 2026-11-26. WP0 is set up, WP1-a to WP1-e are proved (WP1-f is not), and Section 5 below is corrected. Findings and the current hypothesis register are in `FIDELITY.md`. This document remains the brief for whoever (person or agent) picks up the work.
+Status: first session done on 2026-11-26. WP0 is set up, WP1-a to WP1-e are proved (WP1-f is not), and Section 5 below is corrected. Findings and the current hypothesis register are in `FIDELITY.md`. This document remains the brief for whoever (person or agent) picks up the work. An independent review of WP1 was done the same day; the next steps are in Section 13.
 
 ---
 
@@ -284,3 +284,100 @@ Note for writing Lean here: Mathlib files are modules, so project files start wi
 | Mathlib PR 44531 | open | `Complex.polylog`, no dilogarithm identities | WP1-a, WP1-b must be stated as `tsum` identities, as planned |
 
 The source paper's arXiv listing has no ancillary files and no mention of formal proofs.
+
+## 13. Next steps (set 2026-11-26, after independent review of WP1)
+
+### State at this point
+
+- WP0 is done. WP1-a to WP1-e are proved: 15 theorems pinned in `QuantGrav/Audit.lean`, all on Lean's three standard axioms.
+- Independent review of WP1 (separate session, 2026-11-26): every statement in `QuantGrav/Elementary/` was re-derived by hand and matches (4.32) to (4.34), (5.17), (5.61), (5.68), (5.69). `paper/arxiv-src/main.tex` lines 1996 to 2100 were read directly. The reconstruction behind `q_of_growth_exponent_iff` and `log_coefficient_roundtrip` is correct, and so is finding F3.
+- The reviewer did not rerun the build. The evidence for it is indirect: build artifacts exist for every module, their logs are clean, and the declaration positions in the `.ilean` files match the current sources.
+- None of H1 to H14 has a formal statement. No headline claim of the paper (finite dimension, entropy formula, type I factor, semiclassical equations) is formalized.
+- The work so far does not change how likely the paper is to be right, with one exception: the agreement with Sen in (5.69) is now known to return the coefficient imported at (5.67c), for any value of that coefficient.
+
+### Step 0. Housekeeping
+
+1. Add a remote and push. CI has never run, because the repository has no remote.
+2. From a clean checkout run `lake exe cache get`, `lake build --wfail` and `bash scripts/check_forbidden.sh`. Record the date, commit and result in `FIDELITY.md`.
+3. Line endings: `handoff.md` and `FIDELITY.md` showed as modified against HEAD only because of CRLF. Add `*.md text eol=lf` (and `*.tsv`, `*.toml`, `*.yml`) to `.gitattributes`, renormalize and commit.
+4. Record the WP1 review above in `FIDELITY.md` under "How the paper was read", which still says no second reader has reviewed the entries. Re-check findings F1, F2 and F4 against the TeX. F3 and F5 are confirmed.
+5. Move to the stable `v4.37.0` toolchain and Mathlib tag once they exist. The current pin is a release candidate.
+6. Remove the template "GitHub configuration" section from `README.md`. Mark the two `sorry` sketches in Section 6 (WP1) of this file as superseded by `ClockWeight.lean` and `LogCoefficient.lean`.
+7. Choose a licence so that `linter.style.header` can be switched back on.
+
+### Step 1. Finding F2 as a conditional theorem (highest value)
+
+Why first: it would show which single hypothesis the central claim rests on, and it needs no new infrastructure.
+
+Read first, in `paper/arxiv-src/main.tex`: (5.30c) at line 1746, (5.37a) at 1811, (5.37b) at 1815, (5.38) at 1823, (D.24) at 3373, and the AdS argument (5.44) to (5.46). Question to settle: is the uncut amplitude with no insertion assumed finite?
+
+Then prove, in `QuantGrav/Diamond/FiniteDim.lean`, this abstract statement. It uses no physics and no infinite-dimensional trace:
+
+> Let `H` and `K` be complex Hilbert spaces, `C : H →L[ℂ] K` bounded, `c > 0` with `c * ‖v‖^2 ≤ ‖C v‖^2` for all `v`, and `Z` a real number with `∑ i, ‖C (e i)‖^2 ≤ Z` for every finite orthonormal family `e` in `H`. Then `H` is finite-dimensional and `finrank H ≤ Z / c`.
+
+Mapping to the paper: `c = e^{-s_*} m_{b,D}` from (5.30c). The bound `Z` is what H3 supplies when it is applied with no insertion.
+
+Follow-up in the register:
+
+- Split H3 into H3a (no insertion: partial traces of `C_b† C_b` are bounded) and H3b (with the insertion `X` of (5.37a)).
+- Record in `FIDELITY.md` whether the paper's own argument needs H3b and H4 at all.
+- If the theorem goes through, state the consequence plainly in the log: given the lower bound (5.30c), `dim H_D < ∞` holds exactly when the partial traces of `C_b† C_b` are bounded. The finiteness claim is then only as strong as the diffeomorphism-invariance argument of Sec 3.6 behind H3a.
+
+### Step 2. Quick items
+
+Mathlib already has the ingredients for the first three; see Section 12.
+
+- WP2-c, from `HilbertBasis.hasSum_inner_mul_inner` and Cauchy-Schwarz.
+- WP2-d, from `starProjection_tendsto_self`.
+- WP2-e, one line.
+- New WP2-g: `‖exp(i x) - 1‖ ≤ |x|` and the bound (5.32) derived from it as in (D.22), (D.23). Finding F4 notes this step is elementary.
+- New WP1-g, the integrated clock bound. For a probability measure `μ` on `[0, ∞)` and `L, ℓ > 0`: `∫ u * (L / (L + u))^2 dμ ≤ L / 4`, and `∫_{u > ℓ} (L / (L + u))^2 dμ ≤ L / (4 ℓ)`. This is (5.17) with the spectral measure of the clock replaced by an arbitrary `μ`, so it does not depend on H13.
+
+### Step 3. Definitions gate
+
+No formal statement of H1, H13 or H14 before this is done.
+
+1. Check the pinned Mathlib for unbounded self-adjoint operators and the spectral theorem. If support is thin, model the clock by its family of spectral projections `ℓ ↦ P_ℓ` instead of an operator.
+2. Write `QuantGrav/Diamond/Setup.lean`: a structure holding the Hilbert space `K_A`, the clock data, an area operator commuting with it, and the vector `Ω_A`.
+3. Have the definitions reviewed against (4.27), (5.1), (5.2) and (C.11) to (C.17) by a reader who did not write them.
+4. Only then give H1, H13 and H14 formal statements in `Hypotheses.lean`.
+
+### Step 4. WP2-a and WP3
+
+- WP2-a: port "pure state implies irreducible GNS representation" from MathlibAnnex, which is pinned to Lean 4.35 and was produced by an AI model according to its paper. Re-check each ported file under this project's pin. Do not add it as a dependency.
+- WP2-b and WP2-f are blocked: Mathlib has no Fock space, no Hilbert tensor powers and no trace class. Leave them registered. Do not build that infrastructure here without a decision from Michael.
+- WP3 after WP2-a. Obtain the paper's reference [36] (arXiv:2310.02189) first.
+
+### Step 5. WP5 open question
+
+Read Sen (arXiv:1205.0971). Record his logarithmic coefficient for a four-dimensional Schwarzschild black hole in pure gravity and the ensemble it belongs to, and compare with the paper's "fixed mass, angular momenta summed" in (5.69). Nobody has done this yet.
+
+### Step 6. Questions for the author
+
+Draft a short note. Michael decides whether to send it.
+
+1. Footnote 23 gives `q = 2x^2 / (1 + x^2)` with `x = (1 - eps) r_h / l`, and (5.68) gives `q = 257/302`. Both hold only if `x^2 = 257/347`. Is `l(D) / r_h` fixed by consistency, or is one of the two evaluations approximate?
+2. Is there an evaluation of `q` that does not use (5.67c)? Otherwise the agreement with Sen in (5.69) holds by construction once the one-loop coefficient is granted.
+3. Is the dense domain of the clock (footnote 14) established independently of the estimate (5.8) to (5.16)?
+4. At (5.37b), is the uncut amplitude with no insertion assumed finite?
+5. Are formal artifacts, or records of the model's derivations, available for the proofs the acknowledgments credit to an AI model?
+
+### Progress on these steps (2026-11-26)
+
+- Step 0.1: done by Michael. `origin` is a private GitHub repository and `main` is pushed.
+- Step 0.2: done for commit `1651972`, with `.lake/packages` linked instead of downloaded again. Recorded in `FIDELITY.md`.
+- Step 0.3: done. `.gitattributes` now covers `.md`, `.tsv`, `.toml` and `.yml`.
+- Step 0.4: done. F1 and F4 hold against the TeX; the (5.20) item in F4 was corrected to a density statement. F2 was replaced by the result of Step 1.
+- Step 1: done. `QuantGrav/Diamond/FiniteDim.lean` proves the abstract statement and its converse. H3 is split into H3a and H3b, and H15 is added for (5.23). Answer to the question: the paper does not state that the uncut amplitude with no insertion is finite, but the sentences around (5.38) use its squared norm as a positive real number. See finding F2 in `FIDELITY.md`.
+- Steps 0.5 to 0.7 and Steps 2 to 6: not started.
+
+### Order for the next session
+
+Step 0 items 1 to 4, then Step 1, then Step 2. Stop and report after Step 1: its outcome decides whether WP4 keeps its current shape.
+
+### Decisions needed from Michael
+
+- Where the remote lives and whether it is public.
+- Licence.
+- Whether to send the note in Step 6.
+- Whether porting AI-produced MathlibAnnex files is acceptable under the review rules of Section 8.

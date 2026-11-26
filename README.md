@@ -5,13 +5,14 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `handoff.md`: the brief, work packages and paper map.
 - `FIDELITY.md`: each formal statement paired with the paper's equation, findings from reading the paper, and the hypothesis register.
 - `QuantGrav/Elementary/`: WP1, self-contained analytic statements.
+- `QuantGrav/Diamond/FiniteDim.lean`: finite dimension from bounded partial traces (finding F2).
 - `QuantGrav/Hypotheses.lean`: the hypothesis register as it appears to Lean.
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.
 - `paper/equation_index.tsv`: printed equation number, LaTeX label and `main.tex` line for every equation in the paper.
 
 The paper's PDF and TeX source are not in the repository (its arXiv licence does not allow redistribution). To rebuild the index, put the PDF in the repository root, unpack the arXiv source into `paper/arxiv-src/`, and run `scripts/extract_pdf_text.py` and `scripts/tex_label_index.py`.
 
-Directories `OperatorAlgebra/`, `Axioms/`, `Diamond/` and `Entropy/` will appear under `QuantGrav/` as their work packages start.
+Directories `OperatorAlgebra/`, `Axioms/` and `Entropy/` will appear under `QuantGrav/` as their work packages start.
 
 ## Build
 

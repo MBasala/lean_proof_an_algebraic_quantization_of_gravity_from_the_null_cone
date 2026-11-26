@@ -1,5 +1,6 @@
 module
 
+public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
@@ -75,3 +76,19 @@ The only axioms allowed are Lean's three standard ones: `propext`, `Classical.ch
 /-- info: 'QuantGrav.abs_im_pair_amplitude_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.abs_im_pair_amplitude_sub_le
+
+/-- info: 'QuantGrav.finiteDimensional_of_sum_sq_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finiteDimensional_of_sum_sq_norm_le
+
+/-- info: 'QuantGrav.finrank_le_of_sum_sq_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finrank_le_of_sum_sq_norm_le
+
+/-- info: 'QuantGrav.sum_sq_norm_le_finrank' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sum_sq_norm_le_finrank
+
+/-- info: 'QuantGrav.finiteDimensional_iff_exists_sum_sq_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finiteDimensional_iff_exists_sum_sq_norm_le

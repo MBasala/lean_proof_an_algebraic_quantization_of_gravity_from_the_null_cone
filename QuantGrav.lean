@@ -1,6 +1,7 @@
 module
 
 public import QuantGrav.Audit
+public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Elementary.ClausenAsymptotics
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.LogCoefficient

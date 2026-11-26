@@ -11,7 +11,10 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Read directly from that text, by the agent that wrote this log: Sec 4.4, Sec 5.1 to 5.3, App C.2 from (C.13), App C.3, App D.2, App D.3, footnote 8.
 - Everything else in the paper is indexed by section and equation number only. Claims about its content still come from the earlier extraction passes and are marked "not re-read" where they appear.
 - Extracted math is partly garbled (accents, fractions). Each statement below was checked against the surrounding prose as well as the displayed equation.
-- No second reader has reviewed these entries yet. Section 8 of `handoff.md` requires that before WP1 is closed.
+- Independent review of WP1 (separate session, 2026-11-26, recorded in `handoff.md` Section 13): every statement in `QuantGrav/Elementary/` was re-derived by hand and matches (4.32) to (4.34), (5.17), (5.61), (5.68), (5.69). The reviewer read `main.tex` lines 1996 to 2100 directly, and confirmed the reconstruction behind `q_of_growth_exponent_iff` and `log_coefficient_roundtrip` and findings F3 and F5. The reviewer did not rerun the build.
+- Clean-checkout build, 2026-11-26, commit `1651972`: a fresh `git clone` of the repository, with `.lake/packages` linked to the existing Mathlib checkout instead of downloaded again. `lake exe cache get` reported nothing to download, `lake build --wfail` completed (5813 jobs), and `scripts/check_forbidden.sh` was clean. Run on Windows with Lean `v4.37.0-rc1`.
+- Findings F1, F2 and F4 were re-checked against the TeX on 2026-11-26; each now says what changed.
+- `QuantGrav/Diamond/FiniteDim.lean` was written after that review and has had no second reader.
 - The proof of `abs_im_tsum_cexp_div_sq_sub_le` was written by a subagent from a fixed statement. Its statement was written and checked numerically first; the proof is accepted on the strength of the kernel and the axiom audit, not on a reading of the proof.
 
 ## Theorem entries
@@ -122,23 +125,49 @@ All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/A
 | Formal statement | For real `s >= 2`: the imaginary part of `(1/(2 s^2)) sum_k e^{-2i(k+1)/s} / (k+1)^2` differs from `(log 2 - 1 - log s) / s^3` by at most `1/(6 s^5)` |
 | Differs from paper? | The paper names only the `log s` term. The theorem also fixes the non-logarithmic `1/s^3` piece, `(log 2 - 1)/s^3`, and bounds the remainder. Restricted to `s >= 2`. It says nothing about the real part. The paper's further claim that the third derivative of the full sum diverges as `G_N -> 0+` is not formalized; `cubic_term_partial_pair_sum` with `tendsto_harmonic_atTop` covers the truncated sums only |
 
+### Finding F2: `finiteDimensional_of_sum_sq_norm_le`, `finrank_le_of_sum_sq_norm_le` (`QuantGrav/Diamond/FiniteDim.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | Not stated in the paper. Uses (5.30c) and the counting step of (D.24); same shape as the paper's AdS argument (5.44) to (5.46) |
+| Formal statement | Let `H`, `K` be complex inner product spaces and `C : H -> K` a bounded linear map. Suppose `c > 0` with `c ‖v‖^2 <= ‖C v‖^2` for all `v`, and a real `Z` with `sum_i ‖C (e i)‖^2 <= Z` for every finite orthonormal family `e` in `H`. Then `H` is finite-dimensional and `dim H <= Z / c` |
+| Differs from paper? | Addition. No physics enters. Completeness of `H` and `K` is not assumed, which is weaker than the Hilbert spaces `handoff.md` asked for. Finite orthonormal families are indexed by `Fin n`. The two conclusions are separate theorems. The mapping to the paper, `H = H_D`, `C = C_b` on `H_D`, `c = e^{-s_*} m_{b,D}`, `sum_i ‖C (e i)‖^2 = Tr(P C_b† C_b)`, is prose and has no formal counterpart until `H_D` and `C_b` are defined |
+
+### Finding F2, converse: `sum_sq_norm_le_finrank`, `finiteDimensional_iff_exists_sum_sq_norm_le` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | Not stated in the paper. Uses the upper bound `C_b† C_b <= 1` of (5.30c) |
+| Formal statement | If `H` is finite-dimensional and `‖C v‖ <= ‖v‖` for all `v`, then `sum_i ‖C (e i)‖^2 <= dim H` for every finite orthonormal family. Hence, for `c ‖v‖^2 <= ‖C v‖^2 <= ‖v‖^2` with `c > 0`: `H` is finite-dimensional if and only if the sums `sum_i ‖C (e i)‖^2` over finite orthonormal families are bounded |
+| Differs from paper? | Addition. Same remarks as above |
+
+
 ## Findings from the direct reading
 
 Each is this log's reading of the PDF text. None has been checked with the author.
 
-**F1. H1 is a statement about the form domain of the clock.** (C.14) says that as `L` grows, `Psi_L` tends to `P_M psi`, where `M` is the closure of the domain of the clock's quadratic form, and that `1 - <psi|Psi_L>` tends to `‖(1 - P_M) psi‖^2`. So `‖Psi_L - Omega_A‖ -> 0` holds exactly when `Omega_A` lies in `M`. The estimates (5.8) to (5.16) are evidence for that membership. The paper calls the outcome strong evidence, and footnote 18 says the last step is a heuristic for noncommuting operators. The paragraph after (C.17) derives density of the clock's domain from the same estimate, so footnote 14's claim that the clock is densely defined is not independent of H1. Registered as H13.
+**F1. H1 is a statement about the form domain of the clock.** (C.14) says that as `L` grows, `Psi_L` tends to `P_M psi`, where `M` is the closure of the domain of the clock's quadratic form, and that `1 - <psi|Psi_L>` tends to `‖(1 - P_M) psi‖^2`. So `‖Psi_L - Omega_A‖ -> 0` holds exactly when `Omega_A` lies in `M`. The estimates (5.8) to (5.16) are evidence for that membership. The paper calls the outcome strong evidence, and footnote 18 says the last step is a heuristic for noncommuting operators. The paragraph after (C.17) derives density of the clock's domain from the same estimate, so footnote 14's claim that the clock is densely defined is not independent of H1. Registered as H13. Re-checked against the TeX (lines 3035 to 3046 and 3131): the text is as described, no change.
 
-**F2. Finite dimension may follow from H3 and (5.30c) alone.** (5.30c) gives `C_b† C_b >= e^{-s_*} m_{b,D} 1` on `H_D`, and (D.24) already uses `Tr(P C_b† C_b) >= rank(P) e^{-s_*} m_{b,D}`. If the cut sums with no insertion must converge to a finite uncut amplitude, then `dim H_D <= Z e^{s_*} / m_{b,D}` at once, with no boost argument and no H4. The paper's own AdS argument (5.44) to (5.46) has this shape. The paper instead applies H3 with the insertion `X` of (5.37a). Whether the uncut amplitude with no insertion is assumed finite is implicit in the sentence after (5.37b), which multiplies by the squared norm of the uncut preparation. This is a candidate simplification for WP4, and it puts the whole weight of the finiteness claim on H3. To be confirmed when WP4 definitions are written.
+**F2. Given (5.30c), finite dimension is equivalent to bounded partial traces.** This replaces the earlier, tentative F2. Proved in `QuantGrav/Diamond/FiniteDim.lean`; what follows is the reading of the paper that connects it.
+
+- (5.30c) states `e^{-s_*} m_{b,D} 1 <= C_b† C_b <= 1` on `H_D`. For a finite orthonormal family with projection `P`, `Tr(P C_b† C_b) = sum_i ‖C_b e_i‖^2`. (D.24) uses `Tr(P C_b† C_b) >= rank(P) e^{-s_*} m_{b,D}`, which is the first step of the proof here.
+- Split H3 accordingly. H3a: the partial traces `Tr(P C_b† C_b)` are bounded, which is what closing the cut with no insertion gives if the uncut amplitude is a finite number. H3b: the partial sums `Z_P[X]` with the insertion `X` of (5.37a) converge to `Z[X]`.
+- Consequence, machine-checked up to the mapping: given (5.30c), `dim H_D < infinity` holds exactly when H3a holds, and then `dim H_D <= Z e^{s_*} / m_{b,D}`. The boost argument, (5.32), the cycle construction of (D.24), (D.25), H3b and H4 are not needed for that implication.
+- What the paper's own argument uses: H3b and H4, with (5.30c) and (5.32). It does not state H3a. It does use the quantity H3a is about: the sentence before (5.38) obtains `Z[X]` by multiplying the expectation value of `X` in the uncut preparation by that preparation's squared norm, and the sentence after it requires the partial sums to approach `Z[X]`. Both treat the squared norm, which is the uncut amplitude with no insertion, as a positive real number. Read that way, the paper assumes it finite without saying so. If the cut sum with no insertion is also required to reproduce it, as (4.29) is used for `X`, that is H3a and the conclusion follows at once.
+- The paper nowhere says for which insertions closing the cut reproduces the uncut amplitude. Whether it holds for the identity is the open point, and it is question 4 for the author in `handoff.md` Section 13.
+- So the finiteness claim is as strong as the argument of Sec 3.6 that a finite uncut amplitude exists and equals the cut sum, plus the inputs of (5.30c): the area bound (5.21d) (H14), the boost weight (5.23) (H6, H15) and unitarity (H2). Sec 3.6 has not been read for this log.
+- For WP4: the target can be stated as `dim H_D < infinity` from H3a and (5.30c). H3b with H4 is then a second, independent route, to be formalized only if H3a is rejected.
 
 **F3. Footnote 23 and (5.68) together fix a ratio the paper treats as free.** The text fixes `l(D)/r_h > 1 - eps` as a free ratio. Footnote 23 gives `q = 2x^2/(1+x^2)` with `x = (1 - eps) r_h / l`, which depends on that ratio. (5.68) gives `q = 257/302` with no dependence on it. Both hold only if `x^2 = 257/347`, about `x = 0.8606` (`ratio_sq_of_q`). The paper does not comment on this. Registered under H8.
 
 **F4. Handoff soft spots confirmed.**
 - (5.39c) is `Z Tr(rho e^{A/4G hbar}) = Tr(1)`. It is an identity, not an independent count.
-- (5.20) is a spanning statement. It sits in Sec 5.1, not 5.2.
+- (5.20) says the closure of `{P_D pi(X) psi}` is `P_D H_omega = H_D`. It is a density statement, not a dimension formula. The closure bar is in the TeX (line 1616) and was lost in the PDF text, so the earlier wording "spanning statement" was too strong. It sits in Sec 5.1, not 5.2.
 - No area eigenvalues or spacings are given. (5.40) only names them `A_1, ..., A_m`.
 - (5.32) is proved in (D.22), (D.23) by `|e^{ix} - 1| <= |x|`. That step is elementary and could be a WP2 theorem. The physics input H4 is (5.36b) and (5.37b), supported by (D.26) to (D.36) at one loop on a smooth background.
 - The pigeonhole step is in the paragraph after (D.24): finitely many intervals cover `[0, s_*]`, so one has a spectral subspace of full dimension. It is stated for any cardinality.
 - The entropy formula is (5.50); the handoff's map started Sec 5.3 at (5.51).
+- Re-checked against the TeX on 2026-11-26: (5.39c), (5.40), (5.50), (D.22), (D.23) and the pigeonhole paragraph are as described. Only the (5.20) item changed.
 
 **F5. WP1-a, WP1-b checked against (4.32) to (4.34).** The variance `1/(2sk)`, the pair phase `e^{-2ik/s}`, the closed form `Li_2(e^{-2i/s}) / (2 s^2)`, the divergent first-order term `-(i/s^3) sum 1/k`, and the claimed finite term `-i log s / s^3` are as the handoff states. The paper states the finite term without the subleading pieces.
 
@@ -150,7 +179,9 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 |---|---|---|---|
 | H1 | `‖Psi_L - Omega_A‖ -> 0` as `L -> infinity`; equivalently `Omega_A` in `M` (F1) | (5.7), (5.16), fn 18, (C.13) to (C.16d) | Called strong evidence; last step heuristic per fn 18 |
 | H2 | Amplitude maps `U_M` are unitary | (4.18), not re-read | Assumed |
-| H3 | Cut-state sums converge to the uncut amplitude with insertions fixed | (4.29), Sec 3.6, used at (5.38) | Diffeomorphism-invariance argument, not re-read |
+| H3 | Cut-state sums converge to the uncut amplitude with insertions fixed. Split into H3a and H3b on 2026-11-26 | (4.29), Sec 3.6, used at (5.38) | Diffeomorphism-invariance argument, not re-read |
+| H3a | With no insertion: the partial traces `Tr(P C_b† C_b)` over finite orthonormal families in `H_D` are bounded. Given (5.30c) this is equivalent to `dim H_D < infinity` (F2) | Implicit in the sentences around (5.38); not stated | Not stated by the paper |
+| H3b | With the insertion `X` of (5.37a): the partial sums `Z_P[X]` over cycle-closed projections converge to `Z[X]` | (5.38), Figure 30, (4.29) | Diffeomorphism-invariance argument of Sec 3.6 |
 | H4 | `<Delta_eta O> > delta_eta / 2` in the uncut preparation | (5.36b), (5.37b), (D.26) to (D.36) | One-loop estimate on a smooth background |
 | H5 | Truncation projections converge strongly to the identity | Sentence after (4.31) | Asserted |
 | H6 | Boost generator is `A/(8 pi G)` | (5.22); (3.43) not re-read | Classical corner symplectic structure |
@@ -162,6 +193,7 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H12 | Type I with integer weights; Euclidean to Lorentzian converse | App E.2, ref [36], not re-read | Citation |
 | H13 | Clock operator (4.27) is positive, self-adjoint, densely defined, commutes with area | (4.27), fn 14, (C.11) to (C.13), (C.17) | Argued; depends on the H1 estimate (F1). Added 2026-11-26 |
 | H14 | `u >= (1 - eps)(A/4pi)^(1/2)` as operators, hence (5.21d) | (5.21a) to (5.21d), fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing. Added 2026-11-26 |
+| H15 | `C_D† C_D = P_D e^{-A/(4 G hbar)} P_D`: the future half of the diamond is prepared by continuing the corner boost to `i pi`, and gluing to its time reflection leaves only this weight | (5.23a), (5.23b), App C | Asserted from analytic continuation and unitarity. Added 2026-11-26 |
 
 References the register depends on, from the paper's bibliography:
 - [34] Sen, arXiv:1205.0971.
@@ -174,4 +206,4 @@ References the register depends on, from the paper's bibliography:
 
 - No licence or copyright header has been chosen, so `linter.style.header` is switched off in `lakefile.toml`. Every other linter in Mathlib's standard set is on.
 - The comparison of (5.69) with Sen's ensemble (WP5 question 3) has not been made. Sen's paper has not been read for this log.
-- Second-reader review of the theorem entries above is outstanding.
+- Second-reader review is done for `QuantGrav/Elementary/` and outstanding for `QuantGrav/Diamond/FiniteDim.lean` and for the reading of the paper in F2.
