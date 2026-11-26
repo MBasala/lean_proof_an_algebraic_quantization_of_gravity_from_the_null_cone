@@ -386,6 +386,6 @@ References the register depends on, from the paper's bibliography:
 
 ## Open items that affect fidelity
 
-- No licence or copyright header has been chosen, so `linter.style.header` is switched off in `lakefile.toml`. Every other linter in Mathlib's standard set is on.
+- The licence is MIT (2026-11-26). `linter.style.header` is on again with its licence line set to MIT, so every linter in Mathlib's standard set is now active. The file headers name the git author as copyright holder and author; which proofs were written by subagents is recorded under "How the paper was read", and the commit history records the co-authorship.
 - The comparison of (5.69) with Sen's ensembles is made in F9. Reference [71] of the paper (Bastianelli, Bonezzi, Melis), the stated source of the coefficient in (5.67c), has not been read.
 - Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/` and for the definitions in `QuantGrav/Diamond/Setup.lean`. It is outstanding for `ClockWeightIntegral.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.

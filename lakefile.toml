@@ -1,5 +1,6 @@
 name = "quant_grav"
 version = "0.1.0"
+license = "MIT"
 keywords = ["math"]
 defaultTargets = ["QuantGrav"]
 
@@ -7,7 +8,8 @@ defaultTargets = ["QuantGrav"]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
 relaxedAutoImplicit = false
 weak.linter.mathlibStandardSet = true
-weak.linter.style.header = false # no licence chosen yet; see FIDELITY.md, open decisions
+# The header linter is part of mathlibStandardSet; its licence line is set to MIT here.
+weak.linter.style.header.license = "Released under MIT license as described in the file LICENSE."
 maxSynthPendingDepth = 3
 
 [[require]]

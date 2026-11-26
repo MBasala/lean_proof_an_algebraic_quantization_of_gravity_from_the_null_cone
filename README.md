@@ -30,6 +30,12 @@ bash scripts/check_forbidden.sh
 
 `--wfail` makes any warning, including a placeholder proof, fail the build. `scripts/check_forbidden.sh` rejects placeholder proofs, `native_decide` and new axiom declarations. The GitHub workflow runs both, but its runner does not have enough disk space to finish, so these two commands are run locally before each commit.
 
+## Licence
+
+MIT; see `LICENSE`. It covers the contents of this repository. The paper it studies (arXiv:2611.34924) is not part of the repository and is under its own licence.
+
+Each Lean file under `QuantGrav/` carries a copyright header in Mathlib's format with the MIT line. Mathlib's header linter enforces it, with its licence line set in `lakefile.toml`.
+
 ## GitHub configuration
 
 To set up your new GitHub repository, follow these steps:
