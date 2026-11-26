@@ -18,14 +18,18 @@ public import QuantGrav.Elementary.GaussianExpSq
 public import QuantGrav.Elementary.GaussianModeLimits
 public import QuantGrav.Elementary.GaussianQuadraticForm
 public import QuantGrav.Elementary.LogCoefficient
+public import QuantGrav.Elementary.LogIntegralLimit
+public import QuantGrav.Elementary.MonotoneLogGrowth
 public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
 public import QuantGrav.Entropy.BandCounting
 public import QuantGrav.Entropy.ClockMoments
+public import QuantGrav.Entropy.ClockTraceAsymptotics
 public import QuantGrav.Entropy.GibbsAccounting
 public import QuantGrav.Entropy.LogLevelsModel
+public import QuantGrav.Entropy.MeanAreaGrowth
 public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.OperatorAlgebra.BoostBound
 public import QuantGrav.OperatorAlgebra.CutSums
@@ -692,3 +696,119 @@ info: 'QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero' depends o
 /-- info: 'QuantGrav.tendsto_log_card_image_levelsBelow_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.tendsto_log_card_image_levelsBelow_logLevels
+
+/-- info: 'QuantGrav.tendsto_integral_div_div_log_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_integral_div_div_log_div
+
+/-- info: 'QuantGrav.tendsto_integral_div_div_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_integral_div_div_log
+
+/-- info: 'QuantGrav.integral_pos_of_integral_pos_of_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_pos_of_integral_pos_of_le
+
+/-- info: 'QuantGrav.intervalIntegrable_sub_integral_div_integral_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.intervalIntegrable_sub_integral_div_integral_div
+
+/-- info: 'QuantGrav.log_integral_div_sub_log_integral_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.log_integral_div_sub_log_integral_div
+
+/-- info: 'QuantGrav.log_eq_integral_add_log_sub_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.log_eq_integral_add_log_sub_log
+
+/-- info: 'QuantGrav.tendsto_log_div_log_of_tendsto_integral_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_div_log_of_tendsto_integral_div
+
+/-- info: 'QuantGrav.tendsto_log_div_log_div_of_tendsto_integral_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_div_log_div_of_tendsto_integral_div
+
+/-- info: 'QuantGrav.cutoffZ_eq_momentSum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffZ_eq_momentSum
+
+/-- info: 'QuantGrav.cutoffZ_mul_cutoffMeanReading_eq_momentSum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffZ_mul_cutoffMeanReading_eq_momentSum
+
+/-- info: 'QuantGrav.cutoffZ_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffZ_nonneg
+
+/-- info: 'QuantGrav.cutoffZ_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffZ_pos
+
+/-- info: 'QuantGrav.monotone_cutoffZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.monotone_cutoffZ
+
+/-- info: 'QuantGrav.integral_cutoffZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_cutoffZ
+
+/-- info: 'QuantGrav.firstMomentOf_cutoffZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.firstMomentOf_cutoffZ
+
+/-- info: 'QuantGrav.cutoffEntropy_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffEntropy_eq
+
+/-- info: 'QuantGrav.tendsto_integral_cutoffZ_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_integral_cutoffZ_div
+
+/-- info: 'QuantGrav.tendsto_log_cutoffZ_div_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_cutoffZ_div_log
+
+/-- info: 'QuantGrav.tendsto_sub_div_log_of_tendsto_log_div_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_sub_div_log_of_tendsto_log_div_log
+
+/-- info: 'QuantGrav.tendsto_log_div_of_tendsto_log_div_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_div_of_tendsto_log_div_log
+
+/-- info: 'QuantGrav.tendsto_cutoffEntropy_sub_div_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_cutoffEntropy_sub_div_log
+
+/-- info: 'QuantGrav.tendsto_log_cutoffZ_div_log_cutoffMeanArea' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_cutoffZ_div_log_cutoffMeanArea
+
+/-- info: 'QuantGrav.tendsto_log_cutoffZ_div_cutoffMeanArea' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_cutoffZ_div_cutoffMeanArea
+
+/-- info: 'QuantGrav.sq_gibbsMean_sqrt_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sq_gibbsMean_sqrt_le
+
+/-- info: 'QuantGrav.sq_cutoffMeanSqrtArea_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sq_cutoffMeanSqrtArea_le
+
+/-- info: 'QuantGrav.cutoffMeanSqrtArea_le_cutoffMeanReading' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffMeanSqrtArea_le_cutoffMeanReading
+
+/-- info: 'QuantGrav.cutoffMeanArea_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cutoffMeanArea_le
+
+/-- info: 'QuantGrav.tendsto_log_cutoffMeanArea_div_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_cutoffMeanArea_div_log
+
+/-- info: 'QuantGrav.tendsto_cutoffEntropy_sub_div_log_of_delay' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_cutoffEntropy_sub_div_log_of_delay

@@ -69,8 +69,10 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
 * **H8.** The limit `q` in (5.54b) exists; its value.
   Paper: (5.54b), (5.61), (5.68), fn 23.
   Status: arithmetic in `Elementary/LogCoefficient.lean`; the moment identities (5.56), (5.57a),
-  (5.60) and the relation of footnote 23 in `Entropy/ClockMoments.lean`; existence of the limit is
-  prose only.
+  (5.60) and the relation of footnote 23 in `Entropy/ClockMoments.lean`. The existence of the
+  limit is the hypothesis `hq` of `tendsto_log_cutoffZ_div_log` and
+  `tendsto_cutoffEntropy_sub_div_log` in `Entropy/ClockTraceAsymptotics.lean`, from which (5.58),
+  (5.62) and (5.65) are proved.
 * **H9.** Choice of pure extension `ω`; unitary equivalence of other choices.
   Paper: (4.16), fn 20.
   Status: prose only.
@@ -129,6 +131,12 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Status: prose only. A model with all radial modes is in `Elementary/FocusingDivergence.lean`
   and `Elementary/GaussianModeLimits.lean`; a conditional criterion for the failure of H1 is in
   `Diamond/ClockDivergence.lean`; new on 2026-11-26.
+* **H20 (candidate).** The mean time delay is small:
+  `⟨u - (1 - ε) (A / 4π)^(1/2)⟩ = o(r_h)`.
+  Paper: (5.53) and the sentence before it, asserted from the expansion about Schwarzschild.
+  Status: the hypothesis `hdelay` of `tendsto_log_cutoffMeanArea_div_log` in
+  `Entropy/MeanAreaGrowth.lean`, in the weaker form `o(ℓ)`. With the area bound (H14) and `q > 0`
+  it gives (5.59), and through it (5.62) and (5.65); new on 2026-11-26.
 
 Entries are never deleted. A discharged entry keeps its row and links to the proof.
 -/
