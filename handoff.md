@@ -129,7 +129,10 @@ Low risk. Good first targets and a calibration of tooling.
   Derived consequence to record: `q = 257/302` forces `x^2 = 257/347`, `x ~ 0.8606`, where `x = (1-eps) r_h / l`. Per extraction the paper does not justify this ratio. See H8.
 - **WP1-f (footnote 8, 3.27).** `(1-eps) sqrt(A/4pi) <= mean clock reading`, by Cauchy-Schwarz on the corner sphere. Needs the exact definition from 3.27 before it can be stated. Done on 2026-11-26 in `QuantGrav/Elementary/ClockLowerBound.lean`, with the average of (3.28) read from the TeX.
 
-Statement sketches. **Not compiled. Check all names against the pinned Mathlib.**
+Statement sketches. **Superseded; marked on 2026-11-26.** They were written before anything was compiled and are kept as a record of the brief. The `sorry` placeholders below are not part of the development. The proved statements are:
+
+- `clock_weight_le` in `QuantGrav/Elementary/ClockWeight.lean`: the first sketch, with the same statement.
+- `log_coefficient_eq_iff` in `QuantGrav/Elementary/LogCoefficient.lean`: the second sketch, over the real numbers instead of the rationals.
 
 ```lean
 theorem clock_weight_bound (L u : ℝ) (hL : 0 < L) (hu : 0 ≤ u) :
@@ -404,7 +407,9 @@ Draft a short note. Michael decides whether to send it.
   - Item 5: `FIDELITY.md` records the external sources and how far they were read, F10, the single-cut limit of WP2-c, the App E circularity under H12, and a candidate entry H18 (dependence on the reduction and on operator ordering).
   - Item 6: question 2 of `notes/note-to-author-draft.md` now asks for which cuts and insertions the closed partial sums must reproduce the uncut amplitude.
   - Item 7: the second-reader record for `FiniteDim.lean`, `CutSums.lean`, `BoostBound.lean` and `ClockWeightIntegral.lean` is in `FIDELITY.md`.
-- Steps 0.5 and 0.6 and Step 4: not started.
+- Step 0.6: done. The template "GitHub configuration" section is removed from `README.md`, and the two sketches in Section 6 (WP1) are marked as superseded by `clock_weight_le` and `log_coefficient_eq_iff`.
+- Step 0.5: not started. Checked on 2026-11-26: `v4.37.0-rc1` is the only `v4.37.0` tag in both the Lean and the Mathlib repositories, so there is no stable release to move to yet.
+- Step 4: not started.
 
 ### Order for the next session
 
