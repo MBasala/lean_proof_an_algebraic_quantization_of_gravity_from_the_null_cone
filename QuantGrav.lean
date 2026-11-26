@@ -1,6 +1,7 @@
 module
 
 public import QuantGrav.Audit
+public import QuantGrav.Diamond.ClockDivergence
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
 public import QuantGrav.Diamond.FiniteDim
@@ -10,7 +11,12 @@ public import QuantGrav.Elementary.ClausenAsymptotics
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
+public import QuantGrav.Elementary.FocusingDivergence
+public import QuantGrav.Elementary.GaussianExpSq
+public import QuantGrav.Elementary.GaussianModeLimits
+public import QuantGrav.Elementary.GaussianQuadraticForm
 public import QuantGrav.Elementary.LogCoefficient
+public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal

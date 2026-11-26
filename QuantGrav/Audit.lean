@@ -5,6 +5,7 @@ Authors: Michael Basala
 -/
 module
 
+public import QuantGrav.Diamond.ClockDivergence
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
 public import QuantGrav.Diamond.FiniteDim
@@ -12,7 +13,12 @@ public import QuantGrav.Diamond.OrderOfExhaustion
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
+public import QuantGrav.Elementary.FocusingDivergence
+public import QuantGrav.Elementary.GaussianExpSq
+public import QuantGrav.Elementary.GaussianModeLimits
+public import QuantGrav.Elementary.GaussianQuadraticForm
 public import QuantGrav.Elementary.LogCoefficient
+public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
@@ -423,3 +429,111 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.moment_ratios_of_q' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.moment_ratios_of_q
+
+/-- info: 'QuantGrav.one_add_sum_le_prod_one_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.one_add_sum_le_prod_one_add
+
+/-- info: 'QuantGrav.one_add_trace_le_det_one_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.one_add_trace_le_det_one_add
+
+/-- info: 'QuantGrav.integral_exp_neg_mul_sq_gaussianReal' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_exp_neg_mul_sq_gaussianReal
+
+/-- info: 'QuantGrav.integral_exp_neg_sum_mul_sq_pi' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_exp_neg_sum_mul_sq_pi
+
+/-- info: 'QuantGrav.measureReal_sum_mul_sq_le_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.measureReal_sum_mul_sq_le_le
+
+/-- info: 'QuantGrav.measureReal_infinitePi_sum_range_mul_sq_le_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.measureReal_infinitePi_sum_range_mul_sq_le_le
+
+/-- info: 'QuantGrav.measure_forall_sum_range_mul_sq_le_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.measure_forall_sum_range_mul_sq_le_eq_zero
+
+/-- info: 'QuantGrav.ae_tendsto_sum_mul_sq_atTop' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.ae_tendsto_sum_mul_sq_atTop
+
+/-- info: 'QuantGrav.le_sum_mul_radialVariance' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.le_sum_mul_radialVariance
+
+/-- info: 'QuantGrav.tendsto_sum_mul_radialVariance_atTop' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_sum_mul_radialVariance_atTop
+
+/-- info: 'QuantGrav.tendsto_sum_mul_radialVariance_atTop_of_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_sum_mul_radialVariance_atTop_of_le
+
+/-- info: 'QuantGrav.measureReal_focusing_le_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.measureReal_focusing_le_le
+
+/-- info: 'QuantGrav.ae_tendsto_focusing_atTop' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.ae_tendsto_focusing_atTop
+
+/-- info: 'QuantGrav.ae_tendsto_focusing_atTop_of_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.ae_tendsto_focusing_atTop_of_le
+
+/-- info: 'QuantGrav.tendsto_integral_div_add_fixed_modes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_integral_div_add_fixed_modes
+
+/-- info: 'QuantGrav.mul_one_sub_le_integral_div_add' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.mul_one_sub_le_integral_div_add
+
+/-- info: 'QuantGrav.tendsto_integral_div_add_all_modes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_integral_div_add_all_modes
+
+/-- info: 'QuantGrav.proj_apply_eq_zero_of_forall_exists' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.proj_apply_eq_zero_of_forall_exists
+
+/--
+info: 'QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_forall_exists' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_forall_exists
+
+/-- info: 'QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_modes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_modes
+
+/--
+info: 'QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_gaussian_modes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_gaussian_modes
+
+/--
+info: 'QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_radial_modes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.diamondProj_Ω_eq_zero_of_radial_modes
+
+/--
+info: 'QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero

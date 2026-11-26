@@ -548,3 +548,22 @@ Written by the code session, in the format of 14.5.
 - Register and record: finding F3 is rewritten; the H8 row no longer says "tension"; the docstring of `ratio_sq_of_q` and its `FIDELITY.md` entry are corrected; question 4 of `notes/note-to-author-draft.md` now asks only whether "at fixed `l(D)/r_h`" is meant as a free choice.
 - What it means for the paper: footnote 23 and (5.68) do not conflict; together they determine `l(D)/r_h`, which the paper does not state and its wording suggests is chosen.
 - Limits: the moment lemma is for an exact power law. The asymptotic version, which would follow from Karamata's theorem, is not formalized. That `Z` grows as a power at all is (5.58) and rests on H8.
+
+**B1 (2026-11-26). Outcome 2 for the passage from fixed resolution to (5.19). Outcome 4, undecided, for (5.19) itself. Not outcome 1.**
+
+- Theorems.
+  - G1: `one_add_sum_le_prod_one_add`, `one_add_trace_le_det_one_add` (`Elementary/OneAddSumLeProd.lean`).
+  - G2: `integral_exp_neg_mul_sq_gaussianReal` (`Elementary/GaussianExpSq.lean`).
+  - G3 and its consequence with all modes: `measureReal_sum_mul_sq_le_le`, `ae_tendsto_sum_mul_sq_atTop` (`Elementary/GaussianQuadraticForm.lean`).
+  - The scalings of (4.32) and (D.41) inserted: `le_sum_mul_radialVariance`, `measureReal_focusing_le_le`, `ae_tendsto_focusing_atTop`, and `ae_tendsto_focusing_atTop_of_le` for weights only bounded below (`Elementary/FocusingDivergence.lean`).
+  - The two limits: `tendsto_integral_div_add_fixed_modes`, `tendsto_integral_div_add_all_modes` (`Elementary/GaussianModeLimits.lean`).
+  - The conditional statement about `P_D Omega_A`: `DiamondSetup.diamondProj_Ω_eq_zero_of_gaussian_modes`, `DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero` (`Diamond/ClockDivergence.lean`).
+- TeX read by the code session: lines 546 to 597, 1029 to 1068, 1166 to 1238, 1386 to 1438, 1449 to 1612, 2995 to 3133, 3460 to 3533. An independent reader, who did not write the Lean and did not see this file or `FIDELITY.md`, read the same ranges and more and checked the statements against them, as 14.1 requires. Its twelve required changes were applied.
+- The reviewer's reading in 14.2 B1, point by point.
+  - Confirmed: the argument is at fixed resolution; the word is used at lines 1500, 3067 and 3116, is not defined and is never removed; the Wigner function (C.15a) is for a finite set of canonical pairs (line 3048); the focusing (4.22) is positive and unsubtracted, and (5.21) uses that; the Gaussian criterion (G3) and the divergence of the series.
+  - Corrected: `(Delta q_k)^2 = 1/(2 s k)` is the variance of the pair example (4.32) only. (4.7) has free widths and Sec 5.1 does not give them. The equations cited as (C.15) and (C.16) in 14.2 are (C.16b) and (C.16d); the cost and its scaling are (D.40) and (D.41).
+  - Not confirmed: "P_M Omega_A = 0, (5.19) fails". That needs three links the paper's text does not settle: that `Omega_A` has the (4.32) variances; that the clock's focusing with all modes is unsubtracted with weights growing like `k^2`; and that a bounded reading bounds it. On the second, App D.3 counts cost by occupation numbers, under which a Gaussian state costs nothing.
+- Why not outcome 1: there is no Lean theorem that a set of the paper's displayed statements implies `False`. The displayed statements are restricted to fixed resolution, and the divergence is shown in a model. Why outcome 2: the paper passes from an estimate at fixed resolution to (5.19) for the full state; the model satisfies the analogue of the premise at every fixed number of modes and violates the analogue of the conclusion with all modes. It is a countermodel to an inference, not a counterexample to the theory.
+- Register: candidate H19 (a fixed resolution) is added; the H1 and H13 rows point to it; finding F11 is new; question 7 is added to `notes/note-to-author-draft.md`.
+- What it means for the paper: the support for (5.19) does not reach the full state. To close the gap the paper would need one of three things: an estimate uniform in the resolution, which the model suggests is not available with the (4.32) variances; a permanent mode cutoff, which would be a hypothesis and sits uneasily with its statements about arbitrarily short wavelengths; or a subtracted focusing, which gives up the positivity that (5.21) uses.
+- Stopped here, as 14.4 asks. Next in the order is the first item of B4, reading Sec 3.6.

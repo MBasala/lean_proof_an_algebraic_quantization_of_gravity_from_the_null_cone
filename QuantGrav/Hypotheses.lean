@@ -116,6 +116,13 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   ordering (4.20), and it is not compared with Dirac quantization.
   Paper: Sec 3, Sec 4.1, (4.20); Sec 3 not re-read.
   Status: prose only; raised in an external review; new on 2026-11-26.
+* **H19 (candidate).** The focusing in the clock is taken at a fixed angular and radial
+  resolution, that is, with finitely many modes.
+  Paper: the sentence before (5.8); (C.15a); the sentences before (C.15c) and (C.16d). Used in the
+  argument for (5.19), not stated as a hypothesis; the resolution is not defined or removed.
+  Status: prose only. A model with all radial modes is in `Elementary/FocusingDivergence.lean`
+  and `Elementary/GaussianModeLimits.lean`; a conditional criterion for the failure of H1 is in
+  `Diamond/ClockDivergence.lean`; new on 2026-11-26.
 
 Entries are never deleted. A discharged entry keeps its row and links to the proof.
 -/

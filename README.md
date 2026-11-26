@@ -10,6 +10,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Diamond/OrderOfExhaustion.lean`: a model in which closed partial sums depend on the order in which the cuts exhaust the basis (finding F10).
 - `QuantGrav/Diamond/Setup.lean`: the objects of Sec 5.1 and 5.2 (clock, area, `K_A`, `Omega_A`) as a structure, reviewed against the paper.
 - `QuantGrav/Diamond/ClockHypotheses.lean`: first consequences of H1, H13 and H14, and models showing what they do not imply.
+- `QuantGrav/Diamond/ClockDivergence.lean`: a conditional criterion under which the incoming state has no finite clock reading, with the Gaussian model behind it in `QuantGrav/Elementary/` (finding F11).
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.
 - `QuantGrav/Entropy/ClockMoments.lean`: the moment identities of Sec 5.3, and why footnote 23 and (5.68) do not conflict (finding F3).
 - `QuantGrav/Entropy/SenComparison.lean`: the paper's logarithmic coefficient compared with the three ensembles of Sen's paper.
