@@ -273,6 +273,20 @@ Answers checklist item 3. The Mathlib rows come from grep over the pinned checko
 
 Note for writing Lean here: Mathlib files are modules, so project files start with `module` and use `public import`. `Mathlib.Data.Real.Basic` is deprecated in favour of `Mathlib.Basic.Real.Basic`. `orthogonalProjection` is deprecated in favour of `Submodule.starProjection`.
 
+### Unbounded operators and spectral theory (checked 2026-11-26 for Step 3)
+
+By grep over the same pinned checkout.
+
+| Need | State | Where |
+|---|---|---|
+| Unbounded operators | Present: `LinearPMap` (`E →ₗ.[𝕜] F`), its adjoint, `IsSelfAdjoint` for it, `IsSelfAdjoint.dense_domain`, `IsSelfAdjoint.isClosed`, closable operators and closures | `Mathlib/Analysis/InnerProductSpace/LinearPMap.lean`, `Mathlib/Topology/Algebra/Module/LinearPMap.lean` |
+| Spectral theorem | Compact self-adjoint operators and finite dimension only. Continuous functional calculus exists for bounded operators | `Mathlib/Analysis/InnerProductSpace/Spectrum.lean` |
+| Spectral measure, projection-valued measure, Borel functional calculus, spectral projections `1_I(T)` of an unbounded `T` | Absent | |
+| Closed quadratic forms, Friedrichs extension, monotone convergence of forms, resolvent of a `LinearPMap` | Absent | |
+| Measure from a monotone right-continuous function | Present: `StieltjesFunction` | `Mathlib/MeasureTheory/Measure/Stieltjes.lean` |
+
+Consequence: `P_D = 1_{[0, l(D)]}(u)` cannot be defined from an operator here. `QuantGrav/Diamond/Setup.lean` represents the clock and the area operator by their families of spectral projections instead.
+
 ### External (not verified locally)
 
 | Source | Pin | Relevant content | Use |
@@ -370,7 +384,14 @@ Draft a short note. Michael decides whether to send it.
 - Step 0.4: done. F1 and F4 hold against the TeX; the (5.20) item in F4 was corrected to a density statement. F2 was replaced by the result of Step 1.
 - Step 1: done. `QuantGrav/Diamond/FiniteDim.lean` proves the abstract statement and its converse. H3 is split into H3a and H3b, and H15 is added for (5.23). Answer to the question: the paper does not state that the uncut amplitude with no insertion is finite, but the sentences around (5.38) use its squared norm as a positive real number. See finding F2 in `FIDELITY.md`.
 - Step 2: done. WP2-c, WP2-d, WP2-e in `QuantGrav/OperatorAlgebra/CutSums.lean`, WP2-g in `QuantGrav/OperatorAlgebra/BoostBound.lean`, WP1-g in `QuantGrav/Elementary/ClockWeightIntegral.lean`. H5 is proved for increasing sequences of subspaces with dense union and remains a hypothesis otherwise. None of these files has had a second reader.
-- Steps 0.5 to 0.7 and Steps 3 to 6: not started.
+- Step 3: done.
+  - Item 1: the pinned Mathlib has `LinearPMap` with adjoint and self-adjointness but no spectral theorem, spectral measure or closed forms for unbounded operators; see Section 12.
+  - Item 2: `QuantGrav/Diamond/Setup.lean` models the clock and the area operator by their spectral projections, on `H_omega`, with `K_A` a closed subspace.
+  - Item 3: reviewed by an independent reader with no access to this file, `FIDELITY.md` or `Hypotheses.lean`. No field wrong; one gap (positivity of the area) and several citations fixed. Recorded in `FIDELITY.md`.
+  - Item 4: `DiamondSetup.H1`, `DiamondSetup.H13`, `DiamondSetup.H14` in `QuantGrav/Hypotheses.lean`, with first consequences in `QuantGrav/Diamond/ClockHypotheses.lean`. The same reader checked the final statements in a second pass and required nothing further. `DiamondSetup.H14a`, the fixed-area half of H14, was added afterwards at its suggestion.
+  - New register entries H16 and H17: the clock and the area operator on `H_omega` are assumed, not constructed (finding F6). H13 was narrowed to density on `K_A`.
+  - Not done in Step 3, and candidates for WP4: split `DiamondSetup` into a fixed-area part and an `H_omega` part so that H1 and H13 do not formally depend on the assumed extension; define the distribution of clock readings as a Stieltjes measure, which would connect WP1-g to the setup and let `‖Psi_L - Omega_A‖` be stated.
+- Steps 0.5 to 0.7 and Steps 4 to 6: not started.
 
 ### Order for the next session
 

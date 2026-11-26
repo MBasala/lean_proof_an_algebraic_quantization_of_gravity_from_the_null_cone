@@ -1,7 +1,9 @@
 module
 
 public import QuantGrav.Audit
+public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.FiniteDim
+public import QuantGrav.Diamond.Setup
 public import QuantGrav.Elementary.ClausenAsymptotics
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral

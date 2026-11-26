@@ -16,6 +16,9 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Findings F1, F2 and F4 were re-checked against the TeX on 2026-11-26; each now says what changed.
 - `QuantGrav/Diamond/FiniteDim.lean` was written after that review and has had no second reader.
 - The proofs in `ClausenAsymptotics.lean` and `BoostBound.lean` were written by subagents from fixed statements. The statements were written first and, for the Clausen bound, checked numerically. The proofs are accepted on the strength of the kernel and the axiom audit, not on a reading of the proofs.
+- For Step 3 (2026-11-26) Sec 4.2, Sec 4.3, the start of Sec 5.1, (5.21) and App C.2 from its start were read directly from the TeX.
+- Independent review of the definitions in `QuantGrav/Diamond/Setup.lean` (2026-11-26): a fresh reader with no access to this log, `handoff.md` or `Hypotheses.lean` checked every field against the TeX. It read `main.tex` lines 548 to 610, 955 to 1250, 1440 to 1865, 1920 to 2029 and 2940 to 3180 in full and searched the rest. Result: no field wrong. One gap, that positivity of the area operator was not recorded; it is now the lower bound inside H14. Two citations were corrected (`ε`, positivity of the clock), a fourth warning was added for the area operator on `H_omega`, `minReading` was renamed `clockLowerBound`, and the degenerate scalar model was replaced by `ofProjections`. The reviewer could not refute the claim in F6 that the clock is not constructed outside `K_A`. The formal statements of H1, H13 and H14 were written only after this review.
+- Second pass by the same reader (2026-11-26) over the revised `Setup.lean`, the formal statements `H1`, `H13`, `AreaBoundAt`, `H14`, and every theorem in `ClockHypotheses.lean`: all four statements classified as faithful in this encoding, every theorem docstring found to match what is proved, all five required changes confirmed done, nothing required before commit. Its optional points were applied: scope notes in the docstrings of `Ω`, `H1`, `AreaBoundAt`, `H14` and `H1_iff_tendsto_norm_sq`; the lemma `fixedAreaDiamondSpace_eq_map`; the model theorem `exists_setup_H1_H13_not_H14`; and a separate fixed-area hypothesis `H14a`. `H14a`, `H14.h14a`, `H14a.fixedAreaDiamondSpace_eq_bot` and `exists_setup_H1_H13_not_H14` were added after that pass, adapted from the reader's own scratch checks; their final text has not been re-read by it.
 
 ## Theorem entries
 
@@ -189,6 +192,81 @@ All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/A
 | Differs from paper? | Addition. Same remarks as above |
 
 
+### Definitions: `SpectralFamily`, `DiamondSetup` (`QuantGrav/Diamond/Setup.lean`)
+
+| Lean | Paper | Differs from paper? |
+|---|---|---|
+| `SpectralFamily`: `proj`, `isStarProjection`, `proj_mul_proj_of_le`, `tendsto_proj_nhdsGT` | The spectral projections `1_{(-inf, t]}` of a self-adjoint operator, with closed right end as in (5.2) | Modelling choice. Mathlib has no spectral theorem for unbounded operators, so the family replaces the operator. The dictionary between the two is not formalized. The family need not reach the identity or zero |
+| `fixedArea`, `isClosed_fixedArea` | `K_A`: (4.8) to (4.10), a completion, embedded isometrically in `H_omega` after (4.16) | Only "closed subspace" is recorded. The Fock structure (4.10) is not |
+| `area₀`, `area₀_pos` | `A = 4 pi b^2`, Sec 5.1; positive area, App C.2 | None |
+| `ε`, `ε_pos`, `ε_lt_one` | `0 < eps < 1`, the sentence after (3.18) | None. `eps << 1` of Sec 5.3 is not encoded |
+| `Ω`, `Ω_mem`, `norm_Ω` | `Omega_A`, (4.7), (4.8) | Only a unit vector of `K_A`. Its Gaussian form is not recorded |
+| `clock`, `clock_proj_of_neg`, `clock_proj_mem` | `1_{[0, l]}(u)` in (5.2); positivity from (4.22) and (4.27); "acts within `K_A`" after (4.26) | The family lives on `H_omega`. The paper constructs the clock on `K_A` only (F6). Register entry H16 |
+| `area`, `area_exhausts`, `area_tendsto_atBot` | `A` as boost generator, with the spectral theorem applied to it, (4.12) to (4.15) | Presupposes a self-adjoint `A` on `H_omega` (F6). Positivity of `A` is not a field; it is the lower bound in H14. Register entry H17 |
+| `commute` | Asserted after (5.2), before (5.20) and before (5.21) | Assumed. On `K_A` it follows from the other fields (`clock_proj_area_proj_comm_of_mem_fixedArea`), so it has content only off `K_A` |
+| `area_proj_of_lt`, `area_proj_area₀` | Every occupation number state has corner area `A`, after (4.11); `A = A 1` before (4.24) | None |
+| `diamondProj`, `diamondSpace` | `P_D` and `H_D = P_D H_omega`, (5.1), (5.2) | Outside `K_A` they depend on the unspecified extension of the clock |
+| `fixedAreaDiamondSpace` | `P_D(A) K_A`, App C.3 | The part of `H_D` that the paper's construction determines |
+| `areaBound` | `4 pi l^2/(1 - eps)^2`, (5.21d) | None |
+| `clockLowerBound` | `(1 - eps)(A/4pi)^(1/2)`, fn 8, (5.21c) | A lower bound. The paper claims it is attained only classically |
+| `ofProjections` | Not in the paper | A model showing the fields are consistent. Not a model of the paper's theory |
+
+Not represented: the algebra of observables, its representation, cyclicity of `Omega_A`, irreducibility (4.17), so (5.20) cannot be stated; the regularized clocks; `Psi_L`; the operators of (4.26), (5.21a), (5.21b); the conditional probability (5.3).
+
+### H1: `DiamondSetup.H1` (`QuantGrav/Hypotheses.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | (5.7), (5.16) with fn 18; (C.14) and the sentence after it; (5.19) |
+| Paper's claim, in substance | `‖Psi_L - Omega_A‖ -> 0` as `L -> infinity`. The paper calls the outcome strong evidence and says the last step is a heuristic |
+| Formal statement | `S.H1`: `P_l Omega -> Omega` as `l -> infinity`, where `P_l` is the clock's spectral projection |
+| Differs from paper? | Stated in the form `Omega_A in M`. The paper says this is equivalent, in the sentence after (C.14). `Psi_L` is not defined in Lean, so that equivalence is the paper's and is not a theorem here. `H1` is a proposition that theorems take as an argument; nothing asserts it |
+
+### H13: `DiamondSetup.H13` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | fn 14; the paragraph after (C.17) |
+| Paper's claim, in substance | The clock (4.27) is finite on a dense set of `K_A`. The paper derives this on the condition that the estimate behind H1 also holds for displaced Gaussian states |
+| Formal statement | `S.H13`: `P_l x -> x` as `l -> infinity` for every `x` in `K_A` |
+| Differs from paper? | Unconditional, where the paper's statement is conditional; displaced Gaussian states are not in the structure, so the condition cannot be stated. About `K_A` only. Narrower than the register entry H13 was before 2026-11-26: existence of the clock and commutation with the area moved to H16 |
+
+### H14: `DiamondSetup.AreaBoundAt`, `DiamondSetup.H14` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | (5.21a) to (5.21d), fn 8 |
+| Paper's claim, in substance | `u >= (1 - eps)(A/4pi)^(1/2)` as operators, hence `0 <= P_D A P_D <= 4 pi l(D)^2/(1 - eps)^2 P_D` |
+| Formal statement | `S.AreaBoundAt l`: every vector of `H_D` for maximum reading `l` is fixed by `1_{(-inf, 4 pi l^2/(1 - eps)^2]}(A)` and annihilated by `1_{(-inf, a]}(A)` for every `a < 0`. `S.H14`: this for every `l` |
+| Differs from paper? | The spectral-support form of the operator inequalities. For commuting self-adjoint operators the two forms agree by the spectral theorem, which is not formalized. In this form (5.21c) and "(5.21d) for every `l`" are the same statement. (5.21a), (5.21b) cannot be stated. The paper argues at fixed area; on `H_omega` the statement rests on H16 |
+
+### H14a: `DiamondSetup.H14a` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | (5.21a) to (5.21c) at fixed area; fn 8 for the classical bound |
+| Paper's claim, in substance | At fixed area `A`, positivity of the focusing term and Cauchy-Schwarz on `S` give `u >= (1 - eps)(A/4pi)^(1/2)` |
+| Formal statement | `S.H14a`: `P_l x = 0` for every `x` in `K_A` and every `l < (1 - eps)(A/4pi)^(1/2)` |
+| Differs from paper? | The spectral-support form of the fixed-area inequality. It does not involve the extension of the clock to `H_omega`, so it is the part of H14 that the paper's argument supports directly. The paper goes from this to (5.21d) by commutation; in Lean the implication proved is the other one, `H14.h14a` |
+
+
+### First consequences (`QuantGrav/Diamond/ClockHypotheses.lean`, and two lemmas in `Setup.lean`)
+
+| Lean | Paper | Formal statement | Differs from paper? |
+|---|---|---|---|
+| `H13.h1` | Not stated | H13 implies H1 | Addition |
+| `H1_iff_tendsto_norm_sq` | (5.19): `‖P_D Omega_A‖^2 -> 1` as `l(D) -> infinity`, deduced from H1 through (5.17), (5.18) | `S.H1` holds if and only if `‖P_l Omega‖^2 -> 1` | An equivalence, where the paper has an implication. See F7 |
+| `H1.exists_diamondProj_ne_zero` | The sentence after (5.19): the incoming wavefunction has nonzero projection for some finite maximum reading | Under H1 there is `l` with `P_l Omega != 0` | None |
+| `H14.clock_proj_eq_zero_of_lt_clockLowerBound`, `H14.h14a` | (5.21c) at fixed area; fn 8 | H14 implies H14a: under H14, `P_l x = 0` for `x` in `K_A` and `l < (1 - eps)(A/4pi)^(1/2)` | The paper argues the fixed-area bound first and extends it; the Lean implication runs from the `H_omega` statement to the fixed-area one |
+| `H14a.fixedAreaDiamondSpace_eq_bot` | Not stated | Under H14a, `P_D(A) K_A` is trivial when `l < (1 - eps)(A/4pi)^(1/2)` | Addition |
+| `fixedAreaDiamondSpace_eq_map` | App C.3 writes `P_D(A) K_A` | `fixedAreaDiamondSpace l` is the image of `K_A` under `P_l` | Addition; justifies the definition. Uses `clock_proj_mem` |
+| `clock_proj_area_proj_comm_of_mem_fixedArea` | Not stated | On `K_A` the clock and area projections commute, without using the field `commute` | Addition |
+| `areaBound_clockLowerBound` | Not stated | `areaBound (clockLowerBound) = A` | Addition; a consistency check on the two constants |
+| `exists_setup_not_H1` | Not stated | On any Hilbert space with a unit vector there is a `DiamondSetup` in which H1 fails | Addition. See F8 |
+| `exists_setup_H1_H13_not_H14` | Not stated | On any Hilbert space with a unit vector there is a `DiamondSetup` satisfying H1 and H13 in which H14 fails | Addition. See F8 |
+| `exists_setup_H1_H13_H14_diamondSpace_eq_top` | Not stated | On any Hilbert space with a unit vector there is a `DiamondSetup` satisfying H1, H13 and H14 in which `K_A` and every `H_D` with `l >= 1` are the whole space | Addition. See F8 |
+
+
 ## Findings from the direct reading
 
 Each is this log's reading of the PDF text. None has been checked with the author.
@@ -218,13 +296,34 @@ Each is this log's reading of the PDF text. None has been checked with the autho
 
 **F5. WP1-a, WP1-b checked against (4.32) to (4.34).** The variance `1/(2sk)`, the pair phase `e^{-2ik/s}`, the closed form `Li_2(e^{-2i/s}) / (2 s^2)`, the divergent first-order term `-(i/s^3) sum 1/k`, and the claimed finite term `-i log s / s^3` are as the handoff states. The paper states the finite term without the subleading pieces.
 
+**F6. The clock and the area operator on `H_omega` are assumed, not constructed.** Read from the TeX of Sec 4.2, Sec 4.3, Sec 5.1 and App C; an independent reader tried to refute it and could not.
+
+- The clock is defined on the fixed-area space `K_A` by the form (4.27), and the sentence after (4.26) says each factor acts within `K_A`. (C.11) to (C.13) work on `K_A`. Then (5.2) applies its spectral projection on `H_omega`, with `H_D = P_D H_omega` (5.1). `H_omega` is larger than `K_A`: it is the closed span of the images of `K_A` under insertions that can change the area. The paper does not say how the clock acts there, and does not decompose `H_omega` into fixed-area spaces.
+- That the clock commutes with the area operator is asserted after (5.2), before (5.20) and before (5.21), with no argument, and again in Sec 5.3 with a reference to (5.21), which does not prove it. On `K_A` it is automatic, because the area is the number `A` there.
+- The area operator enters as the generator of the corner boost acting on prepared states, (4.12) to (4.15), before `H_omega` is built, and the spectral theorem is applied to it. That the boost is implemented on `H_omega` by a self-adjoint generator, for a pure extension `omega` chosen by an existence argument, is presupposed. Footnote 20 leaves the dependence on `omega` open.
+- So the paper's construction determines `P_D(A) K_A`, the part of `H_D` inside `K_A`, and no more. Sec 5.2 is about all of `H_D`, including several area eigenvalues. Registered as H16 and H17; in Lean they are fields of `DiamondSetup`.
+
+**F7. In the spectral encoding H1 is (5.19).** By the sentence after (C.14), `‖Psi_L - Omega_A‖ -> 0` holds exactly when `Omega_A` lies in `M`. `P_D` increases strongly to the projection onto `M` as `l(D)` grows, so `Omega_A in M` is the same as (5.19). `H1_iff_tendsto_norm_sq` proves that equivalence for the formal H1.
+
+- The route (5.4) to (5.18) through `Psi_L`, the weight bound (5.17) and the Markov step is therefore not needed to pass from H1 to (5.19). WP1-c and WP1-g formalize steps of that route; they remain correct and are not used.
+- The step from (5.19) to the state `psi` of (5.20) uses only that `P_D Omega_A` is nonzero for some finite `l(D)` (`H1.exists_diamondProj_ne_zero`). That is weaker than H1: it says `Omega_A` is not orthogonal to `M`.
+- H13 implies H1 (`H13.h1`). The paper argues in the other direction, from the H1 estimate for displaced states to H13.
+
+**F8. H1, H13 and H14 are consistent, are not implied by the setup, and do not bound `dim H_D`.** Machine-checked on the model `ofProjections`.
+
+- `exists_setup_H1_H13_H14_diamondSpace_eq_top`: the three hold together in a setup where `H_D` is the whole Hilbert space, of any dimension. So they cannot yield finite dimension. That has to come from the inputs of Sec 5.2; see F2.
+- `exists_setup_not_H1`: the fields of `DiamondSetup` do not imply H1. A clock that is defined nowhere satisfies every field.
+- `exists_setup_H1_H13_not_H14`: nor do the fields with H1 and H13 imply H14. A clock that reads `0` at area `1` satisfies H1 and H13.
+- The models are not models of the paper's theory. They show what the formal hypotheses do and do not say.
+
+
 ## Hypothesis register
 
 Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 
 | ID | Statement | Paper location | Paper's support |
 |---|---|---|---|
-| H1 | `‖Psi_L - Omega_A‖ -> 0` as `L -> infinity`; equivalently `Omega_A` in `M` (F1) | (5.7), (5.16), fn 18, (C.13) to (C.16d) | Called strong evidence; last step heuristic per fn 18 |
+| H1 | `‖Psi_L - Omega_A‖ -> 0` as `L -> infinity`; equivalently `Omega_A` in `M` (F1). Formal: `DiamondSetup.H1`, in the second form | (5.7), (5.16), fn 18, (C.13) to (C.16d) | Called strong evidence; last step heuristic per fn 18 |
 | H2 | Amplitude maps `U_M` are unitary | (4.18), not re-read | Assumed |
 | H3 | Cut-state sums converge to the uncut amplitude with insertions fixed. Split into H3a and H3b on 2026-11-26 | (4.29), Sec 3.6, used at (5.38) | Diffeomorphism-invariance argument, not re-read |
 | H3a | With no insertion: the partial traces `Tr(P C_b† C_b)` over finite orthonormal families in `H_D` are bounded. Given (5.30c) this is equivalent to `dim H_D < infinity` (F2) | Implicit in the sentences around (5.38); not stated | Not stated by the paper |
@@ -238,9 +337,12 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H10 | `log d(s) <~ 1 + (s Q_*)^(3/4)` | (D.45a) to (D.46c) | Unspecified constants |
 | H11 | Disk factor `e^s` in each weight | Paragraph above (D.48), ref [51] | Citation |
 | H12 | Type I with integer weights; Euclidean to Lorentzian converse | App E.2, ref [36], not re-read | Citation |
-| H13 | Clock operator (4.27) is positive, self-adjoint, densely defined, commutes with area | (4.27), fn 14, (C.11) to (C.13), (C.17) | Argued; depends on the H1 estimate (F1). Added 2026-11-26 |
-| H14 | `u >= (1 - eps)(A/4pi)^(1/2)` as operators, hence (5.21d) | (5.21a) to (5.21d), fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing. Added 2026-11-26 |
+| H13 | The clock (4.27) is densely defined on `K_A`. Formal: `DiamondSetup.H13`. Narrowed on 2026-11-26: existence of the clock and commutation with the area moved to H16 | fn 14, the paragraph after (C.17) | Derived on condition that the H1 estimate holds for displaced Gaussian states (F1). Added 2026-11-26 |
+| H14 | `u >= (1 - eps)(A/4pi)^(1/2)` as operators, hence `0 <= P_D A P_D <= 4 pi l(D)^2/(1 - eps)^2 P_D`. Formal: `DiamondSetup.H14`, as spectral support | (5.21a) to (5.21d), fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing, at fixed area. On `H_omega` it rests on H16. Added 2026-11-26 |
+| H14a | On `K_A` the clock has no readings below `(1 - eps)(A/4pi)^(1/2)`: the fixed-area half of H14. Formal: `DiamondSetup.H14a`; implied by H14 | (5.21a) to (5.21c) at fixed area, fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing. Does not need H16. Added 2026-11-26 |
 | H15 | `C_D† C_D = P_D e^{-A/(4 G hbar)} P_D`: the future half of the diamond is prepared by continuing the corner boost to `i pi`, and gluing to its time reflection leaves only this weight | (5.23a), (5.23b), App C | Asserted from analytic continuation and unitarity. Added 2026-11-26 |
+| H16 | The clock has spectral projections on all of `H_omega`, they map `K_A` to itself, and they commute with those of the area operator. In Lean: fields `clock`, `clock_proj_of_neg`, `clock_proj_mem`, `commute` of `DiamondSetup` | (5.2); the sentences after (5.2), before (5.20) and before (5.21) | Asserted. The clock is constructed on `K_A` only, (4.26), (4.27), (C.11), (C.13) (F6). Added 2026-11-26 |
+| H17 | The area operator is a self-adjoint operator on `H_omega`, with `K_A` in its eigenspace for the value `A`. In Lean: fields `area`, `area_exhausts`, `area_tendsto_atBot`, `area_proj_of_lt`, `area_proj_area₀` of `DiamondSetup` | (4.12) to (4.15); `A = A 1` before (4.24) | Presupposed: introduced as the boost generator on prepared states before `H_omega` is built (F6). Added 2026-11-26 |
 
 References the register depends on, from the paper's bibliography:
 - [34] Sen, arXiv:1205.0971.
@@ -253,4 +355,4 @@ References the register depends on, from the paper's bibliography:
 
 - No licence or copyright header has been chosen, so `linter.style.header` is switched off in `lakefile.toml`. Every other linter in Mathlib's standard set is on.
 - The comparison of (5.69) with Sen's ensemble (WP5 question 3) has not been made. Sen's paper has not been read for this log.
-- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/`. It is outstanding for `ClockWeightIntegral.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.
+- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/` and for the definitions in `QuantGrav/Diamond/Setup.lean`. It is outstanding for `ClockWeightIntegral.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.

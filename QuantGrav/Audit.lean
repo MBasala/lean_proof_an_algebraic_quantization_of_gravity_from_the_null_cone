@@ -1,5 +1,6 @@
 module
 
+public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
@@ -151,3 +152,63 @@ The only axioms allowed are Lean's three standard ones: `propext`, `Classical.ch
 /-- info: 'QuantGrav.norm_inner_exp_apply_sub_inner_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.norm_inner_exp_apply_sub_inner_le
+
+/--
+info: 'QuantGrav.DiamondSetup.clock_proj_area_proj_comm_of_mem_fixedArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.clock_proj_area_proj_comm_of_mem_fixedArea
+
+/-- info: 'QuantGrav.DiamondSetup.areaBound_clockLowerBound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.areaBound_clockLowerBound
+
+/-- info: 'QuantGrav.DiamondSetup.H13.h1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H13.h1
+
+/-- info: 'QuantGrav.DiamondSetup.H1_iff_tendsto_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H1_iff_tendsto_norm_sq
+
+/-- info: 'QuantGrav.DiamondSetup.H1.exists_diamondProj_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H1.exists_diamondProj_ne_zero
+
+/--
+info: 'QuantGrav.DiamondSetup.H14.clock_proj_eq_zero_of_lt_clockLowerBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H14.clock_proj_eq_zero_of_lt_clockLowerBound
+
+/-- info: 'QuantGrav.DiamondSetup.exists_setup_not_H1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_not_H1
+
+/--
+info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top
+
+/-- info: 'QuantGrav.DiamondSetup.fixedAreaDiamondSpace_eq_map' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.fixedAreaDiamondSpace_eq_map
+
+/-- info: 'QuantGrav.DiamondSetup.H14.h14a' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H14.h14a
+
+/-- info: 'QuantGrav.DiamondSetup.H14a.fixedAreaDiamondSpace_eq_bot' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H14a.fixedAreaDiamondSpace_eq_bot
+
+/-- info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_not_H14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_H1_H13_not_H14
