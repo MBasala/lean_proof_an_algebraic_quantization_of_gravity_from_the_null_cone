@@ -64,13 +64,13 @@ Section boundaries and equation ranges below were rebuilt on 2026-11-26 from the
 | Section | Pages | Equations | Content | Read? | Plan |
 |---|---|---|---|---|---|
 | 2.1 | 6-8 | 2.1 to 2.9d | JT warm-up: gravitational clock on a finite null cone | No | Optional later |
-| 2.2 | 8-10 | 2.10a to 2.17b | JT quantization and gluing; infinitely many orthogonal states with identical clock statistics | No | Optional later |
+| 2.2 | 8-10 | 2.10a to 2.17b | JT quantization and gluing; infinitely many orthogonal states with identical clock statistics; infinite closed trace (2.17b) | (2.17) and its paragraph only | Optional later |
 | 3.1 | 11-14 | 3.1 to 3.16 | First order gravity; constrained BF action; vacuum equations | No | Axiomatize outputs |
 | 3.2 | 14-17 | 3.17a to 3.31 | Null initial data; clock reading `u_*` (3.27), angular average (3.28); fn 8 | fn 8 and (3.27) only | Axiomatize outputs |
 | 3.3 | 18-19 | 3.32 to 3.45 | Symplectic form with edge modes; canonical pairs (3.39, 3.42, 3.43) | No | Axiomatize outputs |
 | 3.4 | 20-21 | 3.46 to 3.55 | Reduced Hamiltonian | No | Axiomatize outputs |
 | 3.5 | 21-22 | 3.56a to 3.59 | Metric and dressed observables | No | Axiomatize outputs |
-| 3.6 | 22-24 | 3.60a to 3.66 | Matching fields across subregions (3.62); source of the diffeomorphism-invariance argument | No | Hypothesis H3 |
+| 3.6 | 22-24 | 3.60a to 3.66 | Matching fields across subregions (3.62); classical gluing and additivity of the action; cited for the diffeomorphism-invariance step before (5.37), which it does not contain (F12) | Yes | Hypothesis H3 |
 | 4.1 | 25-26 | 4.1 to 4.6 | Algebra of observables; causal factorization (4.2e); reduced action (4.5) | No | WP2 |
 | 4.2 | 26-30 | 4.7 to 4.19b | Gaussian wavefunctions (4.7); Fock space (4.10); rank-one operators (4.11); pure state and GNS (4.16, 4.17); unitarity (4.18) | No | WP2 |
 | 4.3 | 30-31 | 4.20 to 4.28 | Weyl ordering (4.20); clock operator (4.26, 4.27) | No | WP2, H13 |
@@ -89,9 +89,9 @@ Section boundaries and equation ranges below were rebuilt on 2026-11-26 from the
 | D.1 | 68-70 | D.1a to D.12 | One-loop determinant, Schwinger-Keldysh action | No | Out of scope |
 | D.2 | 70-73 | D.13 to D.36 | Corner boosts; proof of (5.32) in (D.22, D.23); cycle construction (D.24, D.25); remainder estimate (D.36) | Yes | WP4 inputs, H4 |
 | D.3 | 73-76 | D.37 to D.55 | Focusing and graviton state count (D.45, D.46); replica ratio (D.47 to D.49) | Yes | WP4 inputs, H10, H11 |
-| E.1 | 76-77 | E.1a to E.5 | Conditions on amplitudes (the axioms) | No | WP3 |
+| E.1 | 76-77 | E.1a to E.5 | Conditions on amplitudes (the axioms); cut independence is condition 1, finiteness of closed amplitudes is in condition 5 | Yes | WP3 |
 | E.2 | 77-79 | E.6 to E.14c | Equivalence with the Euclidean formulation | No | WP3, H12 |
-| E.3 | 79-80 | E.15a to E.18 | Realization in first order gravity | No | Deferred |
+| E.3 | 79-80 | E.15a to E.18 | Realization in first order gravity | (E.15), (E.17) and their paragraphs only | Deferred |
 
 Corrections to the earlier map:
 
@@ -567,3 +567,14 @@ Written by the code session, in the format of 14.5.
 - Register: candidate H19 (a fixed resolution) is added; the H1 and H13 rows point to it; finding F11 is new; question 7 is added to `notes/note-to-author-draft.md`.
 - What it means for the paper: the support for (5.19) does not reach the full state. To close the gap the paper would need one of three things: an estimate uniform in the resolution, which the model suggests is not available with the (4.32) variances; a permanent mode cutoff, which would be a hypothesis and sits uneasily with its statements about arbitrarily short wavelengths; or a subtracted focusing, which gives up the positivity that (5.21) uses.
 - Stopped here, as 14.4 asks. Next in the order is the first item of B4, reading Sec 3.6.
+
+**B4, first item (2026-11-26). Decision: neither. Sec 3.6 argues neither H3a nor H3c, and not H3b.** This is a reading, not a break attempt, so none of the four outcomes applies.
+
+- Theorems: none new. The paper's (2.17b) is the counting step `mul_card_le_sum_sq_norm` of `Diamond/ClosedCuts.lean`.
+- TeX read by the code session: Sec 3.6 in full (lines 870 to 942, (3.60) to (3.66)); line 947; lines 1250 to 1272 and 1366 to 1384; App E.1 (lines 3596 to 3657); lines 302 to 311; and every sentence citing Sec 3.6 or its equations. An independent reader read the same section blind, with Sec 4.4, Sec 5.2 and App E, and searched the whole TeX. The two readings agree.
+- What Sec 3.6 is: classical matching of frames and fields across overlaps and across `S`, the glued symplectic potential, and additivity of the action. It has no statement about amplitudes, traces or sums over states, and the word diffeomorphism does not occur in it. The nearest it comes is classical: after gluing, the frame and the angular embedding of an internal cut are gauge (lines 924, 938).
+- Where the claim "closing the cut reproduces the uncut amplitude" comes from: it is stated five times in Sec 5 (lines 1447, 1771, 1800, 1830, 1834). The reasons given are the law (4.29) (lines 1447, 1834), diffeomorphism invariance of (4.5) at fixed external states (line 1771), and diffeomorphism invariance with a pointer to Sec 3.6 (line 1800). (4.29) to (4.31) derive the open case only. In App E.1 the same invariance is condition 1 and finiteness of closed amplitudes is part of condition 5; both are requirements.
+- The paper's JT prologue has an infinite closed trace, (2.17b). So finiteness of the closed amplitude with no insertion does not follow from the gluing rules alone in the paper's own framework.
+- Register: the rows H3, H3a, H3b and H3c now say this; finding F12 is new; the sentence in F2 that Sec 3.6 had not been read is replaced; the rows 2.2, 3.6, E.1 and E.3 of the paper map in Section 5 are brought up to date. Question 2 of `notes/note-to-author-draft.md` gains two sentences asking where the closed case is derived.
+- What it means for the paper: the step on which the finite-dimension argument turns is a principle the paper assumes for closed configurations, not one it derives.
+- Next in the order of 14.4 is B2.
