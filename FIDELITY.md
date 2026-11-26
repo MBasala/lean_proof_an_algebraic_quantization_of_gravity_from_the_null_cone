@@ -18,7 +18,7 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Clean-checkout build, 2026-11-26, commit `1275141` (WP1-f): same method. `lake build --wfail` completed (6265 jobs) and `scripts/check_forbidden.sh` was clean.
 - Findings F1, F2 and F4 were re-checked against the TeX on 2026-11-26; each now says what changed.
 - `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/CutSums.lean`, `QuantGrav/OperatorAlgebra/BoostBound.lean` and `QuantGrav/Elementary/ClockWeightIntegral.lean` were reviewed by a separate review session on 2026-11-26: statements re-derived by hand, with Sec 5.2 of the TeX read at `main.tex` lines 1728 to 1830. Recorded in `notes/external-audits-2026-11-26.md`, section 5 item 7.
-- The proofs in `ClausenAsymptotics.lean` and `BoostBound.lean` were written by subagents from fixed statements. The statements were written first and, for the Clausen bound, checked numerically. The proofs are accepted on the strength of the kernel and the axiom audit, not on a reading of the proofs.
+- The proofs in `ClausenAsymptotics.lean`, `BoostBound.lean` and `PairAmplitudeReal.lean` were written by subagents from fixed statements. The statements were written first and, for the Clausen bound and the real part, checked numerically. The proofs are accepted on the strength of the kernel and the axiom audit, not on a reading of the proofs.
 - For Step 3 (2026-11-26) Sec 4.2, Sec 4.3, the start of Sec 5.1, (5.21) and App C.2 from its start were read directly from the TeX.
 - Independent review of the definitions in `QuantGrav/Diamond/Setup.lean` (2026-11-26): a fresh reader with no access to this log, `handoff.md` or `Hypotheses.lean` checked every field against the TeX. It read `main.tex` lines 548 to 610, 955 to 1250, 1440 to 1865, 1920 to 2029 and 2940 to 3180 in full and searched the rest. Result: no field wrong. One gap, that positivity of the area operator was not recorded; it is now the lower bound inside H14. Two citations were corrected (`ε`, positivity of the clock), a fourth warning was added for the area operator on `H_omega`, `minReading` was renamed `clockLowerBound`, and the degenerate scalar model was replaced by `ofProjections`. The reviewer could not refute the claim in F6 that the clock is not constructed outside `K_A`. The formal statements of H1, H13 and H14 were written only after this review.
 - Second pass by the same reader (2026-11-26) over the revised `Setup.lean`, the formal statements `H1`, `H13`, `AreaBoundAt`, `H14`, and every theorem in `ClockHypotheses.lean`: all four statements classified as faithful in this encoding, every theorem docstring found to match what is proved, all five required changes confirmed done, nothing required before commit. Its optional points were applied: scope notes in the docstrings of `Ω`, `H1`, `AreaBoundAt`, `H14` and `H1_iff_tendsto_norm_sq`; the lemma `fixedAreaDiamondSpace_eq_map`; the model theorem `exists_setup_H1_H13_not_H14`; and a separate fixed-area hypothesis `H14a`. `H14a`, `H14.h14a`, `H14a.fixedAreaDiamondSpace_eq_bot` and `exists_setup_H1_H13_not_H14` were added after that pass, adapted from the reader's own scratch checks; their final text has not been re-read by it.
@@ -135,7 +135,18 @@ All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/A
 | Paper | Last two sentences of the paragraph after (4.34) |
 | Paper's claim, in substance | Summing before expanding converts the `log N` divergence into the finite term `-i log s / s^3` in (4.33) |
 | Formal statement | For real `s >= 2`: the imaginary part of `(1/(2 s^2)) sum_k e^{-2i(k+1)/s} / (k+1)^2` differs from `(log 2 - 1 - log s) / s^3` by at most `1/(6 s^5)` |
-| Differs from paper? | The paper names only the `log s` term. The theorem also fixes the non-logarithmic `1/s^3` piece, `(log 2 - 1)/s^3`, and bounds the remainder. Restricted to `s >= 2`. It says nothing about the real part. The paper's further claim that the third derivative of the full sum diverges as `G_N -> 0+` is not formalized; `cubic_term_partial_pair_sum` with `tendsto_harmonic_atTop` covers the truncated sums only |
+| Differs from paper? | The paper names only the `log s` term. The theorem also fixes the non-logarithmic `1/s^3` piece, `(log 2 - 1)/s^3`, and bounds the remainder. Restricted to `s >= 2`. The real part is given exactly by `re_pair_amplitude`, in the next entry. The paper's further claim that the third derivative of the full sum diverges as `G_N -> 0+` is not formalized; `cubic_term_partial_pair_sum` with `tendsto_harmonic_atTop` covers the truncated sums only |
+
+### WP1-b: `re_pair_amplitude`, `re_tsum_cexp_div_sq`, `hasSum_cos_div_sq` (`QuantGrav/Elementary/PairAmplitudeReal.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | (4.33) gives the amplitude as `Li_2(e^{-2i/s}) / (2 s^2)`. Its real part is not displayed |
+| Formal statement | For real `0 <= theta <= 2 pi`: `sum_k cos((k+1) theta)/(k+1)^2 = pi^2/6 - pi theta/2 + theta^2/4`, and this is the real part of `sum_k e^{-i theta (k+1)}/(k+1)^2`. For real `s >= 1/pi`: the real part of `(1/(2 s^2)) sum_k e^{-2i(k+1)/s}/(k+1)^2` is `(1/(2 s^2)) (pi^2/6 - pi/s + 1/s^2)` |
+| Differs from paper? | Addition, suggested by the external audit note (`notes/external-audits-2026-11-26.md`, section 5 item 3); the proof is ours, from Mathlib's Fourier series of the Bernoulli polynomial `B_2`. Exact, with no remainder. The range `s >= 1/pi` is `theta = 2/s <= 2 pi`; the series is periodic in `theta` and the polynomial is not, so nothing is stated outside it. With `abs_im_pair_amplitude_sub_le`, for `s >= 2` the amplitude is `(1/(2 s^2))(pi^2/6 - pi/s + 1/s^2) + i (log 2 - 1 - log s)/s^3` up to an imaginary error of at most `1/(6 s^5)` |
+
+Numbers. At `s = 10` the formula gives `0.006703874007446236`, the value reported in the external audit to every digit. The same audit's imaginary part at `s = 10` differs from `(log 2 - 1 - log 10)/10^3` by `5.56e-7`, inside the bound `1/(6 s^5) = 1.67e-6` of `abs_im_pair_amplitude_sub_le`; that comparison was made by hand in the review session.
+
 
 ### WP1-g: `integral_clock_weight_le`, `setIntegral_clock_tail_le_integral_div`, `setIntegral_clock_tail_le` (`QuantGrav/Elementary/ClockWeightIntegral.lean`)
 
@@ -351,7 +362,7 @@ Each is this log's reading of the PDF text. None has been checked with the autho
 - The entropy formula is (5.50); the handoff's map started Sec 5.3 at (5.51).
 - Re-checked against the TeX on 2026-11-26: (5.39c), (5.40), (5.50), (D.22), (D.23) and the pigeonhole paragraph are as described. Only the (5.20) item changed.
 
-**F5. WP1-a, WP1-b checked against (4.32) to (4.34).** The variance `1/(2sk)`, the pair phase `e^{-2ik/s}`, the closed form `Li_2(e^{-2i/s}) / (2 s^2)`, the divergent first-order term `-(i/s^3) sum 1/k`, and the claimed finite term `-i log s / s^3` are as the handoff states. The paper states the finite term without the subleading pieces.
+**F5. WP1-a, WP1-b checked against (4.32) to (4.34).** The variance `1/(2sk)`, the pair phase `e^{-2ik/s}`, the closed form `Li_2(e^{-2i/s}) / (2 s^2)`, the divergent first-order term `-(i/s^3) sum 1/k`, and the claimed finite term `-i log s / s^3` are as the handoff states. The paper states the finite term without the subleading pieces. The real part of the closed form is now exact as well (`re_pair_amplitude`).
 
 **F6. The clock and the area operator on `H_omega` are assumed, not constructed.** Read from the TeX of Sec 4.2, Sec 4.3, Sec 5.1 and App C; an independent reader tried to refute it and could not.
 

@@ -14,6 +14,7 @@ public import QuantGrav.Elementary.ClockWeightIntegral
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
+public import QuantGrav.Elementary.PairAmplitudeReal
 public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.OperatorAlgebra.BoostBound
 public import QuantGrav.OperatorAlgebra.CutSums
@@ -308,3 +309,15 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.finiteDimensional_of_cut_amplitude_bddBelow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.finiteDimensional_of_cut_amplitude_bddBelow
+
+/-- info: 'QuantGrav.hasSum_cos_div_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.hasSum_cos_div_sq
+
+/-- info: 'QuantGrav.re_tsum_cexp_div_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.re_tsum_cexp_div_sq
+
+/-- info: 'QuantGrav.re_pair_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.re_pair_amplitude
