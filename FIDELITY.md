@@ -12,6 +12,7 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Everything else in the paper is indexed by section and equation number only. Claims about its content still come from the earlier extraction passes and are marked "not re-read" where they appear.
 - Extracted math is partly garbled (accents, fractions). Each statement below was checked against the surrounding prose as well as the displayed equation.
 - No second reader has reviewed these entries yet. Section 8 of `handoff.md` requires that before WP1 is closed.
+- The proof of `abs_im_tsum_cexp_div_sq_sub_le` was written by a subagent from a fixed statement. Its statement was written and checked numerically first; the proof is accepted on the strength of the kernel and the axiom audit, not on a reading of the proof.
 
 ## Theorem entries
 
@@ -77,6 +78,50 @@ All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/A
 | Formal statement | For real `x`: `2 x^2 / (1 + x^2) = 257/302` if and only if `x^2 = 257/347` |
 | Differs from paper? | Addition. Combines footnote 23 with (5.68). See finding F3 |
 
+### WP1-a: `hasSum_pair_amplitude`, `summable_norm_pair_phase` (`QuantGrav/Elementary/PairAmplitude.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | (4.32), second equality of (4.33), and the sentence after (4.33) |
+| Paper's claim, in substance | With `(Delta q_k)^2 = 1/(2sk)`, `lim_N 2 sum_{k=1}^N (Delta q_k)^4 e^{-2ik/s} = Li_2(e^{-2i/s}) / (2 s^2)`, and the sum converges absolutely for every `s > 0` |
+| Formal statement | For real `s > 0`, the series with terms `2 (1/(2 s (k+1)))^2 e^{-2i(k+1)/s}`, `k = 0, 1, ...`, has sum `(1/(2 s^2)) sum_k e^{-2i(k+1)/s} / (k+1)^2`. The norms of `e^{-2i(k+1)/s} / (k+1)^2` are summable for every real `s` |
+| Differs from paper? | The dilogarithm is not defined; the right-hand side stays a series, as the handoff planned. `HasSum` is unconditional convergence, which implies the paper's `N -> infinity` limit of partial sums. The first equality of (4.33), from the operator expression to `2 (Delta q_k)^4 e^{-2ik/s}` by Wick contraction, is not formalized. Mode numbers are written `k + 1` so nothing depends on division by zero. Absolute summability holds for all real `s`, including `s <= 0`, which is more than the paper claims and only because the phase has norm one |
+
+### WP1-b: `cubic_term_partial_pair_sum` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | First equality of (4.34) |
+| Paper's claim, in substance | At fixed area, `(G_N^3 / 3!) d^3/dG_N^3 [ (1/(2s^2)) sum_{k=1}^N e^{-2ik/s} / k^2 ]` at `G_N = 0` equals `-(i/s^3) sum_{k=1}^N 1/k` |
+| Formal statement | For real `kappa`, `G` and natural `N`: `G^3/6` times the third derivative at `0` of `g -> ((kappa g)^2 / 2) sum_{k<N} e^{-2i(k+1) kappa g} / (k+1)^2` equals `-i (kappa G)^3 sum_{k<N} 1/(k+1)` |
+| Differs from paper? | The paper's `1/s` is written `kappa G` with `kappa = 4 hbar / A` held fixed; that `s = A/(4 G_N hbar)` is the paper's definition and is used as given. `kappa` is any real, not only positive. No other change |
+
+### WP1-b: `abs_harmonic_sub_log_le`, `tendsto_harmonic_atTop` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | Second equality of (4.34) |
+| Paper's claim, in substance | `sum_{k=1}^N 1/k = log N + O(1)`, so the cubic term diverges logarithmically as the cutoff is removed |
+| Formal statement | For `N >= 1`: `|sum_{k<N} 1/(k+1) - log N| <= 1`. The partial sums tend to infinity |
+| Differs from paper? | The `O(1)` is made explicit as the constant `1`. Both facts are Mathlib's (`harmonic_le_one_add_log`, `log_add_one_le_harmonic`, divergence of the harmonic series), restated in the paper's form |
+
+### WP1-b: `abs_im_tsum_cexp_div_sq_sub_le` (`QuantGrav/Elementary/ClausenAsymptotics.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | Not displayed. Underlies the sentence after (4.34) |
+| Formal statement | For real `0 < theta <= 1`: the imaginary part of `sum_k e^{-i theta (k+1)} / (k+1)^2` differs from `theta log theta - theta` by at most `theta^3 / 24` |
+| Differs from paper? | Addition, from the handoff's WP1-b. The handoff asked for `O(theta^3)` as `theta -> 0+`; this is an explicit bound on `(0, 1]`, which implies it. Checked numerically before proving: the true error is about `-theta^3 / 72`. The file also proves the identity behind it, `hasSum_sin_div_sq`: for `0 < theta <= 1`, `sum_k sin((k+1) theta)/(k+1)^2 = -(1/2) int_0^theta log(2 - 2 cos t) dt`. The proof goes through `r^k`-damped sums and Abel's limit theorem; the dilogarithm and Clausen function are never defined |
+
+### WP1-b: `abs_im_pair_amplitude_sub_le` (`QuantGrav/Elementary/PairAmplitudeLog.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | Last two sentences of the paragraph after (4.34) |
+| Paper's claim, in substance | Summing before expanding converts the `log N` divergence into the finite term `-i log s / s^3` in (4.33) |
+| Formal statement | For real `s >= 2`: the imaginary part of `(1/(2 s^2)) sum_k e^{-2i(k+1)/s} / (k+1)^2` differs from `(log 2 - 1 - log s) / s^3` by at most `1/(6 s^5)` |
+| Differs from paper? | The paper names only the `log s` term. The theorem also fixes the non-logarithmic `1/s^3` piece, `(log 2 - 1)/s^3`, and bounds the remainder. Restricted to `s >= 2`. It says nothing about the real part. The paper's further claim that the third derivative of the full sum diverges as `G_N -> 0+` is not formalized; `cubic_term_partial_pair_sum` with `tendsto_harmonic_atTop` covers the truncated sums only |
+
 ## Findings from the direct reading
 
 Each is this log's reading of the PDF text. None has been checked with the author.
@@ -129,4 +174,4 @@ References the register depends on, from the paper's bibliography:
 
 - No licence or copyright header has been chosen, so `linter.style.header` is switched off in `lakefile.toml`. Every other linter in Mathlib's standard set is on.
 - The comparison of (5.69) with Sen's ensemble (WP5 question 3) has not been made. Sen's paper has not been read for this log.
-- Second-reader review of the seven entries above is outstanding.
+- Second-reader review of the theorem entries above is outstanding.

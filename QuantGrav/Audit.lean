@@ -2,6 +2,8 @@ module
 
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.LogCoefficient
+public import QuantGrav.Elementary.PairAmplitude
+public import QuantGrav.Elementary.PairAmplitudeLog
 
 /-!
 # Axiom audit
@@ -41,3 +43,35 @@ The only axioms allowed are Lean's three standard ones: `propext`, `Classical.ch
 /-- info: 'QuantGrav.ratio_sq_of_q' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.ratio_sq_of_q
+
+/-- info: 'QuantGrav.summable_norm_pair_phase' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.summable_norm_pair_phase
+
+/-- info: 'QuantGrav.hasSum_pair_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.hasSum_pair_amplitude
+
+/-- info: 'QuantGrav.cubic_term_partial_pair_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.cubic_term_partial_pair_sum
+
+/-- info: 'QuantGrav.abs_harmonic_sub_log_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.abs_harmonic_sub_log_le
+
+/-- info: 'QuantGrav.tendsto_harmonic_atTop' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_harmonic_atTop
+
+/-- info: 'QuantGrav.hasSum_sin_div_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.hasSum_sin_div_sq
+
+/-- info: 'QuantGrav.abs_im_tsum_cexp_div_sq_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.abs_im_tsum_cexp_div_sq_sub_le
+
+/-- info: 'QuantGrav.abs_im_pair_amplitude_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.abs_im_pair_amplitude_sub_le

@@ -2,7 +2,7 @@
 
 Date: 2026-11-26
 Owner: Michael
-Status: first session done on 2026-11-26. WP0 is set up, WP1-c, WP1-d and WP1-e are proved, and Section 5 below is corrected. Findings and the current hypothesis register are in `FIDELITY.md`. This document remains the brief for whoever (person or agent) picks up the work.
+Status: first session done on 2026-11-26. WP0 is set up, WP1-a to WP1-e are proved (WP1-f is not), and Section 5 below is corrected. Findings and the current hypothesis register are in `FIDELITY.md`. This document remains the brief for whoever (person or agent) picks up the work.
 
 ---
 
