@@ -15,7 +15,7 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Clean-checkout build, 2026-11-26, commit `1651972`: a fresh `git clone` of the repository, with `.lake/packages` linked to the existing Mathlib checkout instead of downloaded again. `lake exe cache get` reported nothing to download, `lake build --wfail` completed (5813 jobs), and `scripts/check_forbidden.sh` was clean. Run on Windows with Lean `v4.37.0-rc1`.
 - Findings F1, F2 and F4 were re-checked against the TeX on 2026-11-26; each now says what changed.
 - `QuantGrav/Diamond/FiniteDim.lean` was written after that review and has had no second reader.
-- The proof of `abs_im_tsum_cexp_div_sq_sub_le` was written by a subagent from a fixed statement. Its statement was written and checked numerically first; the proof is accepted on the strength of the kernel and the axiom audit, not on a reading of the proof.
+- The proofs in `ClausenAsymptotics.lean` and `BoostBound.lean` were written by subagents from fixed statements. The statements were written first and, for the Clausen bound, checked numerically. The proofs are accepted on the strength of the kernel and the axiom audit, not on a reading of the proofs.
 
 ## Theorem entries
 
@@ -125,6 +125,53 @@ All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/A
 | Formal statement | For real `s >= 2`: the imaginary part of `(1/(2 s^2)) sum_k e^{-2i(k+1)/s} / (k+1)^2` differs from `(log 2 - 1 - log s) / s^3` by at most `1/(6 s^5)` |
 | Differs from paper? | The paper names only the `log s` term. The theorem also fixes the non-logarithmic `1/s^3` piece, `(log 2 - 1)/s^3`, and bounds the remainder. Restricted to `s >= 2`. It says nothing about the real part. The paper's further claim that the third derivative of the full sum diverges as `G_N -> 0+` is not formalized; `cubic_term_partial_pair_sum` with `tendsto_harmonic_atTop` covers the truncated sums only |
 
+### WP1-g: `integral_clock_weight_le`, `setIntegral_clock_tail_le_integral_div`, `setIntegral_clock_tail_le` (`QuantGrav/Elementary/ClockWeightIntegral.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | (5.17), the sentence above it, and the sentence above (C.14) |
+| Paper's claim, in substance | `‖(1 - P_D) Psi_L‖^2 <= <Psi_L| u |Psi_L> / l(D) <= L / (4 l(D))`, obtained by integrating the weight `u [L/(L+u)]^2 <= L/4` over the clock readings |
+| Formal statement | Let `mu` be a probability measure on the reals with `u >= 0` almost everywhere, and `L, l > 0`. Then `int u (L/(L+u))^2 dmu <= L/4`; `int_{u > l} (L/(L+u))^2 dmu <= (int u (L/(L+u))^2 dmu) / l`; and so `int_{u > l} (L/(L+u))^2 dmu <= L/(4 l)`. The middle statement needs only a finite measure |
+| Differs from paper? | The spectral measure of the clock in the incoming state is replaced by an arbitrary probability measure, so nothing depends on H13. The identification of `‖(1 - P_D) Psi_L‖^2` with `int_{u > l} (L/(L+u))^2 dmu` is prose only. In (C.14) the readings are those of `P_M psi`, whose total weight can be less than one; the bounds then hold a fortiori but are stated here for total weight one |
+
+### WP2-c: `hasSum_inner_cut`, `summable_norm_inner_cut`, `tsum_norm_inner_cut_le`, `tsum_norm_inner_cut_le_of_norm_le_one` (`QuantGrav/OperatorAlgebra/CutSums.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | (4.29), (4.30) |
+| Paper's claim, in substance | `<phi| U_2 U_1 |psi> = sum_alpha <phi| U_2 |e_alpha><e_alpha| U_1 |psi>` in an orthonormal basis on the cut, and `sum_alpha |<phi| U_2 |e_alpha><e_alpha| U_1 |psi>| <= sqrt(<phi|phi><psi|psi>)` because time evolution preserves norms |
+| Formal statement | For bounded `U_1 : H_1 -> H`, `U_2 : H -> H_2` between complex Hilbert spaces and a Hilbert basis `b` of `H`: the terms `<phi, U_2 b_i><b_i, U_1 psi>` sum to `<phi, U_2 U_1 psi>`; their norms are summable; the sum of norms is at most `‖U_2† phi‖ ‖U_1 psi‖`; and at most `‖phi‖ ‖psi‖` when `‖U_1‖, ‖U_2‖ <= 1` |
+| Differs from paper? | More general: any bounded operators, any Hilbert basis of any cardinality. As `handoff.md` expected, absolute convergence of the sum over intermediate states holds for every bounded evolution and is not a feature of this theory. Unitarity (H2) enters only through `‖U‖ <= 1` in the last statement. The physical claim behind (4.29), that the amplitude of the glued spacetime is `<phi| U_2 U_1 |psi>` (causal factorization and H3), is not addressed |
+
+### WP2-d: `norm_inner_truncation_error_le`, `tendsto_inner_evolveCut`, `tendsto_inner_evolveCut_starProjection` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | (4.31) and the two sentences after it |
+| Paper's claim, in substance | `|<phi| (U_m ... U_1 - U_m P_{m-1} U_{m-1} ... P_1 U_1) |psi>| <= sqrt(<phi|phi>) sum_{j=1}^{m-1} ‖(1 - P_j) U_j ... U_1 psi‖`, each term tends to zero as the remaining states are included, so restoring all intermediate states recovers the amplitude |
+| Formal statement | For sequences `U`, `P` of bounded operators on one inner product space, all of norm at most one, the full and truncated amplitudes after `m + 1` steps with `m` cuts differ by at most `‖phi‖` times the sum over cuts of `‖x_j - P_j x_j‖`, where `x_j` is the full state at that cut. If the `P` depend on a parameter and converge strongly to the identity on each cut, the truncated amplitude converges to the full one. That holds in particular for orthogonal projections onto increasing sequences of subspaces with dense union |
+| Differs from paper? | Definitions `evolve` and `evolveCut` are new and should be read against (4.31): indices start at `0`, so the paper's `U_j` is `U (j-1)` and its `P_j` is `P (j-1)`. All operators act on one space, whereas the paper's caps may carry different spaces. `U` and `P` need only have norm at most one; they need not be unitary or projections. Strong convergence of the truncations is H5, here the explicit hypothesis `hlim`. The last theorem discharges H5 when the kept states on each cut are an increasing sequence of subspaces with dense union, for instance initial segments of a countable orthonormal basis. Nets over an uncountable basis are covered by `tendsto_inner_evolveCut` with `hlim` supplied, not by the last theorem |
+
+### WP2-e: `compression_mul` (same file)
+
+| Field | Content |
+|---|---|
+| Paper | (C.21) |
+| Paper's claim, in substance | `P_D X Y P_D = (P_D X P_D)(P_D Y P_D) + P_D X (1 - P_D) Y P_D` |
+| Formal statement | In any ring, for `P` with `P P = P`: `P X Y P = (P X P)(P Y P) + P X (1 - P) Y P` |
+| Differs from paper? | More general: a ring identity for any idempotent. It depends on the axiom `propext` only |
+
+
+### WP2-g: `norm_exp_smul_apply_sub_le`, `norm_inner_apply_sub_inner_apply_le`, `norm_inner_exp_apply_sub_inner_le` (`QuantGrav/OperatorAlgebra/BoostBound.lean`)
+
+| Field | Content |
+|---|---|
+| Paper | (5.32), proved in the paper by (D.22), (D.23) |
+| Paper's claim, in substance | With `Psi_P` the normalized state on the doubled cut and the boost acting on the conjugate copy by `e^{i eta s/(2 pi)}`: the boosted state is within `(|eta|/2 pi) sqrt(Tr[rho_P (s - s_0)^2])` of `Psi_P` up to a phase, by `|e^{ix} - 1| <= |x|`; so the expectation value of a bounded `O` changes by at most `(|eta|/pi) ‖O‖ sqrt(Tr[rho_P (s - s_0)^2])` |
+| Formal statement | On a complex Hilbert space, for a bounded self-adjoint `A`, real `theta`, any vector `Psi`: `‖exp(i theta A) Psi - Psi‖ <= |theta| ‖A Psi‖`. For bounded `O` and vectors `xi`, `psi`: `|<xi, O xi> - <psi, O psi>| <= ‖O‖ (‖xi‖ + ‖psi‖) ‖xi - psi‖`. Hence for a unit vector `Psi`: the expectation value of `O` changes by at most `2 ‖O‖ |theta| ‖A Psi‖` under `Psi -> exp(i theta A) Psi` |
+| Differs from paper? | Stated for one abstract Hilbert space and one bounded self-adjoint generator. The paper's case is `A = (1 tensor (s* - s_0))/(2 pi)` on the doubled space, `theta = eta`, `Psi = Psi_P`, for which `‖A Psi_P‖^2 = Tr[rho_P (s - s_0)^2]/(4 pi^2)` and the last bound is exactly (5.32). That mapping is prose: the doubled space, `Psi_P` and the identity for `‖A Psi_P‖` are not formalized. Boundedness of `A` is the paper's `0 <= s <= s_*` (5.30a), which rests on H14. The scalar inequality `|e^{ix} - 1| <= |x|` is not used; the operator version is proved by the mean value inequality, which covers continuous spectrum without a spectral theorem. Proof written by a subagent from fixed statements; see the note under "How the paper was read" |
+
+
 ### Finding F2: `finiteDimensional_of_sum_sq_norm_le`, `finrank_le_of_sum_sq_norm_le` (`QuantGrav/Diamond/FiniteDim.lean`)
 
 | Field | Content |
@@ -164,7 +211,7 @@ Each is this log's reading of the PDF text. None has been checked with the autho
 - (5.39c) is `Z Tr(rho e^{A/4G hbar}) = Tr(1)`. It is an identity, not an independent count.
 - (5.20) says the closure of `{P_D pi(X) psi}` is `P_D H_omega = H_D`. It is a density statement, not a dimension formula. The closure bar is in the TeX (line 1616) and was lost in the PDF text, so the earlier wording "spanning statement" was too strong. It sits in Sec 5.1, not 5.2.
 - No area eigenvalues or spacings are given. (5.40) only names them `A_1, ..., A_m`.
-- (5.32) is proved in (D.22), (D.23) by `|e^{ix} - 1| <= |x|`. That step is elementary and could be a WP2 theorem. The physics input H4 is (5.36b) and (5.37b), supported by (D.26) to (D.36) at one loop on a smooth background.
+- (5.32) is proved in (D.22), (D.23) by `|e^{ix} - 1| <= |x|`. That step is elementary and could be a WP2 theorem. The physics input H4 is (5.36b) and (5.37b), supported by (D.26) to (D.36) at one loop on a smooth background. Done as WP2-g in `BoostBound.lean`.
 - The pigeonhole step is in the paragraph after (D.24): finitely many intervals cover `[0, s_*]`, so one has a spectral subspace of full dimension. It is stated for any cardinality.
 - The entropy formula is (5.50); the handoff's map started Sec 5.3 at (5.51).
 - Re-checked against the TeX on 2026-11-26: (5.39c), (5.40), (5.50), (D.22), (D.23) and the pigeonhole paragraph are as described. Only the (5.20) item changed.
@@ -183,7 +230,7 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H3a | With no insertion: the partial traces `Tr(P C_b† C_b)` over finite orthonormal families in `H_D` are bounded. Given (5.30c) this is equivalent to `dim H_D < infinity` (F2) | Implicit in the sentences around (5.38); not stated | Not stated by the paper |
 | H3b | With the insertion `X` of (5.37a): the partial sums `Z_P[X]` over cycle-closed projections converge to `Z[X]` | (5.38), Figure 30, (4.29) | Diffeomorphism-invariance argument of Sec 3.6 |
 | H4 | `<Delta_eta O> > delta_eta / 2` in the uncut preparation | (5.36b), (5.37b), (D.26) to (D.36) | One-loop estimate on a smooth background |
-| H5 | Truncation projections converge strongly to the identity | Sentence after (4.31) | Asserted |
+| H5 | Truncation projections converge strongly to the identity | Sentence after (4.31) | Asserted. Explicit hypothesis `hlim` of `tendsto_inner_evolveCut`; proved for orthogonal projections onto increasing sequences of subspaces with dense union in `tendsto_inner_evolveCut_starProjection` (2026-11-26) |
 | H6 | Boost generator is `A/(8 pi G)` | (5.22); (3.43) not re-read | Classical corner symplectic structure |
 | H7 | `log Tr(C_b† C_b) = (106/45) log s_b + O(1)` | (5.67a) to (5.67c), ref [71] | Imported one-loop coefficient plus Gauss-Bonnet |
 | H8 | `q` exists as a limit; its value | (5.54b), (5.61), (5.68), fn 23 | Value derived from H7 (see `log_coefficient_roundtrip`); tension F3 |
@@ -206,4 +253,4 @@ References the register depends on, from the paper's bibliography:
 
 - No licence or copyright header has been chosen, so `linter.style.header` is switched off in `lakefile.toml`. Every other linter in Mathlib's standard set is on.
 - The comparison of (5.69) with Sen's ensemble (WP5 question 3) has not been made. Sen's paper has not been read for this log.
-- Second-reader review is done for `QuantGrav/Elementary/` and outstanding for `QuantGrav/Diamond/FiniteDim.lean` and for the reading of the paper in F2.
+- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/`. It is outstanding for `ClockWeightIntegral.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.

@@ -369,7 +369,8 @@ Draft a short note. Michael decides whether to send it.
 - Step 0.3: done. `.gitattributes` now covers `.md`, `.tsv`, `.toml` and `.yml`.
 - Step 0.4: done. F1 and F4 hold against the TeX; the (5.20) item in F4 was corrected to a density statement. F2 was replaced by the result of Step 1.
 - Step 1: done. `QuantGrav/Diamond/FiniteDim.lean` proves the abstract statement and its converse. H3 is split into H3a and H3b, and H15 is added for (5.23). Answer to the question: the paper does not state that the uncut amplitude with no insertion is finite, but the sentences around (5.38) use its squared norm as a positive real number. See finding F2 in `FIDELITY.md`.
-- Steps 0.5 to 0.7 and Steps 2 to 6: not started.
+- Step 2: done. WP2-c, WP2-d, WP2-e in `QuantGrav/OperatorAlgebra/CutSums.lean`, WP2-g in `QuantGrav/OperatorAlgebra/BoostBound.lean`, WP1-g in `QuantGrav/Elementary/ClockWeightIntegral.lean`. H5 is proved for increasing sequences of subspaces with dense union and remains a hypothesis otherwise. None of these files has had a second reader.
+- Steps 0.5 to 0.7 and Steps 3 to 6: not started.
 
 ### Order for the next session
 

@@ -2,9 +2,12 @@ module
 
 public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Elementary.ClockWeight
+public import QuantGrav.Elementary.ClockWeightIntegral
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
+public import QuantGrav.OperatorAlgebra.BoostBound
+public import QuantGrav.OperatorAlgebra.CutSums
 
 /-!
 # Axiom audit
@@ -14,7 +17,7 @@ Each headline theorem is listed here with the exact output of `#print axioms`, p
 so this file is the committed record required by `handoff.md`, Section 8.
 
 The only axioms allowed are Lean's three standard ones: `propext`, `Classical.choice`,
-`Quot.sound`.
+`Quot.sound`. A theorem may use fewer.
 -/
 
 /-- info: 'QuantGrav.clock_weight_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -92,3 +95,59 @@ The only axioms allowed are Lean's three standard ones: `propext`, `Classical.ch
 /-- info: 'QuantGrav.finiteDimensional_iff_exists_sum_sq_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.finiteDimensional_iff_exists_sum_sq_norm_le
+
+/-- info: 'QuantGrav.hasSum_inner_cut' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.hasSum_inner_cut
+
+/-- info: 'QuantGrav.summable_norm_inner_cut' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.summable_norm_inner_cut
+
+/-- info: 'QuantGrav.tsum_norm_inner_cut_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tsum_norm_inner_cut_le
+
+/-- info: 'QuantGrav.tsum_norm_inner_cut_le_of_norm_le_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tsum_norm_inner_cut_le_of_norm_le_one
+
+/-- info: 'QuantGrav.norm_inner_truncation_error_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_inner_truncation_error_le
+
+/-- info: 'QuantGrav.tendsto_inner_evolveCut' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_inner_evolveCut
+
+/-- info: 'QuantGrav.tendsto_inner_evolveCut_starProjection' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_inner_evolveCut_starProjection
+
+/-- info: 'QuantGrav.compression_mul' depends on axioms: [propext] -/
+#guard_msgs in
+#print axioms QuantGrav.compression_mul
+
+/-- info: 'QuantGrav.integral_clock_weight_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_clock_weight_le
+
+/-- info: 'QuantGrav.setIntegral_clock_tail_le_integral_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.setIntegral_clock_tail_le_integral_div
+
+/-- info: 'QuantGrav.setIntegral_clock_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.setIntegral_clock_tail_le
+
+/-- info: 'QuantGrav.norm_exp_smul_apply_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_exp_smul_apply_sub_le
+
+/-- info: 'QuantGrav.norm_inner_apply_sub_inner_apply_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_inner_apply_sub_inner_apply_le
+
+/-- info: 'QuantGrav.norm_inner_exp_apply_sub_inner_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_inner_exp_apply_sub_inner_le

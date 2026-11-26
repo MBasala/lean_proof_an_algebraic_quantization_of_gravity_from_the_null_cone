@@ -23,7 +23,7 @@ Locations were checked against the PDF text on 2026-11-26 unless marked "not re-
 | H3a | With no insertion: the partial traces `Tr(P C_b† C_b)` over finite orthonormal families in `H_D` are bounded | implicit around (5.38); not stated in the paper | the abstract form is the hypothesis `hZ` of `finiteDimensional_of_sum_sq_norm_le` in `Diamond/FiniteDim.lean`; tied to `H_D` and `C_b` in prose only |
 | H3b | With the insertion `X` of (5.37a): the partial sums `Z_P[X]` over cycle-closed projections converge to `Z[X]` | (5.38), Figure 30, (4.29) | prose only |
 | H4  | The boost-sensitive observable has `⟨Δ_η O⟩ > δ_η / 2` in the uncut preparation `C_b` | (5.36b), (5.37b), (D.26) to (D.36) | prose only |
-| H5  | Truncation projections on each cut converge strongly to the identity | sentence after (4.31) | prose only |
+| H5  | Truncation projections on each cut converge strongly to the identity | sentence after (4.31) | hypothesis `hlim` of `tendsto_inner_evolveCut` in `OperatorAlgebra/CutSums.lean`; proved there for increasing sequences of subspaces with dense union |
 | H6  | The boost generator is `A / (8 π G)` | (5.22), (3.43) not re-read | prose only |
 | H7  | `log Tr(C_b† C_b) = (106 / 45) log s_b + O(1)` from a one-loop curvature integral | (5.67a) to (5.67c), ref [71] | prose only |
 | H8  | The limit `q` in (5.54b) exists; its value | (5.54b), (5.61), (5.68), fn 23 | arithmetic in `Elementary/LogCoefficient.lean`; existence of the limit is prose only |
