@@ -7,6 +7,7 @@ public import QuantGrav.Elementary.ClockWeightIntegral
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
+public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.OperatorAlgebra.BoostBound
 public import QuantGrav.OperatorAlgebra.CutSums
 
@@ -212,3 +213,39 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_not_H14' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.DiamondSetup.exists_setup_H1_H13_not_H14
+
+/-- info: 'QuantGrav.Sen.cLocal_pure_gravity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.Sen.cLocal_pure_gravity
+
+/-- info: 'QuantGrav.Sen.mixedCoeff_four' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.Sen.mixedCoeff_four
+
+/-- info: 'QuantGrav.Sen.mcCoeff_four' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.Sen.mcCoeff_four
+
+/-- info: 'QuantGrav.Sen.singletCoeff_four' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.Sen.singletCoeff_four
+
+/-- info: 'QuantGrav.fixed_mass_coeff_eq_sen_mixed' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.fixed_mass_coeff_eq_sen_mixed
+
+/-- info: 'QuantGrav.fixed_mass_coeff_sub_sen_mc' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.fixed_mass_coeff_sub_sen_mc
+
+/-- info: 'QuantGrav.fixed_mass_coeff_sub_sen_singlet' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.fixed_mass_coeff_sub_sen_singlet
+
+/-- info: 'QuantGrav.entropy_coeff_eq_sen_local_add_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.entropy_coeff_eq_sen_local_add_one
+
+/-- info: 'QuantGrav.trace_log_prefactor_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.trace_log_prefactor_eq

@@ -20,6 +20,8 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 - Independent review of the definitions in `QuantGrav/Diamond/Setup.lean` (2026-11-26): a fresh reader with no access to this log, `handoff.md` or `Hypotheses.lean` checked every field against the TeX. It read `main.tex` lines 548 to 610, 955 to 1250, 1440 to 1865, 1920 to 2029 and 2940 to 3180 in full and searched the rest. Result: no field wrong. One gap, that positivity of the area operator was not recorded; it is now the lower bound inside H14. Two citations were corrected (`ε`, positivity of the clock), a fourth warning was added for the area operator on `H_omega`, `minReading` was renamed `clockLowerBound`, and the degenerate scalar model was replaced by `ofProjections`. The reviewer could not refute the claim in F6 that the clock is not constructed outside `K_A`. The formal statements of H1, H13 and H14 were written only after this review.
 - Second pass by the same reader (2026-11-26) over the revised `Setup.lean`, the formal statements `H1`, `H13`, `AreaBoundAt`, `H14`, and every theorem in `ClockHypotheses.lean`: all four statements classified as faithful in this encoding, every theorem docstring found to match what is proved, all five required changes confirmed done, nothing required before commit. Its optional points were applied: scope notes in the docstrings of `Ω`, `H1`, `AreaBoundAt`, `H14` and `H1_iff_tendsto_norm_sq`; the lemma `fixedAreaDiamondSpace_eq_map`; the model theorem `exists_setup_H1_H13_not_H14`; and a separate fixed-area hypothesis `H14a`. `H14a`, `H14.h14a`, `H14a.fixedAreaDiamondSpace_eq_bot` and `exists_setup_H1_H13_not_H14` were added after that pass, adapted from the reader's own scratch checks; their final text has not been re-read by it.
 
+- Sen's paper, arXiv:1205.0971v2 (JHEP 04 (2013) 156), was read on 2026-11-26 from arxiv.org in a browser: the abstract page, and in the HTML rendering Section 1 in full, Section 3 in full, the paragraph ending at (2.41), and the three numbered points that open Section 4. Equations were taken from the LaTeX carried by the rendering. Not read: the rest of Section 2, Section 5 and the appendices. Every sentence of the paper under study that cites Sen was re-read in the TeX (abstract, lines 111, 1932, 2095, 2097).
+
 ## Theorem entries
 
 All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/Audit.lean`; each depends only on `propext`, `Classical.choice`, `Quot.sound`.
@@ -267,6 +269,25 @@ Not represented: the algebra of observables, its representation, cyclicity of `O
 | `exists_setup_H1_H13_H14_diamondSpace_eq_top` | Not stated | On any Hilbert space with a unit vector there is a `DiamondSetup` satisfying H1, H13 and H14 in which `K_A` and every `H_D` with `l >= 1` are the whole space | Addition. See F8 |
 
 
+### Step 5: comparison with Sen (`QuantGrav/Entropy/SenComparison.lean`)
+
+Sen's formulas are transcribed as definitions and paired with his equation numbers. `a` is the size of the black hole, `A_H ~ a^(D-2)`; in four dimensions a coefficient of `log s` is half the coefficient of `ln a`.
+
+| Lean | Source | Formal statement | Differs from source? |
+|---|---|---|---|
+| `Sen.cLocal` | Sen (1.2) | `C_local = (2 n_S - 26 n_V + 7 n_F - (233/2) n_{3/2} + 424)/90` | Transcription. Sen states it for uncharged black holes in `D = 4` with minimally coupled fields |
+| `Sen.numCartan`, `Sen.numRotations` | Sen, after (1.1) and after (1.5) | `N_C = [(D-1)/2]`, `N_R = (D-1)(D-2)/2` | Transcription, with natural-number division |
+| `Sen.mcCoeff` | Sen (1.1) | `C_local - (D-4)/2 - (D-2) N_C/2 - (D-4) n_V/2` | Transcription. The coefficient of `ln a` in `S_mc - S_BH` |
+| `Sen.mixedCoeff` | Sen (1.4) | `C_local - (D-4)/2 - (D-4) n_V/2` | Transcription |
+| `Sen.singletCoeff` | Sen (1.5) | `C_local - (D-4)/2 - (D-2) N_R/2 - (D-4) n_V/2` | Transcription |
+| `Sen.cLocal_pure_gravity` | Sen, after (1.5) | `C_local = 212/45` with no matter fields | None |
+| `Sen.mixedCoeff_four`, `Sen.mcCoeff_four`, `Sen.singletCoeff_four` | Sen (1.1), (1.4), (1.5) at `D = 4`, `n_V = 0` | The three coefficients are `C`, `C - 1`, `C - 3` for any local coefficient `C` | Sen states `C - 3` for pure gravity and the `-ln a` of the microcanonical case; the mixed case is read off (1.4) |
+| `fixed_mass_coeff_eq_sen_mixed` | Paper (5.69) against Sen (1.4) | `106/45` is half of Sen's mixed coefficient for pure gravity in `D = 4` | Addition. The comparison the paper asserts in words |
+| `fixed_mass_coeff_sub_sen_mc`, `fixed_mass_coeff_sub_sen_singlet` | Paper (5.69) against Sen (1.1), (1.5) | `106/45` exceeds half of Sen's microcanonical and singlet coefficients by `1/2` and `3/2` | Addition |
+| `entropy_coeff_eq_sen_local_add_one` | Paper (5.65), (5.68) | `257/90 = (212/45 + 1)/2` | Addition |
+| `trace_log_prefactor_eq` | Paper (5.67c) | `53/(45 (4 pi)^2) * 8 pi * 8 pi = 212/45` | Checks the paper's own evaluation of the prefactor, with the Gauss-Bonnet value `8 pi` of the curvature integral put in |
+
+
 ## Findings from the direct reading
 
 Each is this log's reading of the PDF text. None has been checked with the author.
@@ -317,6 +338,17 @@ Each is this log's reading of the PDF text. None has been checked with the autho
 - The models are not models of the paper's theory. They show what the formal hypotheses do and do not say.
 
 
+**F9. (5.69) is Sen's mixed-ensemble coefficient, which in four dimensions is the local coefficient alone.** This answers the third WP5 question in `handoff.md`. Sen's paper was read directly; see "How the paper was read".
+
+- Sen gives the coefficient of `ln a` in three ensembles, each counting states per unit interval of mass. For pure gravity in `D = 4`: microcanonical, with the angular momentum component `J_3` fixed, (1.1): `212/45 - 1`. Mixed, with all angular momenta summed, (1.4): `212/45`. Singlet, rotationally invariant states only, (1.5): `212/45 - 3`. Here `212/45 = 424/90` is his local coefficient `C_local` (1.2), the graviton contribution to the trace anomaly.
+- The paper's (5.69) is `106/45` of `log s_b` at fixed mass with angular momenta summed, where `s_b` is proportional to `M^2`, so `log s_b = 2 ln a` up to a constant. That is Sen's mixed ensemble, in the number and in the description: his `e^{S_mixed} dM` counts the states of all angular momentum in a mass interval (`fixed_mass_coeff_eq_sen_mixed`).
+- It is not his microcanonical or his singlet coefficient. It exceeds them by `1/2` and `3/2` in units of `log s_b`. The singlet value, `(212/45 - 3) ln a`, is the only number Sen's summary states for the four-dimensional Schwarzschild black hole, and the one he compares with loop quantum gravity. The paper names the ensemble where it states the result (the opening of Sec 5.3, and before (5.69)). Its abstract and introduction say only "the coefficient Sen obtained" and "at fixed mass".
+- In `D = 4` without gauge fields Sen's mixed coefficient is `C_local` with nothing added, for any value of `C_local` (`Sen.mixedCoeff_four`): the integration that fixes the mass contributes `a^{-(D-4)/2} = 1`, and the zero-mode terms cancel between his (2.41) and (3.3). The paper's (5.67c) imports the same local coefficient; its prefactor evaluates to `212/45` (`trace_log_prefactor_eq`). With `log_coefficient_roundtrip`, the agreement with Sen is therefore the agreement of that imported number, together with the absence of any further logarithm between (5.67c) and the density of states per unit mass.
+- The change of variables from area to mass is the same in both papers. Sen's Sec 4 adds `ln a` on passing from states per unit area to states per unit mass; the paper's `ds_b / s_b^{1/2} ~ dM` in (5.69) does the same.
+- What is independent on the paper's side is H7 alone: that the Lorentzian trace `Tr(C_b† C_b)` carries the logarithmic term of the Euclidean one-loop determinant. Sen's corresponding statement, (2.41), is about the Euclidean grand canonical partition function.
+- The coefficient in the paper's entropy formula (5.65), `q/(2(1-q)) = 257/90`, is `C_local + 1` in units of `ln a` (`entropy_coeff_eq_sen_local_add_one`). It belongs to the state `rho_D` at fixed maximum clock reading and is none of Sen's three.
+
+
 ## Hypothesis register
 
 Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
@@ -331,8 +363,8 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H4 | `<Delta_eta O> > delta_eta / 2` in the uncut preparation | (5.36b), (5.37b), (D.26) to (D.36) | One-loop estimate on a smooth background |
 | H5 | Truncation projections converge strongly to the identity | Sentence after (4.31) | Asserted. Explicit hypothesis `hlim` of `tendsto_inner_evolveCut`; proved for orthogonal projections onto increasing sequences of subspaces with dense union in `tendsto_inner_evolveCut_starProjection` (2026-11-26) |
 | H6 | Boost generator is `A/(8 pi G)` | (5.22); (3.43) not re-read | Classical corner symplectic structure |
-| H7 | `log Tr(C_b† C_b) = (106/45) log s_b + O(1)` | (5.67a) to (5.67c), ref [71] | Imported one-loop coefficient plus Gauss-Bonnet |
-| H8 | `q` exists as a limit; its value | (5.54b), (5.61), (5.68), fn 23 | Value derived from H7 (see `log_coefficient_roundtrip`); tension F3 |
+| H7 | `log Tr(C_b† C_b) = (106/45) log s_b + O(1)` | (5.67a) to (5.67c), ref [71] | Imported one-loop coefficient plus Gauss-Bonnet. The prefactor evaluates to `212/45`, Sen's pure-gravity `C_local` (F9) |
+| H8 | `q` exists as a limit; its value | (5.54b), (5.61), (5.68), fn 23 | Value derived from H7 (see `log_coefficient_roundtrip`); tension F3. Comparison with Sen: F9 |
 | H9 | Choice of pure extension `omega` | (4.16) not re-read, fn 20 | Deferred by author |
 | H10 | `log d(s) <~ 1 + (s Q_*)^(3/4)` | (D.45a) to (D.46c) | Unspecified constants |
 | H11 | Disk factor `e^s` in each weight | Paragraph above (D.48), ref [51] | Citation |
@@ -354,5 +386,5 @@ References the register depends on, from the paper's bibliography:
 ## Open items that affect fidelity
 
 - No licence or copyright header has been chosen, so `linter.style.header` is switched off in `lakefile.toml`. Every other linter in Mathlib's standard set is on.
-- The comparison of (5.69) with Sen's ensemble (WP5 question 3) has not been made. Sen's paper has not been read for this log.
+- The comparison of (5.69) with Sen's ensembles is made in F9. Reference [71] of the paper (Bastianelli, Bonezzi, Melis), the stated source of the coefficient in (5.67c), has not been read.
 - Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/` and for the definitions in `QuantGrav/Diamond/Setup.lean`. It is outstanding for `ClockWeightIntegral.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.

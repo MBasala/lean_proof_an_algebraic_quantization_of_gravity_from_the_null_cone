@@ -391,7 +391,10 @@ Draft a short note. Michael decides whether to send it.
   - Item 4: `DiamondSetup.H1`, `DiamondSetup.H13`, `DiamondSetup.H14` in `QuantGrav/Hypotheses.lean`, with first consequences in `QuantGrav/Diamond/ClockHypotheses.lean`. The same reader checked the final statements in a second pass and required nothing further. `DiamondSetup.H14a`, the fixed-area half of H14, was added afterwards at its suggestion.
   - New register entries H16 and H17: the clock and the area operator on `H_omega` are assumed, not constructed (finding F6). H13 was narrowed to density on `K_A`.
   - Not done in Step 3, and candidates for WP4: split `DiamondSetup` into a fixed-area part and an `H_omega` part so that H1 and H13 do not formally depend on the assumed extension; define the distribution of clock readings as a Stieltjes measure, which would connect WP1-g to the setup and let `‖Psi_L - Omega_A‖` be stated.
-- Steps 0.5 to 0.7 and Steps 4 to 6: not started.
+- Step 5: done. Sen's paper was read directly. The paper's (5.69) is Sen's mixed ensemble (his (1.4): fixed mass, all angular momenta summed), not his microcanonical or singlet result; in four dimensions that coefficient is the local coefficient `212/45` of `ln a` alone, which is what (5.67c) imports. Finding F9 in `FIDELITY.md`; arithmetic in `QuantGrav/Entropy/SenComparison.lean`.
+  - Candidate for WP1, found while reading (5.66): with `sigma_s^2 = 2 s_b` the paper says `int_0^infinity exp(-(s - s_b)^2/(4 s_b)) ds_b/(4 pi s_b)^(1/2) = 1` for every `s > 0`. It checks numerically and follows from the substitution `s_b = t^2` and the Cauchy-Schlomilch identity. Not formalized.
+- CI: GitHub Actions cannot complete on this repository because the runner does not have enough disk space (Michael, 2026-11-26). The gates are run locally before each commit: `bash scripts/check_forbidden.sh` and `lake build --wfail`.
+- Steps 0.5 to 0.7, Step 4 and Step 6: not started.
 
 ### Order for the next session
 

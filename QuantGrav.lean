@@ -10,6 +10,7 @@ public import QuantGrav.Elementary.ClockWeightIntegral
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
+public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.Hypotheses
 public import QuantGrav.OperatorAlgebra.BoostBound
 public import QuantGrav.OperatorAlgebra.CutSums

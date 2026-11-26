@@ -9,13 +9,14 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Diamond/Setup.lean`: the objects of Sec 5.1 and 5.2 (clock, area, `K_A`, `Omega_A`) as a structure, reviewed against the paper.
 - `QuantGrav/Diamond/ClockHypotheses.lean`: first consequences of H1, H13 and H14, and models showing what they do not imply.
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.
+- `QuantGrav/Entropy/SenComparison.lean`: the paper's logarithmic coefficient compared with the three ensembles of Sen's paper.
 - `QuantGrav/Hypotheses.lean`: the hypothesis register, with formal statements of H1, H13 and H14.
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.
 - `paper/equation_index.tsv`: printed equation number, LaTeX label and `main.tex` line for every equation in the paper.
 
 The paper's PDF and TeX source are not in the repository (its arXiv licence does not allow redistribution). To rebuild the index, put the PDF in the repository root, unpack the arXiv source into `paper/arxiv-src/`, and run `scripts/extract_pdf_text.py` and `scripts/tex_label_index.py`.
 
-Directories `Axioms/` and `Entropy/` will appear under `QuantGrav/` as their work packages start.
+The directory `Axioms/` will appear under `QuantGrav/` when its work package starts.
 
 ## Build
 
@@ -27,7 +28,7 @@ lake build --wfail
 bash scripts/check_forbidden.sh
 ```
 
-`--wfail` makes any warning, including a placeholder proof, fail the build. `scripts/check_forbidden.sh` rejects placeholder proofs, `native_decide` and new axiom declarations. CI runs both.
+`--wfail` makes any warning, including a placeholder proof, fail the build. `scripts/check_forbidden.sh` rejects placeholder proofs, `native_decide` and new axiom declarations. The GitHub workflow runs both, but its runner does not have enough disk space to finish, so these two commands are run locally before each commit.
 
 ## GitHub configuration
 
