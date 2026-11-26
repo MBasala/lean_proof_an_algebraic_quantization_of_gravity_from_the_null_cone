@@ -24,6 +24,7 @@ Paper: Chandrasekaran, "An algebraic quantization of gravity from the null cone"
 
 - Sen's paper, arXiv:1205.0971v2 (JHEP 04 (2013) 156), was read on 2026-11-26 from arxiv.org in a browser: the abstract page, and in the HTML rendering Section 1 in full, Section 3 in full, the paragraph ending at (2.41), and the three numbered points that open Section 4. Equations were taken from the LaTeX carried by the rendering. Not read: the rest of Section 2, Section 5 and the appendices. Every sentence of the paper under study that cites Sen was re-read in the TeX (abstract, lines 111, 1932, 2095, 2097).
 - The paper's acknowledgements (`main.tex` line 2400) were read on 2026-11-26. They say that several of the calculations and proofs were developed in collaboration with an AI model over many months, without saying which. This confirms the entry in `handoff.md` Section 2, which came from the earlier extraction.
+- For WP1-f, (3.25) to (3.28) and footnote 8 were read in the TeX (lines 556 to 596) on 2026-11-26.
 
 ## Theorem entries
 
@@ -141,6 +142,21 @@ All theorems are in namespace `QuantGrav`. Axiom sets are pinned in `QuantGrav/A
 | Paper's claim, in substance | `‖(1 - P_D) Psi_L‖^2 <= <Psi_L| u |Psi_L> / l(D) <= L / (4 l(D))`, obtained by integrating the weight `u [L/(L+u)]^2 <= L/4` over the clock readings |
 | Formal statement | Let `mu` be a probability measure on the reals with `u >= 0` almost everywhere, and `L, l > 0`. Then `int u (L/(L+u))^2 dmu <= L/4`; `int_{u > l} (L/(L+u))^2 dmu <= (int u (L/(L+u))^2 dmu) / l`; and so `int_{u > l} (L/(L+u))^2 dmu <= L/(4 l)`. The middle statement needs only a finite measure |
 | Differs from paper? | The spectral measure of the clock in the incoming state is replaced by an arbitrary probability measure, so nothing depends on H13. The identification of `‖(1 - P_D) Psi_L‖^2` with `int_{u > l} (L/(L+u))^2 dmu` is prose only. In (C.14) the readings are those of `P_M psi`, whose total weight can be less than one; the bounds then hold a fortiori but are stated here for total weight one |
+
+### WP1-f: `clock_mean_ge` and its steps (`QuantGrav/Elementary/ClockLowerBound.lean`)
+
+| Lean | Paper | Formal statement | Differs from paper? |
+|---|---|---|---|
+| `focusing_nonneg` | (3.26c), and "Since `Xi_y(v) >= 0`" after (3.26d) | For `0 <= eps <= v` and `g >= 0` on `[eps, v]`: `(1/8) int_eps^v s g(s) ds >= 0` | `g` stands for `(d_s qbar)^{AB} d_s qbar_{AB}`. Its nonnegativity is a hypothesis here; in the paper it is a sum of squares by (4.21) |
+| `clock_reading_ge` | (3.27) | For `rho_0 >= 0`, `eps <= 1` and `Xi >= 0` on `[eps, 1]` with `exp(Xi)` integrable there: `(1 - eps) rho_0 <= rho_0 int_eps^1 exp(Xi(v)) dv` | Integrability of `exp(Xi)` is assumed. The paper has it for smooth data, (5.8) |
+| `sq_integral_le_measure_mul_integral_sq` | Classical form of (5.21b) | For `rho` in `L^2` of a finite measure `nu`: `(int rho)^2 <= nu(S) int rho^2` | Any finite measure space. With `nu(S) = 4 pi` it reads `a^2 <= 4 pi A` |
+| `clock_mean_ge_area_div` | Classical form of (5.21a) | If `rho >= 0`, `u >= (1 - eps) rho` pointwise and `int rho^2 > 0`: `(1 - eps)(int rho^2)/(int rho) <= (int rho u)/(int rho)` | Integrability of `rho`, `rho^2` and `rho u` is assumed |
+| `clock_mean_ge` | Footnote 8; classical form of (5.21c); the average is (3.28) | On a measure space of total mass `4 pi`, for `rho >= 0` in `L^2` with `A = int rho^2 > 0`, `eps <= 1`, and `u >= (1 - eps) rho` with `rho u` integrable: `(1 - eps) sqrt(A/(4 pi)) <= (int rho u)/(int rho)` | The corner sphere is an abstract measure space of total mass `4 pi`. `rho` is nonnegative and square integrable where the paper has a smooth positive density. Integrability of `rho u` is assumed: where a reading is infinite the paper's inequality holds trivially, and this real-valued statement does not cover that case |
+| `clock_mean_ge_of_focusing` | Footnote 8 with (3.27) | The same with `u(y) = rho(y) int_eps^1 exp(Xi_y(v)) dv` and `Xi_y >= 0` | As above |
+| `clock_mean_eq_of_const` | Last sentence of App D.3 | For constant `rho = r > 0` and `u = (1 - eps) r`, the averaged clock equals `(1 - eps) sqrt(A/(4 pi))` | The paper says the classical clock attains the bound for vanishing shear and uniform density; this is that case |
+
+Checked numerically before proving: over 20,000 random discrete cases the averaged clock minus the bound was never below zero beyond rounding. These are statements about functions on the sphere. The operator inequalities (5.21a) to (5.21c) for the quantum clock remain hypotheses H14 and H14a.
+
 
 ### WP2-c: `hasSum_inner_cut`, `summable_norm_inner_cut`, `tsum_norm_inner_cut_le`, `tsum_norm_inner_cut_le_of_norm_le_one` (`QuantGrav/OperatorAlgebra/CutSums.lean`)
 
@@ -374,7 +390,7 @@ Maintained here and in `QuantGrav/Hypotheses.lean`. Entries are never deleted.
 | H12 | Type I with integer weights; Euclidean to Lorentzian converse | App E.2, ref [36], not re-read | Citation |
 | H13 | The clock (4.27) is densely defined on `K_A`. Formal: `DiamondSetup.H13`. Narrowed on 2026-11-26: existence of the clock and commutation with the area moved to H16 | fn 14, the paragraph after (C.17) | Derived on condition that the H1 estimate holds for displaced Gaussian states (F1). Added 2026-11-26 |
 | H14 | `u >= (1 - eps)(A/4pi)^(1/2)` as operators, hence `0 <= P_D A P_D <= 4 pi l(D)^2/(1 - eps)^2 P_D`. Formal: `DiamondSetup.H14`, as spectral support | (5.21a) to (5.21d), fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing, at fixed area. On `H_omega` it rests on H16. Added 2026-11-26 |
-| H14a | On `K_A` the clock has no readings below `(1 - eps)(A/4pi)^(1/2)`: the fixed-area half of H14. Formal: `DiamondSetup.H14a`; implied by H14 | (5.21a) to (5.21c) at fixed area, fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing. Does not need H16. Added 2026-11-26 |
+| H14a | On `K_A` the clock has no readings below `(1 - eps)(A/4pi)^(1/2)`: the fixed-area half of H14. Formal: `DiamondSetup.H14a`; implied by H14 | (5.21a) to (5.21c) at fixed area, fn 8 | Cauchy-Schwarz on `S` plus positivity of focusing. Does not need H16. Added 2026-11-26. The classical inequality behind it is proved (`clock_mean_ge`); the operator statement is not |
 | H15 | `C_D† C_D = P_D e^{-A/(4 G hbar)} P_D`: the future half of the diamond is prepared by continuing the corner boost to `i pi`, and gluing to its time reflection leaves only this weight | (5.23a), (5.23b), App C | Asserted from analytic continuation and unitarity. Added 2026-11-26 |
 | H16 | The clock has spectral projections on all of `H_omega`, they map `K_A` to itself, and they commute with those of the area operator. In Lean: fields `clock`, `clock_proj_of_neg`, `clock_proj_mem`, `commute` of `DiamondSetup` | (5.2); the sentences after (5.2), before (5.20) and before (5.21) | Asserted. The clock is constructed on `K_A` only, (4.26), (4.27), (C.11), (C.13) (F6). Added 2026-11-26 |
 | H17 | The area operator is a self-adjoint operator on `H_omega`, with `K_A` in its eigenspace for the value `A`. In Lean: fields `area`, `area_exhausts`, `area_tendsto_atBot`, `area_proj_of_lt`, `area_proj_area₀` of `DiamondSetup` | (4.12) to (4.15); `A = A 1` before (4.24) | Presupposed: introduced as the boost generator on prepared states before `H_omega` is built (F6). Added 2026-11-26 |
@@ -390,4 +406,4 @@ References the register depends on, from the paper's bibliography:
 
 - The licence is MIT (2026-11-26). `linter.style.header` is on again with its licence line set to MIT, so every linter in Mathlib's standard set is now active. The file headers name the git author as copyright holder and author; which proofs were written by subagents is recorded under "How the paper was read", and the commit history records the co-authorship.
 - The comparison of (5.69) with Sen's ensembles is made in F9. Reference [71] of the paper (Bastianelli, Bonezzi, Melis), the stated source of the coefficient in (5.67c), has not been read.
-- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/` and for the definitions in `QuantGrav/Diamond/Setup.lean`. It is outstanding for `ClockWeightIntegral.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.
+- Second-reader review is done for the WP1-a to WP1-e files in `QuantGrav/Elementary/` and for the definitions in `QuantGrav/Diamond/Setup.lean`. It is outstanding for `ClockWeightIntegral.lean`, `ClockLowerBound.lean`, `QuantGrav/Entropy/SenComparison.lean`, `QuantGrav/Diamond/FiniteDim.lean`, `QuantGrav/OperatorAlgebra/`, and the reading of the paper in F2.

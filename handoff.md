@@ -2,7 +2,7 @@
 
 Date: 2026-11-26
 Owner: Michael
-Status: first session done on 2026-11-26. WP0 is set up, WP1-a to WP1-e are proved (WP1-f is not), and Section 5 below is corrected. Findings and the current hypothesis register are in `FIDELITY.md`. This document remains the brief for whoever (person or agent) picks up the work. An independent review of WP1 was done the same day; the next steps are in Section 13.
+Status: first session done on 2026-11-26. WP0 is set up, WP1-a to WP1-g are proved, and Section 5 below is corrected. Findings and the current hypothesis register are in `FIDELITY.md`. This document remains the brief for whoever (person or agent) picks up the work. An independent review of WP1 was done the same day; the next steps are in Section 13.
 
 ---
 
@@ -127,7 +127,7 @@ Low risk. Good first targets and a calibration of tooling.
 - **WP1-d (5.68, 5.69).** For `q != 1`: `q/(2(1-q)) - 1/2 = 106/45  <->  q = 257/302`.
 - **WP1-e (5.61, footnote 23).** For `x^2 != 1`: `q = 2x^2/(1+x^2)` implies `q/(2(1-q)) = x^2/(1-x^2)`.
   Derived consequence to record: `q = 257/302` forces `x^2 = 257/347`, `x ~ 0.8606`, where `x = (1-eps) r_h / l`. Per extraction the paper does not justify this ratio. See H8.
-- **WP1-f (footnote 8, 3.27).** `(1-eps) sqrt(A/4pi) <= mean clock reading`, by Cauchy-Schwarz on the corner sphere. Needs the exact definition from 3.27 before it can be stated.
+- **WP1-f (footnote 8, 3.27).** `(1-eps) sqrt(A/4pi) <= mean clock reading`, by Cauchy-Schwarz on the corner sphere. Needs the exact definition from 3.27 before it can be stated. Done on 2026-11-26 in `QuantGrav/Elementary/ClockLowerBound.lean`, with the average of (3.28) read from the TeX.
 
 Statement sketches. **Not compiled. Check all names against the pinned Mathlib.**
 
@@ -396,6 +396,7 @@ Draft a short note. Michael decides whether to send it.
 - CI: GitHub Actions cannot complete on this repository because the runner does not have enough disk space (Michael, 2026-11-26). The gates are run locally before each commit: `bash scripts/check_forbidden.sh` and `lake build --wfail`.
 - Step 0.7: done. Licence is MIT (Michael, 2026-11-26). `LICENSE` is added, `lakefile.toml` has `license = "MIT"`, the header linter is on again with its licence line set to MIT through the option `linter.style.header.license`, and every Lean file under `QuantGrav/` carries the header. The copyright holder and the `Authors:` line are the git author name; change them in `LICENSE` and the file headers if that is not what is wanted.
 - Step 6: drafted, not sent. `notes/note-to-author-draft.md` has six questions: the five listed in Step 6, plus how the clock is defined on `H_omega` outside `K_A` (finding F6), with the choice among Sen's ensembles folded into the question about `q` (finding F9). The file lists what to settle before sending. Michael decides whether to send it.
+- WP1-f: done (2026-11-26). `QuantGrav/Elementary/ClockLowerBound.lean` proves footnote 8, `(1 - eps) sqrt(A/(4 pi)) <= mean clock reading`, together with its steps: nonnegativity of the focusing term (3.26c), the bound per generator (3.27), Cauchy-Schwarz on the sphere, and the equality case. These are the classical forms of (5.21a) to (5.21c); the operator inequalities remain H14 and H14a. With this, every item listed under WP1 in Section 6 is proved, and WP1-g from Step 2 as well.
 - Steps 0.5 and 0.6 and Step 4: not started.
 
 ### Order for the next session

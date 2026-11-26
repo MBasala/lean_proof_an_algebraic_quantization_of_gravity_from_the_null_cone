@@ -7,6 +7,7 @@ module
 
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.FiniteDim
+public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
 public import QuantGrav.Elementary.LogCoefficient
@@ -254,3 +255,31 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.trace_log_prefactor_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.trace_log_prefactor_eq
+
+/-- info: 'QuantGrav.focusing_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.focusing_nonneg
+
+/-- info: 'QuantGrav.clock_reading_ge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.clock_reading_ge
+
+/-- info: 'QuantGrav.sq_integral_le_measure_mul_integral_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sq_integral_le_measure_mul_integral_sq
+
+/-- info: 'QuantGrav.clock_mean_ge_area_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.clock_mean_ge_area_div
+
+/-- info: 'QuantGrav.clock_mean_ge' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.clock_mean_ge
+
+/-- info: 'QuantGrav.clock_mean_ge_of_focusing' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.clock_mean_ge_of_focusing
+
+/-- info: 'QuantGrav.clock_mean_eq_of_const' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.clock_mean_eq_of_const
