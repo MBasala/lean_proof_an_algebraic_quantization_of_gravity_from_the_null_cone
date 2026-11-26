@@ -6,6 +6,8 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `FIDELITY.md`: each formal statement paired with the paper's equation, findings from reading the paper, and the hypothesis register.
 - `QuantGrav/Elementary/`: WP1, self-contained analytic statements.
 - `QuantGrav/Diamond/FiniteDim.lean`: finite dimension from bounded partial traces (finding F2).
+- `QuantGrav/Diamond/ClosedCuts.lean`: what open gluing does not give for closed cuts, and a weaker hypothesis (H3c) that would suffice for finite dimension (finding F10).
+- `QuantGrav/Diamond/OrderOfExhaustion.lean`: a model in which closed partial sums depend on the order in which the cuts exhaust the basis (finding F10).
 - `QuantGrav/Diamond/Setup.lean`: the objects of Sec 5.1 and 5.2 (clock, area, `K_A`, `Omega_A`) as a structure, reviewed against the paper.
 - `QuantGrav/Diamond/ClockHypotheses.lean`: first consequences of H1, H13 and H14, and models showing what they do not imply.
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.

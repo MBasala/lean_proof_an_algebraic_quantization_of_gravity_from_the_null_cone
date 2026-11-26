@@ -8,6 +8,7 @@ module
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
 public import QuantGrav.Diamond.FiniteDim
+public import QuantGrav.Diamond.OrderOfExhaustion
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
@@ -321,3 +322,47 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_H13_H14_diamondSpace_eq_top' depen
 /-- info: 'QuantGrav.re_pair_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.re_pair_amplitude
+
+/-- info: 'QuantGrav.closedAmplitude_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.closedAmplitude_one
+
+/-- info: 'QuantGrav.IsIncreasingExhaustion.tendsto_sum_inner_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.IsIncreasingExhaustion.tendsto_sum_inner_smul
+
+/-- info: 'QuantGrav.IsIncreasingExhaustion.tendsto_open_cut_sum' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.IsIncreasingExhaustion.tendsto_open_cut_sum
+
+/-- info: 'QuantGrav.basisFlip_apply' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.basisFlip_apply
+
+/-- info: 'QuantGrav.closedAmplitude_basisFlip' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.closedAmplitude_basisFlip
+
+/-- info: 'QuantGrav.flipCutAmplitude_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.flipCutAmplitude_eq
+
+/-- info: 'QuantGrav.flipCutAmplitude_five_limits' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.flipCutAmplitude_five_limits
+
+/-- info: 'QuantGrav.isIncreasingExhaustion_five_routes' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.isIncreasingExhaustion_five_routes
+
+/-- info: 'QuantGrav.flipCutResponse_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.flipCutResponse_eq
+
+/-- info: 'QuantGrav.flipCutAmplitude_eq_trace_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.flipCutAmplitude_eq_trace_mul
+
+/-- info: 'QuantGrav.abs_flipCutResponse_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.abs_flipCutResponse_le_iff

@@ -46,7 +46,8 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
 * **H3b.** With the insertion `X` of (5.37a): the partial sums `Z_P[X]` over cycle-closed
   projections converge to `Z[X]`.
   Paper: (5.38), Figure 30, (4.29).
-  Status: prose only.
+  Status: prose only. It does not follow from open gluing, from `P → 1` strongly, or from the
+  left inequality of (5.37b): see the model in `Diamond/OrderOfExhaustion.lean`.
 * **H3c.** The closed amplitudes `Z_P[X]` are bounded below along the paper's cuts of small
   response. Weaker than H3b, and enough for finite dimension without H4.
   Paper: not stated.
