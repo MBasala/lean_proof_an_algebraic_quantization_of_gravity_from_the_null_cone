@@ -9,9 +9,9 @@ Subject: Questions from a Lean formalization of arXiv:2611.34924
 
 Dear Venkatesa Chandrasekaran,
 
-I am formalizing the mathematical skeleton of your paper in Lean 4 with Mathlib, with every unproved input as a named hypothesis. So far only elementary statements are machine-checked: (4.29) to (4.34), (5.17), (5.56), (5.57a), (C.21), the bound (5.32) in abstract form, and the arithmetic of (5.61), (5.68) and (5.69). None of the headline claims is. The development was written with the help of an AI model and is checked by the Lean kernel.
+I am formalizing the mathematical skeleton of your paper in Lean 4 with Mathlib, with every unproved input as a named hypothesis. So far only elementary statements are machine-checked: (4.29) to (4.34), (5.17), (5.39c), (5.50), (5.56), (5.57a), (C.21), the bound (5.32) in abstract form, and the arithmetic of (5.61), (5.68) and (5.69). None of the headline claims is. The development was written with the help of an AI model and is checked by the Lean kernel.
 
-Making the definitions precise raised seven questions I could not settle from the text. I would be grateful for your view on any of them.
+Making the definitions precise raised eight questions I could not settle from the text. I would be grateful for your view on any of them.
 
 1. The clock on H_ω. The clock is constructed on K_A by the form (4.27) and (C.11) to (C.13); (5.2) then applies its spectral projection on H_ω. How is the clock defined on vectors of H_ω outside K_A, and why does it commute with the area operator there? As I read it, the construction determines P_D(A) K_A but not the rest of H_D.
 
@@ -26,6 +26,8 @@ Making the definitions precise raised seven questions I could not settle from th
 6. Records. The acknowledgements say several calculations and proofs were developed with an AI model. Are records of those derivations, or any formal artifacts, available?
 
 7. The resolution. The steps that control the focusing in the argument for (5.19) are made at fixed angular and radial resolution, and the Wigner function (C.15a) is written for a finite set of canonical pairs. Is the resolution removed, and are the estimates uniform in it? In a model with the variance 1/(2sk) of (4.32) and a cost growing like k² per mode, as (D.41) suggests, the mean of an unsubtracted positive quadratic form over the first N radial modes grows like N²/s, and the probability that it stays below any bound tends to zero. How is the focusing operator (4.22) defined when all modes are included: unsubtracted, as its positivity in (5.21) requires, or counted by occupation numbers, as in Appendix D.3?
+
+8. The states behind the entropy. With the trace of (5.39b) and (E.15), the entropy (5.50) is at most log dim H_D, and footnote 24 gives exp[a s_* + o(s_*)] orthogonal states below area a s_*. (D.46c) bounds the graviton states at fixed area by exp[C(1 + (s Q_*)^{3/4})], with the corner data fixed. If that also bounds the multiplicity of each area eigenvalue in (5.40), there must be exp[a s_* + o(s_*)] distinct area eigenvalues below a s_*, which I have checked formally. Is that the intended picture, or do the states sit at fewer areas, in excitations of the corner variables that d(s) does not count? And in (D.48), is each graviton state at area s meant to stand for e^s orthogonal states of weight e^{-s} k_a(s)? That is what the two formulas give when read with the ordinary trace.
 
 I would be glad to share the Lean files.
 
@@ -43,8 +45,9 @@ Michael Basala
 | 5 | Finding F9; `log_coefficient_roundtrip`; `QuantGrav/Entropy/SenComparison.lean` |
 | 6 | The paper's acknowledgements (`main.tex` line 2400); `handoff.md` Section 2 |
 | 7 | Finding F11; candidate register entry H19; `QuantGrav/Elementary/FocusingDivergence.lean`, `QuantGrav/Elementary/GaussianModeLimits.lean`, `QuantGrav/Diamond/ClockDivergence.lean` |
+| 8 | Finding F13; register entries H10, H11, H12; `QuantGrav/Entropy/GibbsAccounting.lean`, `QuantGrav/Entropy/BandCounting.lean`, `QuantGrav/Entropy/LogLevelsModel.lean` |
 
-Questions 1 to 5 of `handoff.md` Section 13, Step 6 are questions 4, 5, 3, 2 and 6 here. Question 1 here is new, from finding F6. The ensemble part of question 5 is new, from finding F9. Question 7 is new, from finding F11 (break attempt B1).
+Questions 1 to 5 of `handoff.md` Section 13, Step 6 are questions 4, 5, 3, 2 and 6 here. Question 1 here is new, from finding F6. The ensemble part of question 5 is new, from finding F9. Question 7 is new, from finding F11 (break attempt B1). Question 8 is new, from finding F13 (break attempt B2).
 
 ## To settle before sending
 

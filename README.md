@@ -13,6 +13,9 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Diamond/ClockDivergence.lean`: a conditional criterion under which the incoming state has no finite clock reading, with the Gaussian model behind it in `QuantGrav/Elementary/` (finding F11).
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.
 - `QuantGrav/Entropy/ClockMoments.lean`: the moment identities of Sec 5.3, and why footnote 23 and (5.68) do not conflict (finding F3).
+- `QuantGrav/Entropy/GibbsAccounting.lean`: the entropy identities (5.39c) and (5.50) for the ordinary trace, and the accounting lemma: with multiplicities at most `D` and `m` distinct area eigenvalues, `S <= log m + log D` (finding F13).
+- `QuantGrav/Entropy/BandCounting.lean`: the step from (5.63) to (5.64) in footnote 24, and the number of distinct area eigenvalues that a bound on the multiplicities would force.
+- `QuantGrav/Entropy/LogLevelsModel.lean`: a spectrum with one state per level that satisfies footnote 24, so the footnote and a multiplicity bound do not conflict.
 - `QuantGrav/Entropy/SenComparison.lean`: the paper's logarithmic coefficient compared with the three ensembles of Sen's paper.
 - `QuantGrav/Hypotheses.lean`: the hypothesis register, with formal statements of H1, H13 and H14.
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.

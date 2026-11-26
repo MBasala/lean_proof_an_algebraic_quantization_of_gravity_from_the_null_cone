@@ -76,14 +76,20 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Status: prose only.
 * **H10.** `log d(s) ≲ 1 + (s Q_*)^(3/4)`.
   Paper: (D.45a) to (D.46c).
-  Status: prose only.
+  Status: prose only. `d(s)` counts graviton states at fixed area, at one loop in flat spacetime
+  and with the corner data held fixed. The paper does not relate it to the multiplicities of the
+  area eigenvalues of (5.40). What a bound on those multiplicities would force is in
+  `Entropy/BandCounting.lean`.
 * **H11.** Each weight `k_a(s)` carries a disk factor `exp(s)`.
   Paper: paragraph above (D.48), ref [51].
-  Status: prose only.
+  Status: prose only. The Cauchy–Schwarz step of (D.49) is
+  `sq_sum_le_sum_exp_mul_sum_exp_neg_mul_sq` in `Entropy/GibbsAccounting.lean`.
 * **H12.** Type I with integer weights; Euclidean to Lorentzian converse.
-  Paper: App E.2, ref [36], not re-read.
-  Status: prose only. App E.3 verifies its finiteness condition for the causal diamond by citing
-  (5.39c), so App E does not support Sec 5.2 independently.
+  Paper: App E.2, ref [36]. App E.2 and E.3 were read on 2026-11-26; ref [36] was not.
+  Status: prose only. The integer weights are those of the Euclidean theorem, (E.12). In App E.3
+  the paper's own trace is the ordinary trace on `H_D`, (E.15), with no sector weights. App E.3
+  verifies its finiteness condition for the causal diamond by citing (5.39c), so App E does not
+  support Sec 5.2 independently.
 * **H13.** The clock (4.27) is densely defined on `K_A`.
   Paper: fn 14, the paragraph after (C.17).
   Status: formal: `DiamondSetup.H13`. The rest of the earlier entry (the clock exists as a

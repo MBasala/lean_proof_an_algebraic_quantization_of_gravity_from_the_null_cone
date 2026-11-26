@@ -64,7 +64,7 @@ Section boundaries and equation ranges below were rebuilt on 2026-11-26 from the
 | Section | Pages | Equations | Content | Read? | Plan |
 |---|---|---|---|---|---|
 | 2.1 | 6-8 | 2.1 to 2.9d | JT warm-up: gravitational clock on a finite null cone | No | Optional later |
-| 2.2 | 8-10 | 2.10a to 2.17b | JT quantization and gluing; infinitely many orthogonal states with identical clock statistics; infinite closed trace (2.17b) | (2.17) and its paragraph only | Optional later |
+| 2.2 | 8-10 | 2.10a to 2.17b | JT quantization and gluing; infinitely many orthogonal states with identical clock statistics; infinite closed trace (2.17b) | (2.17) with its paragraph, and line 320 | Optional later |
 | 3.1 | 11-14 | 3.1 to 3.16 | First order gravity; constrained BF action; vacuum equations | No | Axiomatize outputs |
 | 3.2 | 14-17 | 3.17a to 3.31 | Null initial data; clock reading `u_*` (3.27), angular average (3.28); fn 8 | fn 8 and (3.27) only | Axiomatize outputs |
 | 3.3 | 18-19 | 3.32 to 3.45 | Symplectic form with edge modes; canonical pairs (3.39, 3.42, 3.43) | No | Axiomatize outputs |
@@ -78,7 +78,7 @@ Section boundaries and equation ranges below were rebuilt on 2026-11-26 from the
 | 5.1 | 35-38 | 5.1 to 5.20 | `H_D = P_D H_omega` (5.1, 5.2); existence argument (5.4 to 5.19); spanning statement (5.20) | Yes | WP4 |
 | 5.2 | 38-45 | 5.21a to 5.49 | Area bound (5.21, 5.30a); boost weight (5.22, 5.23); trace-distance bound (5.32); contradiction (5.37, 5.38); thermal trace (5.39); AdS boundary spectrum (5.42 to 5.49) | Yes | WP4 |
 | 5.3 | 45-49 | 5.50 to 5.69 | Entropy (5.50); marginal trapping (5.51); `q` (5.54); `log Z` (5.56 to 5.58); entropy formula (5.65); one-loop coefficient (5.66, 5.67); `q` value (5.68, 5.69); fn 23 with (5.60, 5.61) | Yes | WP5 |
-| 5.4 | 49-51 | 5.70 to 5.77b | Spatial topology and null states | No | Out of scope |
+| 5.4 | 49-51 | 5.70 to 5.77b | Spatial topology and null states; unit weight for each rank one projection in the physical trace (line 2141) | Line 2141 only | Out of scope |
 | 6.1 | 52-53 | 6.1a to 6.5 | Classical solution | No | Out of scope |
 | 6.2 | 53-54 | 6.6 to 6.16 | Graviton fluctuations and backreaction | No | Out of scope |
 | App A | 54-59 | A.1 to A.42 | Null constraints and symplectic reduction | No | Out of scope |
@@ -90,8 +90,8 @@ Section boundaries and equation ranges below were rebuilt on 2026-11-26 from the
 | D.2 | 70-73 | D.13 to D.36 | Corner boosts; proof of (5.32) in (D.22, D.23); cycle construction (D.24, D.25); remainder estimate (D.36) | Yes | WP4 inputs, H4 |
 | D.3 | 73-76 | D.37 to D.55 | Focusing and graviton state count (D.45, D.46); replica ratio (D.47 to D.49) | Yes | WP4 inputs, H10, H11 |
 | E.1 | 76-77 | E.1a to E.5 | Conditions on amplitudes (the axioms); cut independence is condition 1, finiteness of closed amplitudes is in condition 5 | Yes | WP3 |
-| E.2 | 77-79 | E.6 to E.14c | Equivalence with the Euclidean formulation | No | WP3, H12 |
-| E.3 | 79-80 | E.15a to E.18 | Realization in first order gravity | (E.15), (E.17) and their paragraphs only | Deferred |
+| E.2 | 77-79 | E.6 to E.14c | Equivalence with the Euclidean formulation; integer weights of the Euclidean theorem (E.12) | Yes | WP3, H12 |
+| E.3 | 79-80 | E.15a to E.18 | Realization in first order gravity; closing is the ordinary trace (E.15) | Yes | Deferred |
 
 Corrections to the earlier map:
 
@@ -578,3 +578,17 @@ Written by the code session, in the format of 14.5.
 - Register: the rows H3, H3a, H3b and H3c now say this; finding F12 is new; the sentence in F2 that Sec 3.6 had not been read is replaced; the rows 2.2, 3.6, E.1 and E.3 of the paper map in Section 5 are brought up to date. Question 2 of `notes/note-to-author-draft.md` gains two sentences asking where the closed case is derived.
 - What it means for the paper: the step on which the finite-dimension argument turns is a principle the paper assumes for closed configurations, not one it derives.
 - Next in the order of 14.4 is B2.
+
+**B2 (2026-11-26). Outcome 3, consistent. Footnote 24 and (D.46c) do not contradict each other. What the paper leaves undetermined is where the states are.**
+
+- Work item 2, the one question: the trace in (5.56) is the ordinary trace on `H_D`. (5.39b) writes `Tr_{H_D}`; (5.50) is a von Neumann entropy on a finite dimensional space; the sentence after (5.56) counts states with equal `(s_i, u_i)` separately; line 2141 gives unit weight to each rank one projection; (E.15) evaluates closing as `Tr_{H_Sigma}`. The integer weights of register entry H12 are those of the Euclidean theorem the paper cites, (E.12), and E.3 assigns no weights to `H_D`.
+- A numbering point: in footnote 24 the count `dim(...) = exp[a s_* + o(s_*)]` is (5.64), and (5.63) is the cumulative probability. Section 14.2 above cites the count as (5.63). Checked in the TeX and in the PDF.
+- Work item 1, theorems. `QuantGrav/Entropy/GibbsAccounting.lean`: `gibbsEntropy_eq_mean_add_log` is (5.50), `card_eq_gibbsZ_mul_mean_exp` is (5.39c), `gibbsEntropy_le_log_card` is `S <= log d_D`, and the accounting lemma is `gibbsEntropy_le_log_card_levelValues_add_log`, with the product form `gibbsZ_mul_exp_mean_le_card_levelValues_mul`; `sq_sum_le_sum_exp_mul_sum_exp_neg_mul_sq` is the Cauchy-Schwarz step of (D.49). `QuantGrav/Entropy/BandCounting.lean`: `tendsto_log_card_levelsBelow_div` is footnote 24's step to (5.64), and `tendsto_log_card_image_levelsBelow_div` is the number of distinct levels a multiplicity bound forces, each with finite forms. `QuantGrav/Entropy/LogLevelsModel.lean`: a spectrum with one state per level that satisfies the footnote, ending in `tendsto_log_card_levelsBelow_logLevels`. 38 theorems, all pinned in `Audit.lean`. The proofs were written by three subagents from fixed statements; the types of all public declarations were compared before and after.
+- TeX read by the code session: lines 1834 to 1865, 1912 to 1931, 1962 to 2097, 3456 to 3555, 3596 to 3771, and 320, 1032 to 1034, 1445, 2141. An independent reader read the same blind and searched the whole TeX for statements about the area spectrum. The two readings agree.
+- What the accounting gives. With the ordinary trace, `S <= log d_D`, and (5.64) needs `exp[a s_* + o(s_*)]` orthogonal states below `a s_*`. If the multiplicities of the area eigenvalues are sub-exponential, there must be `exp[a s_* + o(s_*)]` distinct eigenvalues below `a s_*`. If the eigenvalues are few, the multiplicities must be of order `e^s`. The paper states neither, and gives no eigenvalue, spacing or multiplicity.
+- Why (D.46c) does not settle it: it bounds graviton states at fixed area, at one loop in flat spacetime with the corner data fixed, and App D.3 never relates `d(s)` to the eigenspaces of (5.40). The Fock space at fixed area also has excitations of the corner variables (line 1032).
+- The `e^s` of App D.3 is the action of a disk (line 3542). Read with an ordinary trace, (D.48) says each graviton state at area `s` stands for `e^s` orthonormal states of weight `e^{-s} k_a(s)`, and then the denominator of (D.49) is the number of states. The paper does not say this.
+- Why not outcome 1: the rule above asks for an ordinary trace, a multiplicity bound per area value, and a spectrum too sparse. The first is stated; the second is stated for graviton states only; the third is stated nowhere.
+- Register: the rows H10, H11 and H12 now say this, in `FIDELITY.md` and in the docstring of `Hypotheses.lean`. Finding F13 is new. No new entry: the count is a consequence of the statements of Sec 5.3, not a further input. Question 8 is added to `notes/note-to-author-draft.md`.
+- What it means for the paper: the entropy is asserted as a count of orthogonal states, and the paper does not show where those states are; they are not among the graviton states it counts, so they would have to be in an area spectrum or in corner excitations that it does not compute.
+- Track A item 3 is done by the same files: (5.39c), (5.50) and the accounting lemma. Next in the order of 14.4 are Track A items 1, 2 and 4. Items 1 and 2 are drafted on the branch `wp4-statement-draft`, which waits for review. Item 4 is not started.

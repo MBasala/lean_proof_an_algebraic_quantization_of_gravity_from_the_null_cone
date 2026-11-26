@@ -22,7 +22,10 @@ public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
+public import QuantGrav.Entropy.BandCounting
 public import QuantGrav.Entropy.ClockMoments
+public import QuantGrav.Entropy.GibbsAccounting
+public import QuantGrav.Entropy.LogLevelsModel
 public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.OperatorAlgebra.BoostBound
 public import QuantGrav.OperatorAlgebra.CutSums
@@ -537,3 +540,155 @@ info: 'QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero' depends o
 -/
 #guard_msgs in
 #print axioms QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero
+
+/-- info: 'QuantGrav.gibbsZ_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsZ_nonneg
+
+/-- info: 'QuantGrav.gibbsZ_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsZ_pos
+
+/-- info: 'QuantGrav.gibbsWeight_pos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsWeight_pos
+
+/-- info: 'QuantGrav.gibbsWeight_mul_gibbsZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsWeight_mul_gibbsZ
+
+/-- info: 'QuantGrav.sum_gibbsWeight' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sum_gibbsWeight
+
+/-- info: 'QuantGrav.gibbsEntropy_eq_mean_add_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsEntropy_eq_mean_add_log
+
+/-- info: 'QuantGrav.card_eq_gibbsZ_mul_mean_exp' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_eq_gibbsZ_mul_mean_exp
+
+/-- info: 'QuantGrav.gibbsZ_mul_exp_mean_le_card' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsZ_mul_exp_mean_le_card
+
+/-- info: 'QuantGrav.gibbsEntropy_le_log_card' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsEntropy_le_log_card
+
+/-- info: 'QuantGrav.sum_card_levelFiber' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sum_card_levelFiber
+
+/-- info: 'QuantGrav.card_levelValues_le_card' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_levelValues_le_card
+
+/-- info: 'QuantGrav.card_le_card_levelValues_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_le_card_levelValues_mul
+
+/-- info: 'QuantGrav.gibbsEntropy_le_log_card_levelValues_add_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsEntropy_le_log_card_levelValues_add_log
+
+/-- info: 'QuantGrav.gibbsZ_mul_exp_mean_le_card_levelValues_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsZ_mul_exp_mean_le_card_levelValues_mul
+
+/-- info: 'QuantGrav.inv_card_le_sum_sq_gibbsWeight' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.inv_card_le_sum_sq_gibbsWeight
+
+/-- info: 'QuantGrav.sq_sum_le_sum_exp_mul_sum_exp_neg_mul_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sq_sum_le_sum_exp_mul_sum_exp_neg_mul_sq
+
+/-- info: 'QuantGrav.levelBand_subset_levelsBelow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.levelBand_subset_levelsBelow
+
+/-- info: 'QuantGrav.gibbsProb_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsProb_nonneg
+
+/-- info: 'QuantGrav.gibbsProb_mul_gibbsZ' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsProb_mul_gibbsZ
+
+/-- info: 'QuantGrav.card_levelsBelow_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_levelsBelow_le
+
+/-- info: 'QuantGrav.gibbsProb_levelBand_mul_le_card' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsProb_levelBand_mul_le_card
+
+/-- info: 'QuantGrav.card_levelBand_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_levelBand_le
+
+/-- info: 'QuantGrav.card_le_card_image_mul_of_card_levelFiber_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_le_card_image_mul_of_card_levelFiber_le
+
+/-- info: 'QuantGrav.gibbsProb_levelBand_mul_le_card_image_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsProb_levelBand_mul_le_card_image_mul
+
+/-- info: 'QuantGrav.tendsto_log_card_levelsBelow_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_card_levelsBelow_div
+
+/-- info: 'QuantGrav.tendsto_log_card_image_levelsBelow_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_card_image_levelsBelow_div
+
+/-- info: 'QuantGrav.logLevels_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.logLevels_nonneg
+
+/-- info: 'QuantGrav.logLevels_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.logLevels_le
+
+/-- info: 'QuantGrav.logLevels_injective' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.logLevels_injective
+
+/-- info: 'QuantGrav.card_levelFiber_logLevels_le_one' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_levelFiber_logLevels_le_one
+
+/-- info: 'QuantGrav.gibbsZ_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsZ_logLevels
+
+/-- info: 'QuantGrav.gibbsZ_logLevels_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.gibbsZ_logLevels_le
+
+/-- info: 'QuantGrav.log_le_gibbsZ_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.log_le_gibbsZ_logLevels
+
+/-- info: 'QuantGrav.card_levelsBelow_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.card_levelsBelow_logLevels
+
+/-- info: 'QuantGrav.tendsto_log_gibbsZ_logLevels_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_gibbsZ_logLevels_div
+
+/-- info: 'QuantGrav.exists_le_gibbsProb_levelBand_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.exists_le_gibbsProb_levelBand_logLevels
+
+/-- info: 'QuantGrav.tendsto_log_card_levelsBelow_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_card_levelsBelow_logLevels
+
+/-- info: 'QuantGrav.tendsto_log_card_image_levelsBelow_logLevels' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.tendsto_log_card_image_levelsBelow_logLevels

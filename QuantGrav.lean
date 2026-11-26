@@ -20,7 +20,10 @@ public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
+public import QuantGrav.Entropy.BandCounting
 public import QuantGrav.Entropy.ClockMoments
+public import QuantGrav.Entropy.GibbsAccounting
+public import QuantGrav.Entropy.LogLevelsModel
 public import QuantGrav.Entropy.SenComparison
 public import QuantGrav.Hypotheses
 public import QuantGrav.OperatorAlgebra.BoostBound
