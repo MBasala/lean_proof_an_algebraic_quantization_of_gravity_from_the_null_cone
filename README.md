@@ -6,7 +6,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `FIDELITY.md`: each formal statement paired with the paper's equation, findings from reading the paper, and the hypothesis register.
 - `QuantGrav/Elementary/`: WP1, self-contained analytic statements.
 - `QuantGrav/Diamond/FiniteDim.lean`: finite dimension from bounded partial traces (finding F2).
-- `QuantGrav/Diamond/ClosedCuts.lean`: what open gluing does not give for closed cuts, and a weaker hypothesis (H3c) that would suffice for finite dimension (finding F10).
+- `QuantGrav/Diamond/ClosedCuts.lean`: what open gluing does not give for closed cuts, and a hypothesis weaker than H3b (H3c) that would suffice for finite dimension (finding F10).
 - `QuantGrav/Diamond/OrderOfExhaustion.lean`: a model in which closed partial sums depend on the order in which the cuts exhaust the basis (finding F10).
 - `QuantGrav/Diamond/Setup.lean`: the objects of Sec 5.1 and 5.2 (clock, area, `K_A`, `Omega_A`) as a structure, reviewed against the paper.
 - `QuantGrav/Diamond/ClockHypotheses.lean`: first consequences of H1, H13 and H14, and models showing what they do not imply.
@@ -22,6 +22,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Hypotheses.lean`: the hypothesis register, with formal statements of H1, H13 and H14.
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.
 - `paper/equation_index.tsv`: printed equation number, LaTeX label and `main.tex` line for every equation in the paper.
+- `notes/second-reader-review-2026-11-26.md`: a second reader's review of six files and four register items against the paper and against `FIDELITY.md`.
 - `notes/note-to-author-draft.md`: a draft of questions for the paper's author. Not sent.
 
 The paper's PDF and TeX source are not in the repository (its arXiv licence does not allow redistribution). To rebuild the index, put the PDF in the repository root, unpack the arXiv source into `paper/arxiv-src/`, and run `scripts/extract_pdf_text.py` and `scripts/tex_label_index.py`.

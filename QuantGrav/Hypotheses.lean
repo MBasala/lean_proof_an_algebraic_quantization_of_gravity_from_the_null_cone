@@ -48,11 +48,14 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Paper: (5.38), Figure 30, (4.29).
   Status: prose only. It does not follow from open gluing, from `P → 1` strongly, or from the
   left inequality of (5.37b): see the model in `Diamond/OrderOfExhaustion.lean`.
-* **H3c.** The closed amplitudes `Z_P[X]` are bounded below along the paper's cuts of small
-  response. Weaker than H3b, and enough for finite dimension without H4.
+* **H3c.** The closed amplitudes `Z_P[X]` are bounded below along the paper's cuts, whose
+  responses stay a fixed margin below `δ_η / 2`. Weaker than H3b, and enough for finite dimension
+  without H4. On those cuts it bounds the partial traces, so it is H3a restricted to them.
   Paper: not stated.
   Status: the abstract form is the hypothesis `hcuts` of
-  `finiteDimensional_of_cut_amplitude_bddBelow` in `Diamond/ClosedCuts.lean`; new on 2026-11-26.
+  `finiteDimensional_of_cut_amplitude_bddBelow` in `Diamond/ClosedCuts.lean`, with the margin
+  as `γ`; the relation to H3a is `sum_sq_norm_le_div_of_neg_le_cut_amplitude`; new on
+  2026-11-26.
 * **H4.** The boost-sensitive observable has `⟨Δ_η O⟩ > δ_η / 2` in the uncut preparation `C_b`.
   Paper: (5.36b), (5.37b), (D.26) to (D.36).
   Status: prose only.

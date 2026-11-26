@@ -61,8 +61,15 @@ spectrum these are the weighted sums of `u_i` and of `u_i²` (`firstMomentOf_mom
 ## What is not here
 
 That `Z` grows as a power of `ℓ` in the paper's theory is (5.58), which rests on the existence
-of the limit `q` (register entry H8). The step from exact power laws to asymptotic ones is not
-formalized.
+of the limit `q` (register entry H8); it is proved from that limit in
+`QuantGrav/Entropy/ClockTraceAsymptotics.lean`. The step from exact power laws to asymptotic
+ones in footnote 23 is not formalized.
+
+The paper's `x` is `(1 - ε) r_h / ℓ`. That it is the square root of the second-moment ratio is
+the first half of (5.60), which rests on the focusing inequality (5.21c) and on the mean time
+delay (5.53). `sum_sq_reading_bounds` supplies the error term; (5.53) is the paper's premise.
+(5.54a) and (5.57b) are not in this file; they are in `QuantGrav/Entropy/MeanAreaGrowth.lean`
+and `QuantGrav/Entropy/ClockTraceAsymptotics.lean`.
 -/
 
 @[expose] public section
@@ -440,8 +447,9 @@ theorem powerLaw_moment_ratios {p : ℝ} (hp : 0 < p) :
   rw [e1, e2, e3]
   refine ⟨?_, ?_, ?_⟩ <;> field_simp
 
-/-- Paper (5.54b), (5.54c): for `0 < q < 1` and `x ≥ 0` with `x² = q / (2 - q)`, the bounds
-`x² ≤ q ≤ x` hold, and `x < 1`, which is `ℓ(D) / r_h > 1 - ε`. -/
+/-- Consistent with (5.54b), (5.54c): for `0 < q < 1` and `x ≥ 0` with `x² = q / (2 - q)`, the
+bounds `x² ≤ q ≤ x` hold, and `x < 1`, which is `ℓ(D) / r_h > 1 - ε`. The paper derives those
+bounds from concavity and from focusing; here they follow from the relation of footnote 23. -/
 theorem sq_le_and_le_of_sq_eq_div {q x : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (hx : 0 ≤ x)
     (h : x ^ 2 = q / (2 - q)) : x ^ 2 ≤ q ∧ q ≤ x ∧ x < 1 := by
   have h2 : 0 < 2 - q := by linarith
@@ -463,7 +471,8 @@ theorem sq_le_and_le_of_sq_eq_div {q x : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (hx : 
 
 /-- The numbers for `q = 257 / 302`, the value of (5.68): the exponent of (5.58) is
 `q / (1 - q) = 257 / 45`; the second-moment ratio is `q / (2 - q) = 257 / 347`; and
-`q / (2 (1 - q)) - 1 = 167 / 90`. -/
+`q / (2 (1 - q)) - 1 = 167 / 90`. The last number is the exponent of the density of `s / s_*`
+implied by (5.63). It is not the paper's (5.69), which has `- 1/2` and gives `106 / 45`. -/
 theorem moment_ratios_of_q :
     ((257 : ℝ) / 302) / (1 - 257 / 302) = 257 / 45 ∧
       ((257 : ℝ) / 302) / (2 - 257 / 302) = 257 / 347 ∧

@@ -812,3 +812,7 @@ info: 'QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero' depends o
 /-- info: 'QuantGrav.tendsto_cutoffEntropy_sub_div_log_of_delay' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.tendsto_cutoffEntropy_sub_div_log_of_delay
+
+/-- info: 'QuantGrav.sum_sq_norm_le_div_of_neg_le_cut_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.sum_sq_norm_le_div_of_neg_le_cut_amplitude

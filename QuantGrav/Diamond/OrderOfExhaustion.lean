@@ -50,8 +50,9 @@ the closed amplitude of `δ F ⊗ F̄` divided by the partial trace, `2 n δ / (
 
 A sequence of cuts `P 0, P 1, …` is an increasing exhaustion (`IsIncreasingExhaustion`) if
 `P m ⊆ P n` for `m ≤ n` and every label lies in some `P n`. The paper's cuts grow in this way:
-they are finite unions of cycles of basis labels, and the paragraph before (5.37) states that
-`P → 1` strongly as the cycles are included.
+they are finite unions of cycles of basis labels, and the paragraph that supposes `H_D` infinite
+dimensional, two paragraphs before (5.37), states that `P → 1` strongly as the cycles are
+included.
 
 Results.
 
@@ -74,14 +75,26 @@ Results.
   their closed amplitudes are `0`, `-(w δ)` and tending to `-∞`. Those of the first two routes
   do not satisfy it.
 
+The margin. (5.37b) as displayed is not strict, and the three routes meet it differently. The
+route `(3 n, n)` has response exactly `δ / 2`. The route `(3 n + 2, n)` has response
+`2 n δ / (4 n + 2)`, which tends to `δ / 2`. Only the route `(7 n, n)` stays a fixed distance
+below the threshold, with response `δ / 4`. The paper's own cuts have a bound strictly below
+`δ_η / 2` that is the same for every cut (the sentence after (D.25)), and for cuts with such a
+margin `tendsto_cut_amplitude_atBot` of `QuantGrav/Diamond/ClosedCuts.lean` gives the limit
+`-∞` in every order. So the dependence on the order shown by the five routes is among cuts that
+have no uniform margin or that violate (5.37b). It does not occur among cuts built as the paper
+builds them.
+
 If the first family is read as the states inside the paper's narrow area interval and the second
 as the states outside it, then `twoFamilyCut (3 n) n` and `twoFamilyCut (7 n) n` are unions of
-`n` cycles of lengths `4` and `8` in the sense of the paragraph before (5.37): each cycle has
-one label outside the interval. This reading is not part of any formal statement.
+`n` cycles of lengths `4` and `8` in the sense of that paragraph: each cycle has one label
+outside the interval. Length `4` is the boundary case; the paper takes the cycle length as
+large as its bound needs. This reading is not part of any formal statement.
 
 In the model there is no uncut amplitude for the partial sums to converge to: `C† C = w` has
-infinite trace. The model shows that the closed partial sums have no limit independent of the
-exhaustion. It does not say which hypothesis fails in the paper's own setting.
+infinite trace. The model shows that, without a uniform margin, the closed partial sums have no
+limit independent of the exhaustion. It does not say which hypothesis fails in the paper's own
+setting.
 
 The model is a simplification of one described in an external audit of the paper; see
 `notes/external-audits-2026-11-26.md`, section 1.2 A. There the insertion arises from a boost.
