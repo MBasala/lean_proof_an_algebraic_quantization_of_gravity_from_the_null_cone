@@ -5,6 +5,7 @@ Authors: Michael Basala
 -/
 module
 
+public import QuantGrav.Diamond.AxiomFive
 public import QuantGrav.Diamond.ClockDivergence
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
@@ -816,3 +817,43 @@ info: 'QuantGrav.DiamondSetup.not_H1_of_forall_diamondProj_Ω_eq_zero' depends o
 /-- info: 'QuantGrav.sum_sq_norm_le_div_of_neg_le_cut_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.sum_sq_norm_le_div_of_neg_le_cut_amplitude
+
+/-- info: 'QuantGrav.finiteDimensional_of_card_orthonormal_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finiteDimensional_of_card_orthonormal_le
+
+/-- info: 'QuantGrav.finrank_le_of_card_orthonormal_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finrank_le_of_card_orthonormal_le
+
+/-- info: 'QuantGrav.finiteDimensional_iff_exists_card_orthonormal_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finiteDimensional_iff_exists_card_orthonormal_le
+
+/-- info: 'QuantGrav.norm_sum_inner_apply_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_sum_inner_apply_le
+
+/-- info: 'QuantGrav.norm_sum_inner_apply_le_finrank' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_sum_inner_apply_le_finrank
+
+/-- info: 'QuantGrav.norm_trace_le_finrank_mul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.norm_trace_le_finrank_mul
+
+/--
+info: 'QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_of_trace_area_proj_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_of_trace_area_proj_le
+
+/--
+info: 'QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_iff_exists_trace_area_proj_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_iff_exists_trace_area_proj_le

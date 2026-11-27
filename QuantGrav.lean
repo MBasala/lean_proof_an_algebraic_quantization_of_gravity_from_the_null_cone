@@ -1,6 +1,7 @@
 module
 
 public import QuantGrav.Audit
+public import QuantGrav.Diamond.AxiomFive
 public import QuantGrav.Diamond.ClockDivergence
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts

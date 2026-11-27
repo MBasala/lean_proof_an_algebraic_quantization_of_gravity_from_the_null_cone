@@ -94,7 +94,10 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Status: prose only. The integer weights are those of the Euclidean theorem, (E.12). In App E.3
   the paper's own trace is the ordinary trace on `H_D`, (E.15), with no sector weights. App E.3
   verifies its finiteness condition for the causal diamond by citing (5.39c), so App E does not
-  support Sec 5.2 independently.
+  support Sec 5.2 independently. Under the area bound that condition, in the form (E.7b), is
+  equivalent to finite dimension:
+  `DiamondSetup.finiteDimensional_diamondSpace_iff_exists_trace_area_proj_le` in
+  `Diamond/AxiomFive.lean`.
 * **H13.** The clock (4.27) is densely defined on `K_A`.
   Paper: fn 14, the paragraph after (C.17).
   Status: formal: `DiamondSetup.H13`. The rest of the earlier entry (the clock exists as a
