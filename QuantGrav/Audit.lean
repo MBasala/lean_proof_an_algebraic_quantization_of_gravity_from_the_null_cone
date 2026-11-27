@@ -9,8 +9,12 @@ public import QuantGrav.Diamond.AxiomFive
 public import QuantGrav.Diamond.ClockDivergence
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
+public import QuantGrav.Diamond.ConfigurationOnly
 public import QuantGrav.Diamond.FiniteDim
+public import QuantGrav.Diamond.FixedResolution
+public import QuantGrav.Diamond.IntervalModel
 public import QuantGrav.Diamond.OrderOfExhaustion
+public import QuantGrav.Diamond.WeylPairModel
 public import QuantGrav.Elementary.CauchySchlomilch
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
@@ -22,6 +26,7 @@ public import QuantGrav.Elementary.GaussianQuadraticForm
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.LogIntegralLimit
 public import QuantGrav.Elementary.MonotoneLogGrowth
+public import QuantGrav.Elementary.OccupationCount
 public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
@@ -895,3 +900,138 @@ info: 'QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_iff_exists_trace_ar
 /-- info: 'QuantGrav.integral_sum_exp_neg_mul_areaWindow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.integral_sum_exp_neg_mul_areaWindow
+
+/-- info: 'QuantGrav.finite_setOf_sum_mul_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finite_setOf_sum_mul_le
+
+/-- info: 'QuantGrav.ncard_setOf_sum_mul_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.ncard_setOf_sum_mul_le
+
+/-- info: 'QuantGrav.finrank_le_card_of_le_closure_span' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finrank_le_card_of_le_closure_span
+
+/-- info: 'QuantGrav.finrank_le_of_le_closure_span_occupations' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.finrank_le_of_le_closure_span_occupations
+
+/-- info: 'QuantGrav.not_finiteDimensional_span_range_of_infinite' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.not_finiteDimensional_span_range_of_infinite
+
+/--
+info: 'QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_of_le_closure_span_occupations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_of_le_closure_span_occupations
+
+/--
+info: 'QuantGrav.DiamondSetup.finiteDimensional_fixedAreaDiamondSpace_of_le_closure_span_occupations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+open QuantGrav in
+#print axioms DiamondSetup.finiteDimensional_fixedAreaDiamondSpace_of_le_closure_span_occupations
+
+/-- info: 'QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq
+
+/--
+info: 'QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq_closure_span_occupations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq_closure_span_occupations
+
+/-- info: 'QuantGrav.eq_bot_or_not_finiteDimensional_of_forall_ne_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.eq_bot_or_not_finiteDimensional_of_forall_ne_smul
+
+/-- info: 'QuantGrav.IsWeylPairOn.eq_zero_of_apply_eq_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.IsWeylPairOn.eq_zero_of_apply_eq_smul
+
+/--
+info: 'QuantGrav.DiamondSetup.fixedAreaDiamondSpace_eq_bot_or_not_finiteDimensional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.fixedAreaDiamondSpace_eq_bot_or_not_finiteDimensional
+
+/--
+info: 'QuantGrav.DiamondSetup.not_finiteDimensional_of_diamondProj_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.not_finiteDimensional_of_diamondProj_ne_zero
+
+/--
+info: 'QuantGrav.DiamondSetup.H1.exists_forall_not_finiteDimensional_diamondSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.H1.exists_forall_not_finiteDimensional_diamondSpace
+
+/--
+info: 'QuantGrav.DiamondSetup.fixedAreaDiamondSpace_eq_bot_or_not_finiteDimensional_of_isWeylPairOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+open QuantGrav in
+#print axioms DiamondSetup.fixedAreaDiamondSpace_eq_bot_or_not_finiteDimensional_of_isWeylPairOn
+
+/--
+info: 'QuantGrav.DiamondSetup.not_finiteDimensional_of_diamondProj_ne_zero_of_isWeylPairOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.not_finiteDimensional_of_diamondProj_ne_zero_of_isWeylPairOn
+
+/--
+info: 'QuantGrav.DiamondSetup.H1.exists_forall_not_finiteDimensional_diamondSpace_of_isWeylPairOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+open QuantGrav in
+#print axioms DiamondSetup.H1.exists_forall_not_finiteDimensional_diamondSpace_of_isWeylPairOn
+
+/-- info: 'QuantGrav.mem_intervalSpace_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.mem_intervalSpace_iff
+
+/-- info: 'QuantGrav.isClosed_intervalSpace' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.isClosed_intervalSpace
+
+/-- info: 'QuantGrav.not_finiteDimensional_intervalSpace' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.not_finiteDimensional_intervalSpace
+
+/--
+info: 'QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq_intervalSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq_intervalSpace
+
+/-- info: 'QuantGrav.exists_isWeylPairOn_top' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.exists_isWeylPairOn_top
+
+/-- info: 'QuantGrav.DiamondSetup.exists_setup_H1_isWeylPairOn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.DiamondSetup.exists_setup_H1_isWeylPairOn

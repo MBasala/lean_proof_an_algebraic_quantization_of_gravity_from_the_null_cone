@@ -5,9 +5,13 @@ public import QuantGrav.Diamond.AxiomFive
 public import QuantGrav.Diamond.ClockDivergence
 public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
+public import QuantGrav.Diamond.ConfigurationOnly
 public import QuantGrav.Diamond.FiniteDim
+public import QuantGrav.Diamond.FixedResolution
+public import QuantGrav.Diamond.IntervalModel
 public import QuantGrav.Diamond.OrderOfExhaustion
 public import QuantGrav.Diamond.Setup
+public import QuantGrav.Diamond.WeylPairModel
 public import QuantGrav.Elementary.CauchySchlomilch
 public import QuantGrav.Elementary.ClausenAsymptotics
 public import QuantGrav.Elementary.ClockLowerBound
@@ -20,6 +24,7 @@ public import QuantGrav.Elementary.GaussianQuadraticForm
 public import QuantGrav.Elementary.LogCoefficient
 public import QuantGrav.Elementary.LogIntegralLimit
 public import QuantGrav.Elementary.MonotoneLogGrowth
+public import QuantGrav.Elementary.OccupationCount
 public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog

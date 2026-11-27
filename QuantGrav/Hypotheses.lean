@@ -143,6 +143,18 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Status: the hypothesis `hdelay` of `tendsto_log_cutoffMeanArea_div_log` in
   `Entropy/MeanAreaGrowth.lean`, in the weaker form `o(ℓ)`. With the area bound (H14) and `q > 0`
   it gives (5.59), and through it (5.62) and (5.65); new on 2026-11-26.
+* **H21 (candidate).** The corner sector: the bound on the reading leaves the corner variables at
+  fixed area with finitely many states. Necessary for it: no operator that is the first member of
+  a Weyl pair on `K_A`, such as `e^{i t q̂}` for a canonical pair, commutes with the clock
+  projections on `K_A`.
+  Paper: not stated. The clock (4.26) contains the distribution of area over `S`, through (4.23);
+  the relative boost conjugate to the area density, (A.16), (A.28), does not occur in (4.22) to
+  (4.27). App D.3 holds the corner data fixed.
+  Status: the sufficient form is the finite label set of
+  `DiamondSetup.finiteDimensional_diamondSpace_of_le_closure_span_occupations` in
+  `Diamond/FixedResolution.lean`; the necessary form is the negation of the hypothesis `hcomm` of
+  `DiamondSetup.H1.exists_forall_not_finiteDimensional_diamondSpace_of_isWeylPairOn` in
+  `Diamond/ConfigurationOnly.lean`; new on 2026-11-26.
 
 Entries are never deleted. A discharged entry keeps its row and links to the proof.
 -/

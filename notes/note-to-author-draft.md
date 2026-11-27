@@ -11,7 +11,7 @@ Dear Venkatesa Chandrasekaran,
 
 I am formalizing the mathematical skeleton of your paper in Lean 4 with Mathlib, with every unproved input as a named hypothesis. So far only elementary statements are machine-checked: (4.29) to (4.34), (5.17), (5.39c), (5.50), (5.56), (5.57a), (C.21), the bound (5.32) in abstract form, and the arithmetic of (5.61), (5.68) and (5.69). None of the headline claims is. The development was written with the help of an AI model and is checked by the Lean kernel.
 
-Making the definitions precise raised eight questions I could not settle from the text. I would be grateful for your view on any of them.
+Making the definitions precise raised nine questions I could not settle from the text. I would be grateful for your view on any of them.
 
 1. The clock on H_ω. The clock is constructed on K_A by the form (4.27) and (C.11) to (C.13); (5.2) then applies its spectral projection on H_ω. How is the clock defined on vectors of H_ω outside K_A, and why does it commute with the area operator there? As I read it, the construction determines P_D(A) K_A but not the rest of H_D.
 
@@ -28,6 +28,8 @@ Making the definitions precise raised eight questions I could not settle from th
 7. The resolution. The steps that control the focusing in the argument for (5.19) are made at fixed angular and radial resolution, and the Wigner function (C.15a) is written for a finite set of canonical pairs. Is the resolution removed, and are the estimates uniform in it? In a model with the variance 1/(2sk) of (4.32) and a cost growing like k² per mode, as (D.41) suggests, the mean of an unsubtracted positive quadratic form over the first N radial modes grows like N²/s, and the probability that it stays below any bound tends to zero. How is the focusing operator (4.22) defined when all modes are included: unsubtracted, as its positivity in (5.21) requires, or counted by occupation numbers, as in Appendix D.3?
 
 8. The states behind the entropy. With the trace of (5.39b) and (E.15), the entropy (5.50) is at most log dim H_D, and footnote 24 gives exp[a s_* + o(s_*)] orthogonal states below area a s_*. (D.46c) bounds the graviton states at fixed area by exp[C(1 + (s Q_*)^{3/4})], with the corner data fixed. If that also bounds the multiplicity of each area eigenvalue in (5.40), there must be exp[a s_* + o(s_*)] distinct area eigenvalues below a s_*, which I have checked formally. Is that the intended picture, or do the states sit at fewer areas, in excitations of the corner variables that d(s) does not count? And in (D.48), is each graviton state at area s meant to stand for e^s orthogonal states of weight e^{-s} k_a(s)? That is what the two formulas give when read with the ordinary trace.
+
+9. The corner variables and the clock. Sec 4.2 represents every canonical pair of K_A, the corner variables on S among them, by multiplication and shift on L²(ℝ, dq_j), and (4.20) gives the Weyl relations. By (A.16) and (A.28) the area density K(y) is conjugate to the relative boost λ − γ, and in (A.14) that boost appears only in this pairing. The clock (4.26) contains the area density, through f_S of (4.23), and the conformal metric; I do not find the relative boost in (4.22) to (4.27). You say that the clock commutes with the total area. Does its spectral projection P_D also commute, on K_A, with e^{itX} for X a smearing of the area density against a non-constant function on S? If it does, P_D(A) K_A cannot be both nonzero and finite-dimensional: I have checked formally that a subspace invariant under one member of a Weyl pair is zero or infinite-dimensional, so with (5.19) H_D would be infinite-dimensional. If it does not, where does the relative boost enter the clock, or the definition of H_D? A related point: App D.3 counts graviton states with the corner data fixed, and with a bound Q_* on the cost that count is finite. What bounds the excitations of the corner variables at fixed area, and how are f_S(y) and the conformal metric written in the pairs (q_j, p_j)?
 
 I would be glad to share the Lean files.
 
@@ -46,8 +48,9 @@ Michael Basala
 | 6 | The paper's acknowledgements (`main.tex` line 2400); `handoff.md` Section 2 |
 | 7 | Finding F11; candidate register entry H19; `QuantGrav/Elementary/FocusingDivergence.lean`, `QuantGrav/Elementary/GaussianModeLimits.lean`, `QuantGrav/Diamond/ClockDivergence.lean` |
 | 8 | Finding F13; register entries H10, H11, H12; `QuantGrav/Entropy/GibbsAccounting.lean`, `QuantGrav/Entropy/BandCounting.lean`, `QuantGrav/Entropy/LogLevelsModel.lean` |
+| 9 | Finding F14; candidate register entry H21; `QuantGrav/Diamond/ConfigurationOnly.lean`, `QuantGrav/Diamond/FixedResolution.lean`, `QuantGrav/Elementary/OccupationCount.lean` |
 
-Questions 1 to 5 of `handoff.md` Section 13, Step 6 are questions 4, 5, 3, 2 and 6 here. Question 1 here is new, from finding F6. The ensemble part of question 5 is new, from finding F9. Question 7 is new, from finding F11 (break attempt B1). Question 8 is new, from finding F13 (break attempt B2).
+Questions 1 to 5 of `handoff.md` Section 13, Step 6 are questions 4, 5, 3, 2 and 6 here. Question 1 here is new, from finding F6. The ensemble part of question 5 is new, from finding F9. Question 7 is new, from finding F11 (break attempt B1). Question 8 is new, from finding F13 (break attempt B2). Question 9 is new, from finding F14 (break attempt B5).
 
 ## To settle before sending
 
@@ -55,3 +58,4 @@ Questions 1 to 5 of `handoff.md` Section 13, Step 6 are questions 4, 5, 3, 2 and
 - The sentence saying the development was written with the help of an AI model.
 - The salutation. The author's title is not known to this repository.
 - Question 2 rests on a reading of the two sentences around (5.38) that no second reader has checked (see the open items in `FIDELITY.md`).
+- Question 9 rests on an inference from (A.14), (A.16), (A.28) and (4.20) to (4.27) that the paper does not state (finding F14 in `FIDELITY.md`). It asks whether the inference holds. It should not be sent in a form that asserts it.

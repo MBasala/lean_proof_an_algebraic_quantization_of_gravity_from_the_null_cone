@@ -12,6 +12,9 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Diamond/Setup.lean`: the objects of Sec 5.1 and 5.2 (clock, area, `K_A`, `Omega_A`) as a structure, reviewed against the paper.
 - `QuantGrav/Diamond/ClockHypotheses.lean`: first consequences of H1, H13 and H14, and models showing what they do not imply.
 - `QuantGrav/Diamond/ClockDivergence.lean`: a conditional criterion under which the incoming state has no finite clock reading, with the Gaussian model behind it in `QuantGrav/Elementary/` (finding F11).
+- `QuantGrav/Diamond/FixedResolution.lean`: with finitely many modes and a bound on the cost, `H_D` is finite-dimensional if the remaining degrees of freedom have finitely many states, with no hypothesis about cuts; and a model showing that this last condition cannot be dropped. The count is in `QuantGrav/Elementary/OccupationCount.lean` (finding F14).
+- `QuantGrav/Diamond/ConfigurationOnly.lean`: if an operator that is one member of a Weyl pair on `K_A` commutes with the clock projections, `P_D K_A` is zero or infinite-dimensional (finding F14).
+- `QuantGrav/Diamond/IntervalModel.lean`, `QuantGrav/Diamond/WeylPairModel.lean`: two consistency models for finding F14, one continuous variable confined to an interval on `L^2(R)`, and a Weyl pair on `l^2(Z)`. Neither is a model of the paper's theory.
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.
 - `QuantGrav/Entropy/ClockMoments.lean`: the moment identities of Sec 5.3, and why footnote 23 and (5.68) do not conflict (finding F3).
 - `QuantGrav/Entropy/ClockTraceAsymptotics.lean`: (5.57b), (5.58), (5.62) and (5.65) for a spectrum with finitely many states below each reading, conditional on the limit `q` and on (5.59). The analytic steps are in `QuantGrav/Elementary/LogIntegralLimit.lean` and `QuantGrav/Elementary/MonotoneLogGrowth.lean`.
