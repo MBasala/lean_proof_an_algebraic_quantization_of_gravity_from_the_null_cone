@@ -624,3 +624,11 @@ Written by the code session, in the format of 14.5.
 - Not formalised: the filter `F_g = g(K)`. The statements start where the spectrum is bounded and the filter is a spectral projection that acts as the identity on `H_D`. The area stands in for the boost generator, through (5.22), register entry H6.
 - Register: row H12 points to the theorem. No new entry.
 - What it means for the paper: for the causal diamond, the finiteness axiom of Appendix E and the finite dimension of Sec 5.2 are the same statement, so neither supports the other.
+
+**Track A item 5 (2026-11-26). The identity in (5.66) holds exactly, for areas `s >= 0`.** Not a break attempt, so no outcome applies.
+
+- Theorems. `QuantGrav/Entropy/AreaResolvedTrace.lean`: `integral_areaWindow`, the first identity of (5.66), with `sigma_s^2 = 2 s_b`; `integral_areaWindow_of_nonpos`, for `s <= 0` the same integral is `e^s`, so the sign condition is needed; `integral_sum_exp_neg_mul_areaWindow`, the second identity for a finite spectrum with nonnegative areas. `QuantGrav/Elementary/CauchySchlomilch.lean`: `integral_exp_neg_sq_mul_sub_div`, the integral of `exp(-(a u - b/u)^2)` over `u > 0` is `sqrt(pi)/(2a)` for `a > 0`, `b >= 0`. Nine theorems, pinned in `Audit.lean`.
+- TeX: (5.24), (5.25) at lines 1670 to 1682, and (5.66) at lines 2053 to 2058.
+- Not formalised: that `Tr(C_b† C_b)` is `sum_i e^{-s_i} f_b(s_i)`. It follows from (5.23b) and (5.25) in an eigenbasis of the area and is taken as given. The one-loop evaluation (5.67) is register entry H7 and is untouched.
+- Register: no change.
+- What it means for the paper: the rewriting of the trace in (5.66) is exact; nothing is lost or assumed in that step.

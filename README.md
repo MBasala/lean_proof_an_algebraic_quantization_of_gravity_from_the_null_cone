@@ -17,6 +17,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Entropy/ClockTraceAsymptotics.lean`: (5.57b), (5.58), (5.62) and (5.65) for a spectrum with finitely many states below each reading, conditional on the limit `q` and on (5.59). The analytic steps are in `QuantGrav/Elementary/LogIntegralLimit.lean` and `QuantGrav/Elementary/MonotoneLogGrowth.lean`.
 - `QuantGrav/Entropy/MeanAreaGrowth.lean`: (5.59) from the area bound, the limit `q` and the mean time delay (5.53), and (5.65) from those three inputs.
 - `QuantGrav/Entropy/GibbsAccounting.lean`: the entropy identities (5.39c) and (5.50) for the ordinary trace, and the accounting lemma: with multiplicities at most `D` and `m` distinct area eigenvalues, `S <= log m + log D` (finding F13).
+- `QuantGrav/Entropy/AreaResolvedTrace.lean`: the two identities of (5.66), which rewrite the trace as an integral over the centre of the area window; the Gaussian integral behind them is in `QuantGrav/Elementary/CauchySchlomilch.lean`.
 - `QuantGrav/Entropy/BandCounting.lean`: the step from (5.63) to (5.64) in footnote 24, and the number of distinct area eigenvalues that a bound on the multiplicities would force.
 - `QuantGrav/Entropy/LogLevelsModel.lean`: a spectrum with one state per level that satisfies footnote 24, so the footnote and a multiplicity bound do not conflict.
 - `QuantGrav/Entropy/SenComparison.lean`: the paper's logarithmic coefficient compared with the three ensembles of Sen's paper.

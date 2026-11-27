@@ -11,6 +11,7 @@ public import QuantGrav.Diamond.ClockHypotheses
 public import QuantGrav.Diamond.ClosedCuts
 public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Diamond.OrderOfExhaustion
+public import QuantGrav.Elementary.CauchySchlomilch
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
@@ -25,6 +26,7 @@ public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
+public import QuantGrav.Entropy.AreaResolvedTrace
 public import QuantGrav.Entropy.BandCounting
 public import QuantGrav.Entropy.ClockMoments
 public import QuantGrav.Entropy.ClockTraceAsymptotics
@@ -857,3 +859,39 @@ info: 'QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_iff_exists_trace_ar
 -/
 #guard_msgs in
 #print axioms QuantGrav.DiamondSetup.finiteDimensional_diamondSpace_iff_exists_trace_area_proj_le
+
+/-- info: 'QuantGrav.integrableOn_exp_neg_sq_mul_sub_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integrableOn_exp_neg_sq_mul_sub_div
+
+/-- info: 'QuantGrav.integral_exp_neg_sq_mul_sub_div' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_exp_neg_sq_mul_sub_div
+
+/-- info: 'QuantGrav.areaWindow_eq_of_sq_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.areaWindow_eq_of_sq_eq
+
+/-- info: 'QuantGrav.areaWindow_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.areaWindow_nonneg
+
+/-- info: 'QuantGrav.two_mul_mul_areaWindow_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.two_mul_mul_areaWindow_sq
+
+/-- info: 'QuantGrav.integrableOn_areaWindow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integrableOn_areaWindow
+
+/-- info: 'QuantGrav.integral_areaWindow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_areaWindow
+
+/-- info: 'QuantGrav.integral_areaWindow_of_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_areaWindow_of_nonpos
+
+/-- info: 'QuantGrav.integral_sum_exp_neg_mul_areaWindow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.integral_sum_exp_neg_mul_areaWindow

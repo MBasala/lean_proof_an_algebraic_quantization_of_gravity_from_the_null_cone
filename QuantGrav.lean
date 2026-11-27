@@ -8,6 +8,7 @@ public import QuantGrav.Diamond.ClosedCuts
 public import QuantGrav.Diamond.FiniteDim
 public import QuantGrav.Diamond.OrderOfExhaustion
 public import QuantGrav.Diamond.Setup
+public import QuantGrav.Elementary.CauchySchlomilch
 public import QuantGrav.Elementary.ClausenAsymptotics
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
@@ -23,6 +24,7 @@ public import QuantGrav.Elementary.OneAddSumLeProd
 public import QuantGrav.Elementary.PairAmplitude
 public import QuantGrav.Elementary.PairAmplitudeLog
 public import QuantGrav.Elementary.PairAmplitudeReal
+public import QuantGrav.Entropy.AreaResolvedTrace
 public import QuantGrav.Entropy.BandCounting
 public import QuantGrav.Entropy.ClockMoments
 public import QuantGrav.Entropy.ClockTraceAsymptotics
