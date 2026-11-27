@@ -686,3 +686,40 @@ Outcome:
 - Do not report outcome 1 or 2 without the review step of 14.1.
 
 Report in 14.6 in the format of 14.5.
+
+### 14.8 Added by review after B5 (2026-11-26, 22:00): break attempt B6
+
+Written by the review session at Michael's request. Order: next, before Track A item 6 and before WP4 is merged. Stop and report after B6.
+
+**B6. Does a non-constant smearing of the area density commute with the clock?**
+
+B5 (F14) proved: if `P_D` commutes on `K_A` with `e^{i t X}`, for `X` a smearing of the area density against a non-constant function on `S` at fixed total area, then `P_D(A) K_A` is zero or infinite-dimensional, and the paper's (5.19) and (5.39c) cannot both hold. F14 left two steps undecided, because the paper does not display what they need:
+
+- Step 1 (classical): the Hamiltonian flow of `X` changes only the relative boost `lambda - gamma`, and leaves `f_S(y)`, the angular labels and the conformal metric as a function of `v` unchanged.
+- Step 2 (quantum): `X` is linear in the canonical pairs of Sec 4.2, so that conjugation by `e^{i t X}` commutes exactly with the Weyl-ordered `Q(f_S(y))` and `Q(z^alpha(v, y))`, and so with the clock (4.26) and its spectral projections.
+
+B6 tries to decide both by derivation instead of reading. It is a calculation in covariant phase space, not a Lean formalization, except where noted.
+
+Rules specific to B6:
+
+- Two independent derivations. One agent derives; a second agent, given only the TeX, the cited references and the question, derives separately without seeing the first. Compare afterwards and record every disagreement. Agreement of two agents is not an expert check, and the report must say so.
+- Derive from the paper's own action and conventions. Where the paper is silent, take the convention from the reference it cites for that step, and name it.
+- No step may rest on "by analogy" or "standard". Write every bracket used.
+
+Work:
+
+1. Read App A in full, Sec 3.2 to 3.5, and the references the paper cites for (A.14), (A.16) and (A.28); find them in `paper/arxiv-src/references.bib` and `cobordism_extra.bib`. Record which convention for the null normals, the boost parameter and the cap and joint terms each uses.
+2. Assemble the symplectic form of the reduced phase space at fixed total area on the capped cone, with the cap and joint terms of (A.17), (A.18). Write it in the coordinates of (A.16): `lambda`, `rho_S^2` (or `K(y)`), the angular pairs `(Y^i, p_i)`, and the conformal metric data on the cone. Display every mixed term, in particular those of lines 725 and 2523.
+3. For `X = ∫ phi(y) K(y) eps_0` with `∫ phi eps_0 = 0` and `phi` not constant, solve `omega(V_X, ·) = dX` for the Hamiltonian vector field. State its components along each coordinate. Step 1 holds exactly when the components along `f_S`, the angular labels and the conformal metric vanish.
+4. If step 1 holds, write `f_S(y)` and `z^alpha(v, y)` in the canonical pairs `(q_j, p_j)` of (4.7) to (4.10) and (4.20). Decide whether `X` is linear in them, or a nonlinear function. If nonlinear, find the order in `hbar` at which `[e^{i t X}, Q(f_S)]` or `[e^{i t X}, Q(z^alpha)]` first fails to vanish, using the Moyal product (C.9).
+5. Finite check. Truncate to one non-constant angular harmonic of the area density (`j = 1` or `2`), its conjugate boost mode and two radial modes of one polarization. Write the symplectic matrix explicitly and compute every bracket between `X` and the clock's ingredients with a computer algebra system. Keep the script and its output in `scripts/` and `notes/`.
+6. Lean, optional: for a constant symplectic form on `R^{2n}`, the Poisson bracket of two linear functions is the symplectic pairing of their gradients, and a linear function whose gradient is symplectically orthogonal to a set of linear functions commutes with every function of them. This is the finite-dimensional core of steps 1 and 2.
+
+Outcome:
+
+- Both steps hold: candidate outcome 1. Apply the review rule of 14.1 in full. Then state it as: the paper's construction, with the conventions named, implies that `P_D(A) K_A` is zero or infinite-dimensional. Do not call it a disproof until a human expert has checked steps 2 and 3. Rewrite question 9 of the author note around the explicit vector field.
+- Step 1 fails: outcome 3 for B5's hypothesis. Record exactly which component is nonzero. That is where the relative boost enters the clock, and where finiteness of the corner sector would have to come from. Ask the author whether that coupling is what bounds the corner sector.
+- Step 1 holds and step 2 fails only at some order in `hbar`: outcome 4, with the order stated. Record whether the paper's finiteness would then rest on that quantum correction.
+- The two derivations disagree and the disagreement cannot be resolved from the text: outcome 4, with both derivations recorded.
+
+Report in 14.6 in the format of 14.5, with the two derivations summarised side by side.
