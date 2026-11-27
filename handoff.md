@@ -632,3 +632,39 @@ Written by the code session, in the format of 14.5.
 - Not formalised: that `Tr(C_b† C_b)` is `sum_i e^{-s_i} f_b(s_i)`. It follows from (5.23b) and (5.25) in an eigenbasis of the area and is taken as given. The one-loop evaluation (5.67) is register entry H7 and is untouched.
 - Register: no change.
 - What it means for the paper: the rewriting of the trace in (5.66) is exact; nothing is lost or assumed in that step.
+
+### 14.7 Added by review after B4 (2026-11-26, 19:56): break attempt B5
+
+Written by the review session at Michael's request. Order: start B5 once the item in progress (Track A item 5) is committed, before Track A item 6. Stop and report after B5.
+
+**B5. At fixed resolution, is finite dimension nearly automatic?**
+
+Reviewer's hypothesis, from the results of B1 to B4 taken together. It is a synthesis, not a reading, and has had no second reader.
+
+- B1 (F11): the support for (5.19) holds only at fixed angular and radial resolution. Without it, a non-empty `H_D` loses its support. Keeping it is candidate entry H19.
+- With a fixed resolution there are finitely many graviton modes, each with a positive cost per quantum: (D.40), (D.41), (D.45a). If a bounded clock reading bounds the total focusing cost by some `Q_*`, only finitely many occupation states satisfy `sum n_i nu_i <= Q_*`. That is essentially the count of App D.3.
+- If that also bounds `H_D`, finite dimension follows at fixed resolution from the clock bound alone, without the closing-cut principle H3 in any form. The headline would then become: finite dimension is close to automatic at fixed resolution and unsupported without it.
+- Why the graviton sector looks favourable. On a null cone the symplectic form pairs the profile with itself ((3.39), (D.42)), so a radial mode's profile carries both members of its canonical pair. The focusing (4.22) is then a positive quadratic form in both, like an oscillator energy, and bounding it bounds occupation numbers. This is the same observation as B1 link 1.
+- Why the corner sector may defeat it. At fixed area the space `K_A` also contains the area density `f_S` (4.23) and its conjugate relative boosts ((3.63), (3.64)); "a state can fluctuate ... in the distribution of area over S" (lines 1032 to 1034). The clock depends on the area density only through `a-hat`, for example (5.13). A bound on a function of configuration variables alone leaves an infinite-dimensional space, as for a particle confined to an interval. So finiteness at fixed resolution needs the corner sector to be bounded in phase space too, or to be finite-dimensional for another reason.
+
+Reading first:
+
+1. (D.40) to (D.46c), lines 3482 to 3533: how `Q_*` is defined, and whether "specifying `∫ Θ_(n) dA` ... bounds `Q[h]` by `Q_*`" follows from the clock bound or is a separate choice of data.
+2. Sec 4.2, (4.7) to (4.10), and (4.23) to (4.27): every degree of freedom in `K_A` besides the graviton modes, how many there are at fixed angular resolution, and whether any cost or bound controls both members of each pair.
+3. (5.13) and (5.21): what a bounded reading bounds in the corner sector.
+4. Whether the paper says anywhere that `H_D` is finite-dimensional at fixed resolution, or discusses the limit.
+
+Lean, independent of the paper:
+
+- L1. For finitely many modes with costs `nu_i >= nu_min > 0`, the set of occupation vectors `n` with `sum n_i nu_i <= Q` is finite, with at most `(1 + Q / nu_min)^M` elements for `M` modes.
+- L2. If every vector of a closed subspace `V` lies in the closed span of a finite orthonormal family of `N` vectors, then `finrank V <= N`.
+- L3, conditional on a `DiamondSetup`. Assume: H19 (finitely many modes); a cost operator with an orthonormal eigenbasis indexed by occupation vectors, costs as in L1; that `H_D` lies in the spectral subspace of cost at most `Q_*(l)` (B1 link 3 as a hypothesis); and a hypothesis on the corner sector to be named after the reading. Then `H_D` is finite-dimensional, with the bound of L1 times the corner bound, and none of H3a, H3b, H3c or H4 is used.
+- L4, the other direction: a model satisfying everything in L3 except the corner hypothesis, with a corner sector given by one continuous variable restricted in configuration only, in which `H_D` is infinite-dimensional. This shows which input carries the weight.
+
+Outcome:
+
+- If the reading supplies the corner hypothesis at fixed resolution: outcome 3, recorded as a finding that finite dimension at fixed resolution needs only the clock bound, so the closing-cut principle is needed only to remove the resolution, which is where B1 says the support fails.
+- If the corner sector is infinite-dimensional at fixed resolution in the paper's construction: outcome 4, naming that sector as the place where H3 does its work. Either way, add a question to `notes/note-to-author-draft.md`.
+- Do not report outcome 1 or 2 without the review step of 14.1.
+
+Report in 14.6 in the format of 14.5.
