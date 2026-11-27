@@ -15,6 +15,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Diamond/FixedResolution.lean`: with finitely many modes and a bound on the cost, `H_D` is finite-dimensional if the remaining degrees of freedom have finitely many states, with no hypothesis about cuts; and a model showing that this last condition cannot be dropped. The count is in `QuantGrav/Elementary/OccupationCount.lean` (finding F14).
 - `QuantGrav/Diamond/ConfigurationOnly.lean`: if an operator that is one member of a Weyl pair on `K_A` commutes with the clock projections, `P_D K_A` is zero or infinite-dimensional (finding F14).
 - `QuantGrav/Diamond/IntervalModel.lean`, `QuantGrav/Diamond/WeylPairModel.lean`: two consistency models for finding F14, one continuous variable confined to an interval on `L^2(R)`, and a Weyl pair on `l^2(Z)`. Neither is a model of the paper's theory.
+- `QuantGrav/Elementary/ConstantPoissonBracket.lean`: the Poisson bracket of a constant Poisson tensor, for linear functions; the linear-algebra core of finding F15.
 - `QuantGrav/OperatorAlgebra/`: WP2, statements about sums over intermediate states that hold for any bounded operators.
 - `QuantGrav/Entropy/ClockMoments.lean`: the moment identities of Sec 5.3, and why footnote 23 and (5.68) do not conflict (finding F3).
 - `QuantGrav/Entropy/ClockTraceAsymptotics.lean`: (5.57b), (5.58), (5.62) and (5.65) for a spectrum with finitely many states below each reading, conditional on the limit `q` and on (5.59). The analytic steps are in `QuantGrav/Elementary/LogIntegralLimit.lean` and `QuantGrav/Elementary/MonotoneLogGrowth.lean`.
@@ -28,6 +29,7 @@ A Lean 4 + Mathlib account of what arXiv:2611.34924v1 ("An algebraic quantizatio
 - `QuantGrav/Audit.lean`: pinned `#print axioms` output for every headline theorem.
 - `paper/equation_index.tsv`: printed equation number, LaTeX label and `main.tex` line for every equation in the paper.
 - `notes/second-reader-review-2026-11-26.md`: a second reader's review of six files and four register items against the paper and against `FIDELITY.md`.
+- `notes/b6-derivation-first.md`, `notes/b6-derivation-second.md`: two independent derivations of the Hamiltonian flow of the smeared corner area density (finding F15), made by an AI model and not checked by an expert. Their sympy checks are `scripts/b6_first_check.py`, `scripts/b6_second_truncation.py` and `scripts/b6_second_identities.py`, with outputs in `notes/b6-*-output.txt`.
 - `notes/note-to-author-draft.md`: a draft of questions for the paper's author. Not sent.
 
 The paper's PDF and TeX source are not in the repository (its arXiv licence does not allow redistribution). To rebuild the index, put the PDF in the repository root, unpack the arXiv source into `paper/arxiv-src/`, and run `scripts/extract_pdf_text.py` and `scripts/tex_label_index.py`.

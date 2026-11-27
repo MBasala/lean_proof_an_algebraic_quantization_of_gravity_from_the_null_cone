@@ -651,6 +651,40 @@ Written by the code session, in the format of 14.5.
 - Author note: question 9 added to `notes/note-to-author-draft.md`. The note is Michael's and is not sent.
 - What it means for the paper: the graviton count of App D.3 cannot by itself make `H_D` finite-dimensional, with or without a resolution, because the corner variables are bounded by the clock in the area distribution only; and unless the relative boost enters the clock somewhere the displayed formulas do not show, the construction gives a `P_D(A) K_A` that is zero or infinite-dimensional, which no hypothesis about closing cuts could repair.
 
+**B6 (2026-11-26). Outcome 4, undecided, with one input left. Not outcome 1, and not a disproof.** Step 1 holds in both derivations: a non-constant smearing of the area density generates only a shift of the relative boost and Poisson-commutes exactly with every ingredient of the clock. Step 2 is exact if the modes of `K` or of `f_S` are among the canonical coordinates of Sec 4.2 up to a linear symplectic map, and otherwise first fails at order `hbar^3`; the paper does not say which coordinates it uses. Finding F15 in `FIDELITY.md`. Both derivations were made by an AI model. Their agreement is not an expert check, and no expert has read them.
+
+The two derivations, side by side. Full texts: `notes/b6-derivation-first.md`, `notes/b6-derivation-second.md`.
+
+| | First derivation | Second derivation |
+|---|---|---|
+| Given | The TeX, the bibliography, Section 14.8, finding F14 | The TeX and the bibliography only |
+| References read | Reisenberger 0712.2541 and 1211.3880, Carlip and Teitelboim, Chandrasekaran and Flanagan, Speranza, Hopfmüller and Freidel, as rendered pages | Reisenberger 0712.2541 in full and parts of Chandrasekaran and Flanagan as page text; the others only as summaries from a fetch tool |
+| Cone block | From (A.30a), (A.30b) at fixed `(v, y)`, cut fixed at `v = eps` | The same |
+| Against (A.14) | Equal per branch, plus one term at `v = eps` | Equal per branch, plus the same term |
+| Term missing from (A.14) under (3.18) | `(eps^3/4) dK ∧ g(z', dz)` at `v = eps`; without it the form is not closed | The same term; (A.14) assumes fixed area density at the cut |
+| Corner term | Derived from the action (3.15) with (A.8), (A.9): `d(lambda - gamma) ∧ dK`, `gamma` the normalization of the transverse normal; the affine normalization cancels | Taken from (A.16) and (A.28) |
+| Joint at the cap edge | `eps^2 da_C ∧ dK`, `a_C` a function of the cap data | `-eps_C eps^2 d beta_C ∧ dK`, `beta_C = log(-n_C . l)` an independent coordinate |
+| `V_X` | A shift of `lambda - gamma` by `phi`; zero along `K`, `f_S`, `Y^i`, `p_i`, `z^alpha(v, y)`, and along the joint and cap data if the cap form does not contain the boost variable | A shift of `lambda - gamma` by `phi`; zero along `K`, `f_S`, `Y^i`, `p_i`, `z^alpha(v, y)`; the component along `beta_C` undecided |
+| Brackets of `X` with `K`, `f_S`, `z^alpha(v, y)`, `Xi`, `u_*`, the averaged clock | All zero, exactly | All zero, exactly |
+| Boost variable against `z` | `(1/2K)[v d_v z + (1/v) d_v z at v = 1]`, nonzero | `(v/2K) d_v z` in the bulk, nonzero |
+| Step 2 | Exact if `X` is linear (chart with `K` as coordinate) or a function of commuting coordinates (chart with `f_S` modes); otherwise first failure at `hbar^3` | The same, with the same three cases |
+| Finite check | 4 variables; mixed entries nonzero, inverse has zero entries between the area mode and the radial modes; all brackets of `X` with the clock zero | The same; with the joint mode added, a 5 by 5 matrix of rank 4 |
+| Weakest step, by its own account | That the boost variable is an independent coordinate, together with the unassembled cap | That the boost variable is an independent coordinate |
+
+- Disagreements, all recorded in F15: the joint variable (zero under an assumption, or undecided); how the corner term is obtained; an end term in the bracket of the boost variable with `z`; which references were read in full. None concerns a component or bracket that was asked for.
+- Item 1 of 14.8, conventions: a table in each derivation. The points that matter: `lambda = -log` of the absolute value of the inner product of the two area-parametrized tangents, as in Reisenberger; the corner pair is `(K, lambda - gamma)`, (A.28); the paper's convention is `dH = Omega(d, V_H)`, `{O, H} = V_H(O)`, (3.32), (3.33); the area and boost-angle pair of Chandrasekaran and Flanagan, cited for (3.64), is derived at linear order about stationary backgrounds, and their footnote 19 calls the general case open.
+- Item 2, the assembled form: in F15 and in Section 2.7 of the first derivation, Q2.6 of the second. The variation of the boost variable occurs only in its wedge with `dK`.
+- Item 3, the vector field: above. Step 1 holds.
+- Item 4, the canonical pairs: the paper does not write `f_S(y)` or `z^alpha(v, y)` in the pairs. Both derivations construct a chart with `K(y)` as a coordinate in which `X` is linear and the commutation exact. In coordinates related to it by a nonlinear canonical map the commutator is `-(i hbar^3/24) Q(P_3(X, F))` plus higher odd orders.
+- Item 5, finite check: `scripts/b6_first_check.py`, `scripts/b6_second_truncation.py`, `scripts/b6_second_identities.py`, with outputs `notes/b6-first-check-output.txt`, `notes/b6-second-truncation-output.txt`, `notes/b6-second-identities-output.txt`. The code session re-ran all three; the outputs are those the derivations reported.
+- Item 6, Lean: `QuantGrav/Elementary/ConstantPoissonBracket.lean`, seven theorems pinned in `Audit.lean`: `constPoissonBracket_linear`, `constPoissonBracket_comp_eq_zero`, `constPoissonBracket_pi_comp_eq_zero`, `forall_comp_eq_zero_iff_apply_eq_zero`, `constPoissonBracket_eq_fderiv_apply`, `hasDerivAt_comp_add_smul`, `comp_add_smul_of_apply_eq_zero`.
+- TeX read by the code session for this item, beyond B5: lines 590 to 690, 738 to 869, 2402 to 2470 and 2544 to 2590.
+- Register: H21 updated. No new entry.
+- Author note: question 9 rewritten around the explicit vector field and the question of the coordinates. The note is Michael's and is not sent.
+- Review rule of 14.1: the two derivations were made by readers who did not write the Lean, and the formal statements of `ConfigurationOnly.lean` were checked against the TeX in B5. What the rule cannot supply here is the expert check that 14.8 asks for before anything is called a disproof.
+- Not done: a human expert check of the assembled form and of the vector field; the symplectic form of the cap; the step from commutation with each factor of (4.26) to commutation with the spectral projections of the form (4.27).
+- What it means for the paper: on its own formulas the clock is invariant under boosts of the corner frame whose rapidity varies over `S`, exactly as it is under the uniform boost; so unless the quantization of Sec 4.2 is made in canonical coordinates that mix the area distribution nonlinearly with other variables, the fixed-area part of `H_D` cannot be both nonzero and finite-dimensional, and if it is made in such coordinates, finite dimension of the corner sector rests on an ordering term of order `hbar^3`.
+
 ### 14.7 Added by review after B4 (2026-11-26, 19:56): break attempt B5
 
 Written by the review session at Michael's request. Order: start B5 once the item in progress (Track A item 5) is committed, before Track A item 6. Stop and report after B5.

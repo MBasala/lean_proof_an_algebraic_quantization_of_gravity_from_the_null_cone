@@ -1,0 +1,176 @@
+
+====================================================================================================
+PART A. Pointwise identities for (4.21)
+====================================================================================================
+A1. det qbar = 1
+A2. (4.21b): (1/2) qbar^AC qbar^BD dq_AB d'q_CD - [d z1 d'z1 + exp(2 z1) d z2 d'z2] = 0
+A3. delta(g zdot . delta z) - [g(nabla_v d1 z, d2 z) - g(nabla_v d2 z, d1 z)] = 0
+A4. delta kappa_v - (v/2) g(zdot, nabla_v delta z) = 0
+A5. (1/8)(d_v qbar)^AB d_v qbar_AB - (1/4) g(zdot,zdot) = 0   [integrand of (3.26c) equals that of (4.22),(C.16b)]
+
+====================================================================================================
+PART B. Xi, J_eps, W_eps with h(v) = g(zdot,zdot) a generic cubic
+====================================================================================================
+B1. int_eps^1 v Xi(v) dv - J_eps = 0
+B2. W_eps - Xi(1) + 2 J_eps      = 0
+B3. int_eps^1 v^2 Xi'(v) dv - W_eps = 0   [kappa_v = Xi', (A.23d)]
+
+====================================================================================================
+PART C. One generator, one polarization (flat target): the null block
+====================================================================================================
+C1. (N2') - (N2'') on generic quartic data = 0
+C2. (N2') - [(N2'') without the term at v = eps] =
+     epsilon**3*(4*epsilon**3*zc4 + 3*epsilon**2*zc3 + 2*epsilon*zc2 + zc1)*(ac0*dK2 + ac1*dK2*epsilon + ac2*dK2*epsilon**2 + ac3*dK2*epsilon**3 + ac4*dK2*epsilon**4 - bc0*dK1 - bc1*dK1*epsilon - bc2*dK1*epsilon**2 - bc3*dK1*epsilon**3 - bc4*dK1*epsilon**4)/4
+    i.e. -(eps^3/4) dK ^ (zdot dz)|_{v=eps}: the term that (A.14) does not display when b = eps is held fixed.
+C3. d(Omega_H) with the term at v = eps: nonzero components = {}
+C4. d(Omega_H) without the term at v = eps: number of nonzero components = 10
+     e.g. ('K', 'zc0', 'zc1') : epsilon**3/4
+     e.g. ('K', 'zc0', 'zc2') : epsilon**4/2
+     e.g. ('K', 'zc0', 'zc3') : 3*epsilon**5/4
+C5. Omega_H(delta_z, V) with V_K = psi, V_z = (psi/2K)(v zdot + zdot(1)/v):
+    result - [term at v = eps only] = 0
+    so in the bulk and at v = 1 the equation Omega(delta, V) = psi * delta(Lambda) is solved by
+    {z(v,y), Lambda(y')} = (1/(2K)) [ v d_v z + (1/v) d_v z|_{v=1} ] delta(y,y')   (one branch, flat target);
+    the first term is Reisenberger 0712.2541 (17), 4 pi G/rho_0 = 1/(2K).  The left-over at v = eps is closed by
+    the cap and joint variables, which the truncation below does not contain.
+
+====================================================================================================
+PART D. Truncated phase space: coordinates (Lambda_1, kappa, a_1, a_2)
+====================================================================================================
+(i) Generic radial basis psi_1, psi_2.  Theta = theta_I d phi^I with
+     theta[Lambda_1] = 0
+     theta[kappa] = -Kbar*(B_11*N_1*a_1**2*s_H + 2*B_12*N_1*a_1*a_2*s_H + B_22*N_1*a_2**2*s_H - 4*Lambda_1*c_Lambda)/4
+     theta[a_1] = Kbar*s_H*(N_0 + N_1*kappa)*(A_11*a_1 + A_21*a_2)/2
+     theta[a_2] = Kbar*s_H*(N_0 + N_1*kappa)*(A_12*a_1 + A_22*a_2)/2
+    Symplectic matrix, Omega = (1/2) Omega_IJ d phi^I ^ d phi^J; upper triangle (the matrix is antisymmetric):
+     Omega[Lambda_1, kappa] = Kbar*c_Lambda
+     Omega[Lambda_1, a_1] = 0
+     Omega[Lambda_1, a_2] = 0
+     Omega[kappa, a_1] = Kbar*N_1*s_H*(A_11*a_1 + A_21*a_2 + B_11*a_1 + B_12*a_2)/2
+     Omega[kappa, a_2] = Kbar*N_1*s_H*(A_12*a_1 + A_22*a_2 + B_12*a_1 + B_22*a_2)/2
+     Omega[a_1, a_2] = Kbar*s_H*(A_12 - A_21)*(N_0 + N_1*kappa)/2
+    det Omega = Kbar**4*c_Lambda**2*s_H**2*(A_12 - A_21)**2*(N_0 + N_1*kappa)**2/4
+    Inverse J = Omega^{-1} ({F,G} = d_I F J^{IJ} d_J G); upper triangle:
+     J[Lambda_1, kappa] = -1/(Kbar*c_Lambda)
+     J[Lambda_1, a_1] = N_1*(A_12*a_1 + A_22*a_2 + B_12*a_1 + B_22*a_2)/(Kbar*c_Lambda*(A_12 - A_21)*(N_0 + N_1*kappa))
+     J[Lambda_1, a_2] = -N_1*(A_11*a_1 + A_21*a_2 + B_11*a_1 + B_12*a_2)/(Kbar*c_Lambda*(A_12 - A_21)*(N_0 + N_1*kappa))
+     J[kappa, a_1] = 0
+     J[kappa, a_2] = 0
+     J[a_1, a_2] = -2/(Kbar*s_H*(A_12 - A_21)*(N_0 + N_1*kappa))
+    V_X = J grad X for X = Kbar c_Lambda phi_1 kappa: [-phi_1, 0, 0, 0]  in the order ['Lambda_1', 'kappa', 'a_1', 'a_2']
+
+(ii) Explicit radial modes psi_1 = v, psi_2 = v^2:
+    A_ij = int_eps^1 v^2 psi_i' psi_j dv = [[1/4 - epsilon**4/4, 1/5 - epsilon**5/5], [2/5 - 2*epsilon**5/5, 1/3 - epsilon**6/3]]
+    B_ij = int_eps^1 v^3 psi_i' psi_j' dv = [[1/4 - epsilon**4/4, 2/5 - 2*epsilon**5/5], [2/5 - 2*epsilon**5/5, 2/3 - 2*epsilon**6/3]]
+    omega_12 = A_12 - A_21 = epsilon**5/5 - 1/5
+    M_ij = A_ij + B_ij = [[1/2 - epsilon**4/2, 3/5 - 3*epsilon**5/5], [4/5 - 4*epsilon**5/5, 1 - epsilon**6]]
+    Symplectic matrix, upper triangle:
+     Omega[Lambda_1, kappa] = Kbar*c_Lambda
+     Omega[Lambda_1, a_1] = 0
+     Omega[Lambda_1, a_2] = 0
+     Omega[kappa, a_1] = -Kbar*N_1*s_H*(epsilon - 1)*(5*a_1*epsilon**3 + 5*a_1*epsilon**2 + 5*a_1*epsilon + 5*a_1 + 8*a_2*epsilon**4 + 8*a_2*epsilon**3 + 8*a_2*epsilon**2 + 8*a_2*epsilon + 8*a_2)/20
+     Omega[kappa, a_2] = -Kbar*N_1*s_H*(epsilon - 1)*(3*a_1*epsilon**4 + 3*a_1*epsilon**3 + 3*a_1*epsilon**2 + 3*a_1*epsilon + 3*a_1 + 5*a_2*epsilon**5 + 5*a_2*epsilon**4 + 5*a_2*epsilon**3 + 5*a_2*epsilon**2 + 5*a_2*epsilon + 5*a_2)/10
+     Omega[a_1, a_2] = Kbar*s_H*(N_0 + N_1*kappa)*(epsilon - 1)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1)/10
+    det Omega = Kbar**4*c_Lambda**2*s_H**2*(N_0 + N_1*kappa)**2*(epsilon - 1)**2*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1)**2/100
+    Inverse, upper triangle:
+     J[Lambda_1, kappa] = -1/(Kbar*c_Lambda)
+     J[Lambda_1, a_1] = -N_1*(3*a_1*epsilon**4 + 3*a_1*epsilon**3 + 3*a_1*epsilon**2 + 3*a_1*epsilon + 3*a_1 + 5*a_2*epsilon**5 + 5*a_2*epsilon**4 + 5*a_2*epsilon**3 + 5*a_2*epsilon**2 + 5*a_2*epsilon + 5*a_2)/(Kbar*c_Lambda*(N_0 + N_1*kappa)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+     J[Lambda_1, a_2] = N_1*(5*a_1*epsilon**3 + 5*a_1*epsilon**2 + 5*a_1*epsilon + 5*a_1 + 8*a_2*epsilon**4 + 8*a_2*epsilon**3 + 8*a_2*epsilon**2 + 8*a_2*epsilon + 8*a_2)/(2*Kbar*c_Lambda*(N_0 + N_1*kappa)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+     J[kappa, a_1] = 0
+     J[kappa, a_2] = 0
+     J[a_1, a_2] = -10/(Kbar*s_H*(N_0 + N_1*kappa)*(epsilon - 1)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+
+X = int phi K eps_0 = Kbar c_Lambda phi_1 kappa
+V_X (paper convention dX = Omega(delta, V_X)), components along (Lambda_1, kappa, a_1, a_2): [-phi_1, 0, 0, 0]
+check Omega . V_X - grad X = [0, 0, 0, 0]
+
+Brackets {coordinate, X} = V_X(coordinate):
+   { Lambda_1 , X } = -phi_1
+   { kappa , X } = 0
+   { a_1 , X } = 0
+   { a_2 , X } = 0
+Other brackets among the coordinates:
+   {kappa, Lambda_1} = 1/(Kbar*c_Lambda)
+   {a_1, a_2}        = -10/(Kbar*s_H*(N_0 + N_1*kappa)*(epsilon - 1)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+   {a_1, Lambda_1}   = N_1*(3*a_1*epsilon**4 + 3*a_1*epsilon**3 + 3*a_1*epsilon**2 + 3*a_1*epsilon + 3*a_1 + 5*a_2*epsilon**5 + 5*a_2*epsilon**4 + 5*a_2*epsilon**3 + 5*a_2*epsilon**2 + 5*a_2*epsilon + 5*a_2)/(Kbar*c_Lambda*(N_0 + N_1*kappa)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+   {a_2, Lambda_1}   = -N_1*(5*a_1*epsilon**3 + 5*a_1*epsilon**2 + 5*a_1*epsilon + 5*a_1 + 8*a_2*epsilon**4 + 8*a_2*epsilon**3 + 8*a_2*epsilon**2 + 8*a_2*epsilon + 8*a_2)/(2*Kbar*c_Lambda*(N_0 + N_1*kappa)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+   {a_1, kappa}      = 0    {a_2, kappa} = 0    {kappa, kappa} = 0
+d Omega (truncated) nonzero components: []
+
+Darboux chart (kappa, Pi_kappa; qtil, ptil):  Pi_kappa = Kbar*(40*Lambda_1*c_Lambda + 5*N_1*a_1**2*epsilon**4*s_H - 5*N_1*a_1**2*s_H + 14*N_1*a_1*a_2*epsilon**5*s_H - 14*N_1*a_1*a_2*s_H + 10*N_1*a_2**2*epsilon**6*s_H - 10*N_1*a_2**2*s_H)/40
+   R^2 = Kbar*s_H*(N_0 + N_1*kappa)*(epsilon - 1)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1)/10 ;  qtil = R a_2, ptil = R a_1
+   { kappa , Pi_kappa } = 1
+   { kappa , qtil } = 0
+   { kappa , ptil } = 0
+   { Pi_kappa , qtil } = 0
+   { Pi_kappa , ptil } = 0
+   { qtil , ptil } = 1
+   In this chart X = Kbar c_Lambda phi_1 kappa is linear, and a_1 = ptil/R(kappa), a_2 = qtil/R(kappa).
+
+Concrete angular data: x = cos(theta), Y = P_2(x) (j = 2), z^1(v,y) = chi(y) (a_1 v + a_2 v^2), chi = x.
+   c_Lambda = int Y^2 eps_0 = 4*pi/5 ;  N_0 = int chi^2 eps_0 = 4*pi/3 ;  N_1 = int Y chi^2 eps_0 = 8*pi/15
+   Omega from the potential (D) minus Omega from (N2'') integrated over S:
+    Matrix([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
+   d Omega for the form without the term at v = eps (nonzero components): [(('kappa', 'a_1', 'a_2'), 2*pi*Kbar*epsilon**5*s_H/15)]
+   total area int rho_S^2 eps_0 = 32*pi**2*G_N*Kbar  (independent of kappa: fixed total area)
+   check (4.23): A exp(f_S)/int exp(f_S) eps_0 - rho_S^2 = 0
+
+Brackets of X with the ingredients of the clock (paper convention {O, X} = V_X(O)); y = the point x, v = v_0:
+   { K(y) , X } = 0
+   { rho_S(y)^2 , X } = 0
+   { f_S(y) , X } = 0
+   { z^1(v_0,y) , X } = 0
+   { d_v z^1(v_0,y) , X } = 0
+   { Xi_y(v_0) , X } = 0
+   { exp(Xi_y(v_0)) , X } = 0
+   { u_*(y) , X } = 0
+   { ubar_* , X } = 0
+
+For contrast, brackets with the K-conjugate mode Lambda_1 (not zero):
+   { K(y) , Lambda_1 } = 5*(3*x**2 - 1)/(8*pi)
+   { rho_S(y)^2 , Lambda_1 } = 5*G_N*(3*x**2 - 1)
+   { f_S(y) , Lambda_1 } = 5*(3*x**2 - 1)/(4*pi*Kbar*(3*kappa*x**2 - kappa + 2))
+   { z^1(v_0,y) , Lambda_1 } = 5*v_0*x*(6*a_1*epsilon**4 - 5*a_1*epsilon**3*v_0 + 6*a_1*epsilon**3 - 5*a_1*epsilon**2*v_0 + 6*a_1*epsilon**2 - 5*a_1*epsilon*v_0 + 6*a_1*epsilon - 5*a_1*v_0 + 6*a_1 + 10*a_2*epsilon**5 - 8*a_2*epsilon**4*v_0 + 10*a_2*epsilon**4 - 8*a_2*epsilon**3*v_0 + 10*a_2*epsilon**3 - 8*a_2*epsilon**2*v_0 + 10*a_2*epsilon**2 - 8*a_2*epsilon*v_0 + 10*a_2*epsilon - 8*a_2*v_0 + 10*a_2)/(4*pi*Kbar*(2*kappa + 5)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+   { d_v z^1(v_0,y) , Lambda_1 } = 5*x*(3*a_1*epsilon**4 - 5*a_1*epsilon**3*v_0 + 3*a_1*epsilon**3 - 5*a_1*epsilon**2*v_0 + 3*a_1*epsilon**2 - 5*a_1*epsilon*v_0 + 3*a_1*epsilon - 5*a_1*v_0 + 3*a_1 + 5*a_2*epsilon**5 - 8*a_2*epsilon**4*v_0 + 5*a_2*epsilon**4 - 8*a_2*epsilon**3*v_0 + 5*a_2*epsilon**3 - 8*a_2*epsilon**2*v_0 + 5*a_2*epsilon**2 - 8*a_2*epsilon*v_0 + 5*a_2*epsilon - 8*a_2*v_0 + 5*a_2)/(2*pi*Kbar*(2*kappa + 5)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+   { Xi_y(v_0) , Lambda_1 } = 5*x**2*(epsilon - v_0)*(a_1**2*epsilon**5 + a_1**2*epsilon**4*v_0 + a_1**2*epsilon**4 + 10*a_1**2*epsilon**3*v_0**2 + a_1**2*epsilon**3*v_0 + a_1**2*epsilon**3 + 10*a_1**2*epsilon**2*v_0**2 + a_1**2*epsilon**2*v_0 + a_1**2*epsilon**2 + 10*a_1**2*epsilon*v_0**2 + a_1**2*epsilon*v_0 - 9*a_1**2*epsilon + 10*a_1**2*v_0**2 - 9*a_1**2*v_0 + 4*a_1*a_2*epsilon**6 + 4*a_1*a_2*epsilon**5*v_0 + 4*a_1*a_2*epsilon**5 + 19*a_1*a_2*epsilon**4*v_0**2 + 4*a_1*a_2*epsilon**4*v_0 + 4*a_1*a_2*epsilon**4 + 15*a_1*a_2*epsilon**3*v_0**3 + 19*a_1*a_2*epsilon**3*v_0**2 + 4*a_1*a_2*epsilon**3*v_0 + 4*a_1*a_2*epsilon**3 + 15*a_1*a_2*epsilon**2*v_0**3 + 19*a_1*a_2*epsilon**2*v_0**2 + 4*a_1*a_2*epsilon**2*v_0 - 11*a_1*a_2*epsilon**2 + 15*a_1*a_2*epsilon*v_0**3 + 19*a_1*a_2*epsilon*v_0**2 - 11*a_1*a_2*epsilon*v_0 - 15*a_1*a_2*epsilon + 15*a_1*a_2*v_0**3 + 4*a_1*a_2*v_0**2 - 15*a_1*a_2*v_0 + 4*a_2**2*epsilon**7 + 4*a_2**2*epsilon**6*v_0 + 4*a_2**2*epsilon**6 + 4*a_2**2*epsilon**5*v_0**2 + 4*a_2**2*epsilon**5*v_0 + 4*a_2**2*epsilon**5 + 24*a_2**2*epsilon**4*v_0**3 + 4*a_2**2*epsilon**4*v_0**2 + 4*a_2**2*epsilon**4*v_0 + 4*a_2**2*epsilon**4 + 24*a_2**2*epsilon**3*v_0**3 + 4*a_2**2*epsilon**3*v_0**2 + 4*a_2**2*epsilon**3*v_0 + 4*a_2**2*epsilon**3 + 24*a_2**2*epsilon**2*v_0**3 + 4*a_2**2*epsilon**2*v_0**2 + 4*a_2**2*epsilon**2*v_0 - 20*a_2**2*epsilon**2 + 24*a_2**2*epsilon*v_0**3 + 4*a_2**2*epsilon*v_0**2 - 20*a_2**2*epsilon*v_0 + 24*a_2**2*v_0**3 - 20*a_2**2*v_0**2)/(24*pi*Kbar*(2*kappa + 5)*(epsilon**4 + epsilon**3 + epsilon**2 + epsilon + 1))
+   { u_*(y), Lambda_1 } is zero?  False
+
+====================================================================================================
+PART E. Illustration: the conformal metric at fixed frame-normalized affine parameter s_0
+====================================================================================================
+Model (assumption, see derivation.md): the K-conjugate is the log-normalization of the corner frame, so that the
+affine parameter measured from S in that frame is  s(v;y) = exp(Lambda(y)) int_1^v exp(Xi_y(w) - Xi_y(1)) dw.
+   V_X(Lambda_1) = -phi_1
+   { z_dressed(s_0, y), X } = (d z_dressed/d Lambda_1) V_X(Lambda_1) =
+       phi_1*x*(3*a_1*x**2 - a_1 + 6*a_2*v_0*x**2 - 2*a_2*v_0)*exp(-v_0**2*x**2*(3*a_1**2 + 8*a_1*a_2*v_0 + 6*a_2**2*v_0**2)/24)*Integral(exp(a_1**2*r**2*x**2/8)*exp(a_2**2*r**4*x**2/4)*exp(a_1*a_2*r**3*x**2/3), (r, 1, v_0))/2
+   the same with the integral kept as a symbol, minus  phi(y) * s * (d_v z / d_v s)  = 0
+   so { z_dressed(s_0,y), X } = phi(y) s d_s z_dressed, phi(y) = phi_1 Y(y): a dilation of the dressed profile in s.
+   It does not vanish. (The overall sign follows the sign chosen for Lambda in the model for s.)
+
+====================================================================================================
+PART F. Moyal bracket (C.9) of X with clock ingredients in two Darboux charts
+====================================================================================================
+Chart A (K-adapted): canonical pairs (kappa, Pi_kappa), (q, p); a_1 ~ p/sqrt(n_0 + n_1 kappa), a_2 ~ q/sqrt(n_0 + n_1 kappa).
+   [X, F]_* coefficients of hbar^1, hbar^3, hbar^5 for F = f_S(y) = log(1 + kappa y_0) : {1: 0, 3: 0, 5: 0}
+   [X, F]_* coefficients of hbar^1, hbar^3, hbar^5 for F = z-mode a_1 = p/sqrt(n_0 + n_1 kappa) : {1: 0, 3: 0, 5: 0}
+   [X, F]_* coefficients of hbar^1, hbar^3, hbar^5 for F = z-mode a_2 = q/sqrt(n_0 + n_1 kappa) : {1: 0, 3: 0, 5: 0}
+   [X, F]_* coefficients of hbar^1, hbar^3, hbar^5 for F = exp(Xi)-type: exp(g_1 (p + 2 q)^2/(n_0 + n_1 kappa)) : {1: 0, 3: 0, 5: 0}
+   [X, F]_* coefficients of hbar^1, hbar^3, hbar^5 for F = u_*-type: sqrt(1 + kappa y_0) exp(g_1 p^2/(n_0 + n_1 kappa)) : {1: 0, 3: 0, 5: 0}
+   two nonlinear functions of the area distribution: [log(1+kappa y_0), 1/(1+kappa y_0)^2]_* : {1: 0, 3: 0, 5: 0}
+   a function of kappa with a function independent of Pi_kappa: [log(1+kappa y_0), exp(g_1 p^2/(n_0+n_1 kappa))]_* : {1: 0, 3: 0, 5: 0}
+   but the z-modes among themselves: [a_1, a_2]_* : {1: -I/(kappa*n_1 + n_0), 3: 0}
+
+Chart B (not adapted): canonical pair (Q, P) with kappa = Q - (b/3) P^3, Pi_kappa = P  (a canonical map: {kappa, Pi_kappa} = 1).
+   {kappa, Pi_kappa} in chart B = 1
+   X = c (Q - b P^3/3),  F = f_S(y) = log(1 + y_0 (Q - b P^3/3))
+   coefficient of hbar^1 in X*F - F*X: 0  (written with kappa = Q - b P^3/3)
+   coefficient of hbar^3 in X*F - F*X: -I*b*c*y_0**3/(6*(kappa*y_0 + 1)**3)  (written with kappa = Q - b P^3/3)
+   coefficient of hbar^5 in X*F - F*X: 0  (written with kappa = Q - b P^3/3)
+   The hbar^1 term is i hbar {X,F} = 0 (step 1). The hbar^3 term is  -(i hbar^3/24) P^3(X,F) = -(i hbar^3/12) b c f_S'''(kappa) != 0.
+
+====================================================================================================
+PART G. Corner identities of Section 2.5
+====================================================================================================
+G1. Upsilon_p + Upsilon_q - d log(-l_p . l_q) = 0
+G2. Upsilon[e^a l, e^-a n] - Upsilon[l, n] - da = 0
+G3. curl of the P- and Xi(1)-dependent one-form of step 8: [0, 0, 0] ; minus d[-(1-eps^2) K P + K Xi(1) + K log 2]: [0, 0, 0]

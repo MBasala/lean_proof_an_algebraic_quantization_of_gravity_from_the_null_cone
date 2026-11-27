@@ -19,6 +19,7 @@ public import QuantGrav.Elementary.CauchySchlomilch
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
+public import QuantGrav.Elementary.ConstantPoissonBracket
 public import QuantGrav.Elementary.FocusingDivergence
 public import QuantGrav.Elementary.GaussianExpSq
 public import QuantGrav.Elementary.GaussianModeLimits
@@ -1035,3 +1036,31 @@ info: 'QuantGrav.DiamondSetup.exists_setup_H1_diamondSpace_eq_intervalSpace' dep
 /-- info: 'QuantGrav.DiamondSetup.exists_setup_H1_isWeylPairOn' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms QuantGrav.DiamondSetup.exists_setup_H1_isWeylPairOn
+
+/-- info: 'QuantGrav.constPoissonBracket_linear' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.constPoissonBracket_linear
+
+/-- info: 'QuantGrav.constPoissonBracket_comp_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.constPoissonBracket_comp_eq_zero
+
+/-- info: 'QuantGrav.constPoissonBracket_pi_comp_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.constPoissonBracket_pi_comp_eq_zero
+
+/-- info: 'QuantGrav.forall_comp_eq_zero_iff_apply_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.forall_comp_eq_zero_iff_apply_eq_zero
+
+/-- info: 'QuantGrav.constPoissonBracket_eq_fderiv_apply' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.constPoissonBracket_eq_fderiv_apply
+
+/-- info: 'QuantGrav.hasDerivAt_comp_add_smul' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.hasDerivAt_comp_add_smul
+
+/-- info: 'QuantGrav.comp_add_smul_of_apply_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms QuantGrav.comp_add_smul_of_apply_eq_zero

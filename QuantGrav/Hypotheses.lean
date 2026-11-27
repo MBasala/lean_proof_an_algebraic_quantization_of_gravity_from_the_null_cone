@@ -150,6 +150,9 @@ Locations were checked against the PDF text or the TeX on 2026-11-26 unless mark
   Paper: not stated. The clock (4.26) contains the distribution of area over `S`, through (4.23);
   the relative boost conjugate to the area density, (A.16), (A.28), does not occur in (4.22) to
   (4.27). App D.3 holds the corner data fixed.
+  Two derivations (break attempt B6, finding F15 of `FIDELITY.md`) find that the smeared area
+  density generates only a shift of that boost and Poisson-commutes with the clock. Whether the
+  quantum commutation is exact depends on the canonical coordinates of Sec 4.2, not stated.
   Status: the sufficient form is the finite label set of
   `DiamondSetup.finiteDimensional_diamondSpace_of_le_closure_span_occupations` in
   `Diamond/FixedResolution.lean`; the necessary form is the negation of the hypothesis `hcomm` of

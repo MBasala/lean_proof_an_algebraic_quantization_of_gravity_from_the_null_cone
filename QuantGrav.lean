@@ -17,6 +17,7 @@ public import QuantGrav.Elementary.ClausenAsymptotics
 public import QuantGrav.Elementary.ClockLowerBound
 public import QuantGrav.Elementary.ClockWeight
 public import QuantGrav.Elementary.ClockWeightIntegral
+public import QuantGrav.Elementary.ConstantPoissonBracket
 public import QuantGrav.Elementary.FocusingDivergence
 public import QuantGrav.Elementary.GaussianExpSq
 public import QuantGrav.Elementary.GaussianModeLimits

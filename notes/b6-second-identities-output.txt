@@ -1,0 +1,17 @@
+========================================================================
+A1/A2: one polarization, R1 = v, R2 = v^2 + v^3
+A1  (A.14) block + d(Theta_b), b^2 K = C : [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+A2  (A.14) block + d(Theta_eps) - [-(eps^3/4) dK^z'dz|_eps] : [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    the extra term itself, (K,a1) and (K,a2) entries: [-epsilon**4*(a1 + 3*a2*epsilon**2 + 2*a2*epsilon)/4, -epsilon**5*(epsilon + 1)*(a1 + 3*a2*epsilon**2 + 2*a2*epsilon)/4]
+========================================================================
+A3: two polarizations, g = diag(1, exp(2 z1)), numerical quadrature
+A3  max |(A.14) block + d(Theta_b)| over all 10 entries, cut at fixed area density: 4.9304e-32
+A3  max |(A.14) block + d(Theta_eps) + (eps^3/4) dK^g(z',dz)|_eps|, cut at fixed b=eps : 2.8751e-32
+========================================================================
+A4: 2J = Xi(1) - M for a generic profile (one polarization)
+    integrand of 2J - (Xi(1) - M): 0
+========================================================================
+A5: contraction of the cone block with V_K = -1, V_z = -(v/2K) z'
+    integrand - d/dv[(v^3/4) z' zeta] : 0
+    => Omega(V, dz) = [(v^3/4) z' dz]_eps^1 : no bulk term, i.e. {z, lambda} = (v/2K) z' in the bulk,
+       which is Reisenberger's (17) with 4 pi G / rho_0 = 1/(2K).
